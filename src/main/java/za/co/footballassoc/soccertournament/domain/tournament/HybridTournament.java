@@ -1,4 +1,10 @@
 package za.co.footballassoc.soccertournament.domain.tournament;
 
-public class HybridTournament {
+import jakarta.persistence.Entity;
+
+import java.io.Serializable;
+
+@Entity
+public class HybridTournament extends Tournament implements Serializable {
+    priv
 }

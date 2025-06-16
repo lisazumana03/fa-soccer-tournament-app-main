@@ -1,4 +1,4 @@
-package za.co.footballassoc.soccertournament.domain;
+package za.co.footballassoc.soccertournament.domain.official;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
