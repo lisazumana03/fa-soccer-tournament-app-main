@@ -1,10 +1,9 @@
-package za.co.footballassoc.soccertournament.domain;
+package za.co.footballassoc.soccertournament.domain.team;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import org.hibernate.validator.constraints.ISBN;
+import za.co.footballassoc.soccertournament.domain.Name;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 @Entity

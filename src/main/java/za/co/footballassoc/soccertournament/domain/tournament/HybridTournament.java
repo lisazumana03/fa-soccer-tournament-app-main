@@ -6,5 +6,6 @@ import java.io.Serializable;
 
 @Entity
 public class HybridTournament extends Tournament implements Serializable {
-    priv
+    private boolean hasPlayOffs;
+    private String playOffType;
 }

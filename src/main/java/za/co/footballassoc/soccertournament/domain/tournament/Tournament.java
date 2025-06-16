@@ -1,10 +1,11 @@
 package za.co.footballassoc.soccertournament.domain.tournament;
 
 import jakarta.persistence.*;
-import za.co.footballassoc.soccertournament.domain.Team;
+import za.co.footballassoc.soccertournament.domain.team.Team;
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,11 +13,17 @@ import java.util.UUID;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Tournament implements Serializable {
     @Id
-    private UUID tournamentId;
+    private Long tournamentID; //1000PL, 2000LL, 3000BL
     private String tournamentName;
     private String tournamentLocation; //city/town, country, continent
     @OneToMany(mappedBy = "tournament")
     private List<Team> teams;
+
+    private String tournamentSeason;
+
+    //Tournament Begin and End
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
     public Tournament() {}// for JPA
 
