@@ -1,6 +1,7 @@
 package za.co.footballassoc.soccertournament.domain.tournament;
 
 import jakarta.persistence.*;
+import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 
 import java.io.Serializable;
@@ -15,11 +16,11 @@ public abstract class Tournament implements Serializable {
     @Id
     private Long tournamentID; //1000PL, 2000LL, 3000BL
     private String tournamentName;
-    private String tournamentLocation; //city/town, country, continent
+    @Embedded
+    private Location tournamentLocation; //city/town, country, continent
     @OneToMany(mappedBy = "tournament")
     private List<Team> teams;
-
-    private String tournamentSeason;
+    private String tournamentSeason; ///24/25
 
     //Tournament Begin and End
     private LocalDateTime startDate;
@@ -28,7 +29,7 @@ public abstract class Tournament implements Serializable {
     public Tournament() {}// for JPA
 
     protected Tournament(Builder<?> builder) {
-        this.tournamentId = builder.tournamentId;
+        this.tournamentID = builder.tournamentID;
         this.tournamentName = builder.tournamentName;
         this.tournamentLocation = builder.tournamentLocation;
         this.teams = builder.teams;
@@ -36,9 +37,9 @@ public abstract class Tournament implements Serializable {
     }
 
     public static class Builder<T extends Builder<T>> {
-        private UUID tournamentId;
+        private Long tournamentID;
         private String tournamentName;
-        private String tournamentLocation;
+        private Location tournamentLocation;
         private List<Team> teams;
         private Blob tournamentLogo; ////2000x1450 eg.
     }
