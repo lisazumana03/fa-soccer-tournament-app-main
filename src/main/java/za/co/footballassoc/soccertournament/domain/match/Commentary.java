@@ -1,4 +1,4 @@
-package za.co.footballassoc.soccertournament.domain.official;
+package za.co.footballassoc.soccertournament.domain.match;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -8,9 +8,10 @@ import za.co.footballassoc.soccertournament.domain.Name;
 import java.io.Serializable;
 
 @Entity
-public abstract class Official implements Serializable {
+public class Commentary implements Serializable {
     @Id
-    private String officialId;
+    private String commentaryID;
     @Embedded
-    private Name officalName;
+    private Name commentatorName;
+    private String commentatorNationality;
 }

@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -26,6 +25,8 @@ public abstract class Tournament implements Serializable {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
+    private byte[] tournamentLogo;
+
     public Tournament() {}// for JPA
 
     protected Tournament(Builder<?> builder) {
@@ -33,7 +34,7 @@ public abstract class Tournament implements Serializable {
         this.tournamentName = builder.tournamentName;
         this.tournamentLocation = builder.tournamentLocation;
         this.teams = builder.teams;
-
+        this.tournamentLogo = builder.tournamentLogo;
     }
 
     public static class Builder<T extends Builder<T>> {
@@ -41,6 +42,6 @@ public abstract class Tournament implements Serializable {
         private String tournamentName;
         private Location tournamentLocation;
         private List<Team> teams;
-        private Blob tournamentLogo; ////2000x1450 eg.
+        private byte[] tournamentLogo; ////2000x1450 eg.
     }
 }

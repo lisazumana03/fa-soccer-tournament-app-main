@@ -5,14 +5,14 @@ import jakarta.persistence.Entity;
 import java.io.Serializable;
 
 @Entity
-public class KnockoutTournament extends Tournament implements Serializable {
+public class Knockout extends Tournament implements Serializable {
     private int numberOfRounds;
     private boolean hasPlayOffs;
     private String playOffType;
 
-    public KnockoutTournament(){}
+    public Knockout(){}
 
-    private KnockoutTournament(Builder builder) {
+    private Knockout(Builder builder) {
         super(builder);
         this.numberOfRounds = builder.numberOfRounds;
         this.hasPlayOffs = builder.hasPlayOffs;
