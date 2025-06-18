@@ -18,7 +18,10 @@ public class Team implements Serializable {
     @Embedded
     private Location teamLocation;
     private String teamFormationYear;
-    private Blob teamLogo;
+    private byte[] teamLogo;
     @ManyToOne
     private Tournament tournament;
+
+    public Team() {}
+
 }
