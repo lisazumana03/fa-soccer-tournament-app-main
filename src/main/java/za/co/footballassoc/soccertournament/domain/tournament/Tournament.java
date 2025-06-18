@@ -25,6 +25,8 @@ public abstract class Tournament implements Serializable {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
+    private int homeAndAwayGames; //how many times the team will meet in the league/ knockout
+
     private byte[] tournamentLogo;
 
     public Tournament() {}// for JPA
@@ -33,6 +35,9 @@ public abstract class Tournament implements Serializable {
         this.tournamentID = builder.tournamentID;
         this.tournamentName = builder.tournamentName;
         this.tournamentLocation = builder.tournamentLocation;
+        this.tournamentSeason = builder.tournamentSeason;
+        this.startDate = builder.startDate;
+        this.endDate = builder.endDate;
         this.teams = builder.teams;
         this.tournamentLogo = builder.tournamentLogo;
     }
@@ -42,7 +47,10 @@ public abstract class Tournament implements Serializable {
         private String tournamentName;
         private String tournamentLocation; //tournament country
         private String tournamentSeason;
+        private LocalDateTime startDate;
+        private LocalDateTime endDate;
         private List<Team> teams;
         private byte[] tournamentLogo; ////2000x1450 eg.
+
     }
 }

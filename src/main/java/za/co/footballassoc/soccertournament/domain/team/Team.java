@@ -2,6 +2,7 @@ package za.co.footballassoc.soccertournament.domain.team;
 
 import jakarta.persistence.*;
 import za.co.footballassoc.soccertournament.domain.Location;
+import za.co.footballassoc.soccertournament.domain.match.Venue;
 import za.co.footballassoc.soccertournament.domain.tournament.Tournament;
 
 import java.io.Serializable;
@@ -24,6 +25,9 @@ public class Team implements Serializable {
     @Enumerated(EnumType.STRING)
     private TeamType teamType;
 
+    @ManyToOne
+    private Venue teamHomeGround;
+
     public Team() {}
 
     private Team(Builder builder) {
@@ -35,6 +39,43 @@ public class Team implements Serializable {
         this.tournament = builder.tournament;
         this.players = builder.players;
         this.teamType = builder.teamType;
+        this.teamHomeGround = builder.teamHomeGround;
+    }
+
+    public String getTeamID() {
+        return teamID;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public Location getTeamLocation() {
+        return teamLocation;
+    }
+
+    public String getTeamFormationYear() {
+        return teamFormationYear;
+    }
+
+    public byte[] getTeamLogo() {
+        return teamLogo;
+    }
+
+    public Tournament getTournament() {
+        return tournament;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public TeamType getTeamType() {
+        return teamType;
+    }
+
+    public Venue getTeamHomeGround() {
+        return teamHomeGround;
     }
 
     public static class Builder{
@@ -46,6 +87,7 @@ public class Team implements Serializable {
         private Tournament tournament;
         private List<Player> players;
         private TeamType teamType;
+        private Venue teamHomeGround;
 
         public Builder setTeamID(String teamID) {
             this.teamID = teamID;
@@ -72,7 +114,35 @@ public class Team implements Serializable {
             this.tournament = tournament;
             return this;
         }
+        public Builder setPlayers(List<Player> players) {
+            this.players = players;
+            return this;
+        }
+        public Builder setTeamType(TeamType teamType) {
+            this.teamType = teamType;
+            return this;
+        }
+        public Builder setTeamHomeGround(Venue teamHomeGround) {
+            this.teamHomeGround = teamHomeGround;
+            return this;
+        }
 
+        public Builder copy(Team team){
+            this.teamID = team.teamID;
+            this.teamName = team.teamName;
+            this.teamLocation = team.teamLocation;
+            this.teamFormationYear = team.teamFormationYear;
+            this.teamLogo = team.teamLogo;
+            this.tournament = team.tournament;
+            this.players = team.players;
+            this.teamType = team.teamType;
+            this.teamHomeGround = team.teamHomeGround;
+            return this;
+        }
+
+        public Team build() {
+            return new Team(this);
+        }
 
     }
 

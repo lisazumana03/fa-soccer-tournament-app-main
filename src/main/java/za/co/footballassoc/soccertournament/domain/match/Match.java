@@ -3,10 +3,12 @@ package za.co.footballassoc.soccertournament.domain.match;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.domain.tournament.Tournament;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Match {
@@ -22,6 +24,12 @@ public class Match {
     @ManyToOne
     private Tournament tournament;
     private String matchStatus; //Ongoing/ Complete/ Not started
+    private int duration;
+    @OneToMany(mappedBy = "match")
+    private List<MatchEvent> matchEvents;
+
+    @ManyToOne
+    private Venue venue;
 
     public Match() {
     }
@@ -35,6 +43,9 @@ public class Match {
         this.awayTeamScore = builder.awayTeamScore;
         this.tournament = builder.tournament;
         this.matchStatus = builder.matchStatus;
+        this.duration = builder.duration;
+        this.matchEvents = builder.matchEvents;
+        this.venue = builder.venue;
     }
 
     public String getMatchID() {
@@ -69,6 +80,17 @@ public class Match {
         return matchStatus;
     }
 
+    public int getDuration() {
+        return duration;
+    }
+
+    public List<MatchEvent> getMatchEvents() {
+        return matchEvents;
+    }
+    public Venue getVenue() {
+        return venue;
+    }
+
     public static class Builder {
         private String matchID;
         private LocalDateTime matchDate;
@@ -78,6 +100,9 @@ public class Match {
         private int awayTeamScore;
         private Tournament tournament;
         private String matchStatus;
+        private int duration;
+        private List<MatchEvent> matchEvents;
+        private Venue venue;
 
         public Builder setMatchID(String matchID) {
             this.matchID = matchID;
@@ -111,6 +136,38 @@ public class Match {
         public Builder setMatchStatus(String matchStatus) {
             this.matchStatus = matchStatus;
             return this;
+        }
+        public Builder setDuration(int duration) {
+            this.duration = duration;
+            return this;
+        }
+        public Builder setMatchEvents(List<MatchEvent> matchEvents) {
+            this.matchEvents = matchEvents;
+            return this;
+        }
+
+        public Builder setVenue(Venue venue) {
+            this.venue = venue;
+            return this;
+        }
+
+        public Builder copy(Match match){
+            this.matchID = match.matchID;
+            this.matchDate = match.matchDate;
+            this.homeTeam = match.homeTeam;
+            this.awayTeam = match.awayTeam;
+            this.homeTeamScore = match.homeTeamScore;
+            this.awayTeamScore = match.awayTeamScore;
+            this.tournament = match.tournament;
+            this.matchStatus = match.matchStatus;
+            this.duration = match.duration;
+            this.matchEvents = match.matchEvents;
+            this.venue = match.venue;
+            return this;
+        }
+
+        public Match build() {
+            return new Match(this);
         }
     }
 }
