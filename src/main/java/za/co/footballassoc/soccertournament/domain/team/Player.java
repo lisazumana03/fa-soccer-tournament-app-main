@@ -117,5 +117,36 @@ public class Player implements Serializable {
             return this;
         }
 
+        public Builder setPlayerWeight(double playerWeight){
+            this.playerWeight = playerWeight;
+            return this;
+        }
+        public Builder setClub(Team club){
+            this.club = club;
+            return this;
+        }
+        public Builder setNationalTeam(Team nationalTeam){
+            this.nationalTeam = nationalTeam;
+            return this;
+        }
+
+        public Builder copy(Player player){
+            this.playerID = player.playerID;
+            this.playerName = player.playerName;
+            this.playerNationality = player.playerNationality;
+            this.playerDateOfBirth = player.playerDateOfBirth;
+            this.playerLocationOfBirth = player.playerLocationOfBirth;
+            this.playerPosition = player.playerPosition;
+            this.playerHeight = player.playerHeight;
+            this.playerWeight = player.playerWeight;
+            this.club = player.club;
+            this.nationalTeam = player.nationalTeam;
+            return this;
+        }
+
+        public Player build(){
+            return new Player(this);
+        }
+
     }
 }
