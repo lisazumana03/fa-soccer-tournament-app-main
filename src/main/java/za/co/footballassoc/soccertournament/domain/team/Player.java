@@ -44,6 +44,10 @@ public class Player implements Serializable {
         this.nationalTeam = builder.nationalTeam;
     }
 
+    public String getPlayerID() {
+        return playerID;
+    }
+
     public Name getPlayerName() {
         return playerName;
     }
@@ -91,6 +95,11 @@ public class Player implements Serializable {
         private double playerWeight;
         private Team club;
         private Team nationalTeam;
+
+        public Builder setPlayerID(String playerID){
+            this.playerID = playerID;
+            return this;
+        }
 
         public Builder setPlayerName(Name playerName){
             this.playerName = playerName;

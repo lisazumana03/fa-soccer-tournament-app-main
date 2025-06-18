@@ -16,10 +16,10 @@ public class Team implements Serializable {
     @Embedded
     private Location teamLocation;
     private String teamFormationYear;
-    private byte[] teamLogo;
+    private byte[] teamLogo; ///1024 x 768 e.g.
     @ManyToOne
     private Tournament tournament;
-    @OneToMany(mappedBy = "club")
+    @OneToMany(mappedBy = "team")
     private List<Player> players;
 
     @Enumerated(EnumType.STRING)
