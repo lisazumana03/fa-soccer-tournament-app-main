@@ -18,6 +18,11 @@ public class Player implements Serializable {
     @Embedded
     private Location playerLocationOfBirth;
 
+    @Enumerated(EnumType.STRING)
+    private PlayerPosition playerPosition;
+
+    private double playerHeight; //in m or ft
+    private double playerWeight; //in kg or ib
     @ManyToOne
     private Team club;
     @ManyToOne

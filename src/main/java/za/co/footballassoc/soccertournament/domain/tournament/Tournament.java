@@ -16,7 +16,7 @@ public abstract class Tournament implements Serializable {
     private Long tournamentID; //1000PL, 2000LL, 3000BL
     private String tournamentName;
     @Embedded
-    private Location tournamentLocation; //city/town, country, continent
+    private String tournamentLocation; //city/town, country, continent
     @OneToMany(mappedBy = "tournament")
     private List<Team> teams;
     private String tournamentSeason; ///24/25
@@ -40,7 +40,8 @@ public abstract class Tournament implements Serializable {
     public static class Builder<T extends Builder<T>> {
         private Long tournamentID;
         private String tournamentName;
-        private Location tournamentLocation;
+        private String tournamentLocation; //tournament country
+        private String tournamentSeason;
         private List<Team> teams;
         private byte[] tournamentLogo; ////2000x1450 eg.
     }

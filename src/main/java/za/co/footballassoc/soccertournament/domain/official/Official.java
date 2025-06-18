@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import za.co.footballassoc.soccertournament.domain.Name;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 public abstract class Official implements Serializable {
@@ -13,4 +14,7 @@ public abstract class Official implements Serializable {
     private String officialId;
     @Embedded
     private Name officalName;
+    private String officialNationality;
+    private LocalDate officalDateOfBirth;
+    private String officalOrganisation;
 }
