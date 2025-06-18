@@ -1,19 +1,17 @@
 package za.co.footballassoc.soccertournament.domain.team;
 
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.tournament.Tournament;
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.util.List;
 
 @Entity
 public class Team implements Serializable {
     @Id
-    private String teamId;
+    private String teamID;
     private String teamName;
     @Embedded
     private Location teamLocation;
@@ -21,7 +19,21 @@ public class Team implements Serializable {
     private byte[] teamLogo;
     @ManyToOne
     private Tournament tournament;
+    @OneToMany(mappedBy = "club")
+    private List<Player> players;
+
+    @Enumerated(EnumType.STRING)
+    private TeamType teamType;
 
     public Team() {}
+
+    public static class Builder{
+        private String teamID;
+        private String teamName;
+        private Location teamLocation;
+        private String teamFormationYear;
+        private byte[] teamLogo;
+        private Tournament tournament;
+    }
 
 }
