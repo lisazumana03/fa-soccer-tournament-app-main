@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import za.co.footballassoc.soccertournament.domain.Name;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 public class Commentary implements Serializable {
@@ -14,4 +15,6 @@ public class Commentary implements Serializable {
     @Embedded
     private Name commentatorName;
     private String commentatorNationality;
+    private LocalDate commentatorDateOfBirth;
+    private String commentaryLanguage;
 }

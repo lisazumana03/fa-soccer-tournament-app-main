@@ -8,7 +8,6 @@ import java.io.Serializable;
 public class Knockout extends Tournament implements Serializable {
     private int numberOfRounds;
     private boolean hasPlayOffs;
-    private String playOffType;
 
     public Knockout(){}
 
@@ -16,7 +15,6 @@ public class Knockout extends Tournament implements Serializable {
         super(builder);
         this.numberOfRounds = builder.numberOfRounds;
         this.hasPlayOffs = builder.hasPlayOffs;
-        this.playOffType = builder.playOffType;
     }
 
 
@@ -28,13 +26,28 @@ public class Knockout extends Tournament implements Serializable {
         return hasPlayOffs;
     }
 
-    public String getPlayOffType() {
-        return playOffType;
-    }
 
     public static class Builder extends Tournament.Builder<Builder> {
         private int numberOfRounds;
         private boolean hasPlayOffs;
-        private String playOffType;
+
+        public Builder setNumberOfRounds(int numberOfRounds) {
+            this.numberOfRounds = numberOfRounds;
+            return this;
+        }
+
+        public Builder setHasPlayOffs(boolean hasPlayOffs) {
+            this.hasPlayOffs = hasPlayOffs;
+            return this;
+        }
+
+        protected Builder self(){
+            return this;
+        }
+
+        public Knockout build() {
+            return new Knockout(this);
+        }
+
     }
 }

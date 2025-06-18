@@ -40,6 +40,32 @@ public class League extends Tournament implements Serializable {
 
     public static class Builder extends Tournament.Builder<Builder> {
         private int numberOfMatchDays;
+        private boolean hasPlayOffs;
+        private String playOffType;
+
+        public Builder setNumberOfMatchDays(int numberOfMatchDays) {
+            this.numberOfMatchDays = numberOfMatchDays;
+            return this;
+        }
+
+        public Builder hasPlayOffs(boolean hasPlayOffs) {
+            this.hasPlayOffs = hasPlayOffs;
+            return this;
+        }
+
+        public Builder setPlayOffType(String playOffType) {
+            this.playOffType = playOffType;
+            return this;
+        }
+
+        protected Builder self(){
+            return this;
+        }
+
+        public League build() {
+            return new League(this);
+        }
+
     }
 
 }
