@@ -1,0 +1,13 @@
+package za.co.footballassoc.soccertournament.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/tournament-manager")
+public class HomeController {
+    @RequestMapping("/home")
+    public String home() {
+        return "Welcome to the Soccer Tournament API";
+    }
+}

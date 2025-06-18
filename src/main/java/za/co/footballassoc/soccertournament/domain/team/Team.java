@@ -21,11 +21,21 @@ public class Team implements Serializable {
     private Tournament tournament;
     @OneToMany(mappedBy = "team")
     private List<Player> players;
-
     @Enumerated(EnumType.STRING)
     private TeamType teamType;
 
     public Team() {}
+
+    private Team(Builder builder) {
+        this.teamID = builder.teamID;
+        this.teamName = builder.teamName;
+        this.teamLocation = builder.teamLocation;
+        this.teamFormationYear = builder.teamFormationYear;
+        this.teamLogo = builder.teamLogo;
+        this.tournament = builder.tournament;
+        this.players = builder.players;
+        this.teamType = builder.teamType;
+    }
 
     public static class Builder{
         private String teamID;
@@ -34,6 +44,36 @@ public class Team implements Serializable {
         private String teamFormationYear;
         private byte[] teamLogo;
         private Tournament tournament;
+        private List<Player> players;
+        private TeamType teamType;
+
+        public Builder setTeamID(String teamID) {
+            this.teamID = teamID;
+            return this;
+        }
+
+        public Builder setTeamName(String teamName) {
+            this.teamName = teamName;
+            return this;
+        }
+        public Builder setTeamLocation(Location teamLocation) {
+            this.teamLocation = teamLocation;
+            return this;
+        }
+        public Builder setTeamFormationYear(String teamFormationYear) {
+            this.teamFormationYear = teamFormationYear;
+            return this;
+        }
+        public Builder setTeamLogo(byte[] teamLogo) {
+            this.teamLogo = teamLogo;
+            return this;
+        }
+        public Builder setTournament(Tournament tournament) {
+            this.tournament = tournament;
+            return this;
+        }
+
+
     }
 
 }
