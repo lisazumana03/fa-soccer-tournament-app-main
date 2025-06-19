@@ -14,7 +14,7 @@ public abstract class Official implements Serializable {
     @Id
     private String officialId;
     @Embedded
-    protected Name officalName;
+    protected Name officialName;
     protected String officialNationality;
     protected LocalDate officialDateOfBirth;
     @Embedded
@@ -25,9 +25,9 @@ public abstract class Official implements Serializable {
 
     public Official() {}
 
-    public Official(String officialId, Name officalName, String officialNationality, LocalDate officialDateOfBirth, Location officialLocationOfBirth, String officialOrganisation, Match match) {
+    public Official(String officialId, Name officialName, String officialNationality, LocalDate officialDateOfBirth, Location officialLocationOfBirth, String officialOrganisation, Match match) {
         this.officialId = officialId;
-        this.officalName = officalName;
+        this.officialName = officialName;
         this.officialNationality = officialNationality;
         this.officialDateOfBirth = officialDateOfBirth;
         this.officialLocationOfBirth = officialLocationOfBirth;
@@ -43,12 +43,12 @@ public abstract class Official implements Serializable {
         this.officialId = officialId;
     }
 
-    public Name getOfficalName() {
-        return officalName;
+    public Name getOfficialName() {
+        return officialName;
     }
 
-    public void setOfficalName(Name officalName) {
-        this.officalName = officalName;
+    public void setOfficialName(Name officalName) {
+        this.officialName = officalName;
     }
 
     public String getOfficialNationality() {
@@ -90,4 +90,7 @@ public abstract class Official implements Serializable {
     public void setMatch(Match match) {
         this.match = match;
     }
+
+    @Override
+    public abstract String toString();
 }

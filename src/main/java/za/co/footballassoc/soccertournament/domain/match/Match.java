@@ -1,9 +1,6 @@
 package za.co.footballassoc.soccertournament.domain.match;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import za.co.footballassoc.soccertournament.domain.official.Official;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.domain.tournament.Tournament;
@@ -25,7 +22,7 @@ public class Match {
     @ManyToOne
     private Tournament tournament;
     private String matchStatus; //Ongoing/ Complete/ Not started
-    private int duration;
+    private int duration; ///90 min full match (45min + 45min)
     @OneToMany(mappedBy = "match")
     private List<MatchEvent> matchEvents;
     @OneToMany(mappedBy = "match")
@@ -33,6 +30,9 @@ public class Match {
 
     @ManyToOne
     private Venue venue;
+
+    @OneToOne
+    private Team penaltyWinner;
 
     public Match() {
     }

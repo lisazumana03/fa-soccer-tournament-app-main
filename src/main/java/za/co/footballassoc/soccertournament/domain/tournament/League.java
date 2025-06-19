@@ -7,6 +7,9 @@ import java.io.Serializable;
 @Entity
 public class League extends Tournament implements Serializable {
     private int numberOfMatchDays;
+    private int promotionSpots;
+    private int relegationSpots;
+    private int numberOfGroups;
     private boolean hasPlayOffs;
     private String playOffType;
 
@@ -15,10 +18,22 @@ public class League extends Tournament implements Serializable {
     private League(Builder builder) {
         super();
         this.numberOfMatchDays = builder.numberOfMatchDays;
+        this.promotionSpots = builder.promotionSpots;
+        this.relegationSpots = builder.relegationSpots;
+        this.hasPlayOffs = builder.hasPlayOffs;
+        this.playOffType = builder.playOffType;
     }
 
     public int getNumberOfMatchDays() {
         return numberOfMatchDays;
+    }
+
+    public int getPromotionSpots() {
+        return promotionSpots;
+    }
+
+    public int getRelegationSpots() {
+        return relegationSpots;
     }
 
     public boolean isHasPlayOffs() {
@@ -40,11 +55,23 @@ public class League extends Tournament implements Serializable {
 
     public static class Builder extends Tournament {
         private int numberOfMatchDays;
+        private int promotionSpots;
+        private int relegationSpots;
         private boolean hasPlayOffs;
         private String playOffType;
 
         public Builder setNumberOfMatchDays(int numberOfMatchDays) {
             this.numberOfMatchDays = numberOfMatchDays;
+            return this;
+        }
+
+        public Builder setPromotionSpots(int promotionSpots) {
+            this.promotionSpots = promotionSpots;
+            return this;
+        }
+
+        public Builder setRelegationSpots(int relegationSpots) {
+            this.relegationSpots = relegationSpots;
             return this;
         }
 

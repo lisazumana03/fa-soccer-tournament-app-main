@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 @Entity
 public class Hybrid extends Tournament implements Serializable {
+    private int groupStageRounds;
+    private int knockoutRounds;
     private boolean hasPlayOffs;
     private String playOffType;
 
@@ -13,8 +15,18 @@ public class Hybrid extends Tournament implements Serializable {
 
     private Hybrid(Builder builder) {
         super();
+        this.groupStageRounds = builder.groupStageRounds;
+        this.knockoutRounds = builder.knockoutRounds;
         this.hasPlayOffs = builder.hasPlayOffs;
         this.playOffType = builder.playOffType;
+    }
+
+    public int getGroupStageRounds() {
+        return groupStageRounds;
+    }
+
+    public int getKnockoutRounds() {
+        return knockoutRounds;
     }
 
     public boolean isHasPlayOffs() {
@@ -26,8 +38,19 @@ public class Hybrid extends Tournament implements Serializable {
     }
 
     public static class Builder{
+        private int groupStageRounds;
+        private int knockoutRounds;
         private boolean hasPlayOffs;
         private String playOffType;
+
+        public Builder setGroupStageRounds(int groupStageRounds) {
+            this.groupStageRounds = groupStageRounds;
+            return this;
+        }
+        public Builder setKnockoutRounds(int knockoutRounds) {
+            this.knockoutRounds = knockoutRounds;
+            return this;
+        }
 
         public Builder hasPlayOffs(boolean hasPlayOffs) {
             this.hasPlayOffs = hasPlayOffs;
