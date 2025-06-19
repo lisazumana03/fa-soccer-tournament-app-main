@@ -15,6 +15,6 @@ public class Venue implements Serializable {
     private Location stadiumAddress;
     @Enumerated(EnumType.STRING)
     private VenueType venueType;
-    @OneToMany(mappedBy = "venue")
+    @OneToMany(mappedBy = "teamHomeGround")
     private List<Team> teams;
 }

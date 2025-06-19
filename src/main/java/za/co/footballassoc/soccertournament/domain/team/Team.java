@@ -20,7 +20,7 @@ public class Team implements Serializable {
     private byte[] teamLogo; ///1024 x 768 e.g.
     @ManyToOne
     private Tournament tournament;
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "club")
     private List<Player> players;
     @Enumerated(EnumType.STRING)
     private TeamType teamType;

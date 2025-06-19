@@ -15,13 +15,12 @@ public class MatchService implements IMatchService {
 
     @Override
     public void startMatch(String matchID){
-        Match match = matchRepository.findById(matchID)
-                .orElseThrow(() -> new RuntimeException("Match not found!"));
-        if("Scheduled".equals(match.getMatchStatus())){
-            match.setMatchStatus();
-            matchRepository.save(match);
-        }
+//        Match match = matchRepository.findById(matchID)
+//                .orElseThrow(() -> new RuntimeException("Match not found!"));
+//        if("Scheduled".equals(match.getMatchStatus())){
+//            match.setMatchStatus();
+//            matchRepository.save(match);
+//        }
     }
-
 
 }
