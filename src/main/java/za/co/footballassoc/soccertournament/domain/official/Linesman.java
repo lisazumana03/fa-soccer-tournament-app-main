@@ -10,7 +10,34 @@ public class Linesman extends Official implements Serializable {
 
     public Linesman() {}
 
-    private Linesman(Builder builder) {}
+    private Linesman(Builder builder) {
+        this.side = builder.side;
+    }
 
-    public static class Builder{}
+    public String getSide() {
+        return side;
+    }
+
+    @Override
+    public String toString() {
+        return "Linesman{" +
+                "side='" + side + '\'' +
+                ", officialName=" + officialName +
+                ", officialNationality='" + officialNationality + '\'' +
+                ", officialDateOfBirth=" + officialDateOfBirth +
+                ", officialLocationOfBirth=" + officialLocationOfBirth +
+                ", match=" + match +
+                ", officialOrganisation='" + officialOrganisation + '\'' +
+                '}';
+    }
+
+    public static class Builder{
+        private String side;
+
+        public Builder setSide(String side){
+            this.side = side;
+            return this;
+        }
+
+    }
 }
