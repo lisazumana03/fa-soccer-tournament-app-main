@@ -25,6 +25,7 @@ public class Player implements Serializable {
     private double playerWeight; //in kg or ib
     @ManyToOne
     private Team club;
+    private int kitNumber;
     @ManyToOne
     @JoinColumn(name = "national_team_id")
     private Team nationalTeam;
@@ -41,6 +42,7 @@ public class Player implements Serializable {
         this.playerHeight = builder.playerHeight;
         this.playerWeight = builder.playerWeight;
         this.club = builder.club;
+        this.kitNumber = builder.kitNumber;
         this.nationalTeam = builder.nationalTeam;
     }
 
@@ -80,6 +82,10 @@ public class Player implements Serializable {
         return club;
     }
 
+    public int getKitNumber() {
+        return kitNumber;
+    }
+
     public Team getNationalTeam() {
         return nationalTeam;
     }
@@ -94,6 +100,7 @@ public class Player implements Serializable {
         private double playerHeight;
         private double playerWeight;
         private Team club;
+        private int kitNumber;
         private Team nationalTeam;
 
         public Builder setPlayerID(String playerID){
@@ -134,6 +141,12 @@ public class Player implements Serializable {
             this.club = club;
             return this;
         }
+
+        public Builder setKitNumber(int kitNumber){
+            this.kitNumber = kitNumber;
+            return this;
+        }
+
         public Builder setNationalTeam(Team nationalTeam){
             this.nationalTeam = nationalTeam;
             return this;
@@ -149,6 +162,7 @@ public class Player implements Serializable {
             this.playerHeight = player.playerHeight;
             this.playerWeight = player.playerWeight;
             this.club = player.club;
+            this.kitNumber = player.kitNumber;
             this.nationalTeam = player.nationalTeam;
             return this;
         }

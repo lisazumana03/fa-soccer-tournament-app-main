@@ -113,18 +113,6 @@ public abstract class Tournament implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Tournament{" +
-                "tournamentID=" + tournamentID +
-                ", tournamentName='" + tournamentName + '\'' +
-                ", tournamentLocation='" + tournamentLocation + '\'' +
-                ", tournamentSeason='" + tournamentSeason + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", teams=" + teams +
-                ", homeAndAwayGames=" + homeAndAwayGames +
-                ", tournamentLogo=" + Arrays.toString(tournamentLogo) +
-                '}';
-    }
+    public abstract String toString();
 
 }

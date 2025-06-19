@@ -46,14 +46,23 @@ public class League extends Tournament implements Serializable {
 
     @Override
     public String toString() {
-        return "LeagueTournament{" +
+        return "League{" +
                 "numberOfMatchDays=" + numberOfMatchDays +
+                ", promotionSpots=" + promotionSpots +
+                ", relegationSpots=" + relegationSpots +
+                ", numberOfGroups=" + numberOfGroups +
                 ", hasPlayOffs=" + hasPlayOffs +
                 ", playOffType='" + playOffType + '\'' +
+                ", tournamentName='" + tournamentName + '\'' +
+                ", tournamentLocation='" + tournamentLocation + '\'' +
+                ", tournamentSeason='" + tournamentSeason + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", teams=" + teams +
                 '}';
     }
 
-    public static class Builder extends Tournament {
+    public static class Builder{
         private int numberOfMatchDays;
         private int promotionSpots;
         private int relegationSpots;

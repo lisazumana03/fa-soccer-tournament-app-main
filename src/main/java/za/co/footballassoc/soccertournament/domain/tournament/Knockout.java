@@ -26,8 +26,21 @@ public class Knockout extends Tournament implements Serializable {
         return hasPlayOffs;
     }
 
+    @Override
+    public String toString() {
+        return "Knockout{" +
+                "numberOfRounds=" + numberOfRounds +
+                ", hasPlayOffs=" + hasPlayOffs +
+                ", tournamentName='" + tournamentName + '\'' +
+                ", tournamentLocation='" + tournamentLocation + '\'' +
+                ", tournamentSeason='" + tournamentSeason + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", teams=" + teams +
+                '}';
+    }
 
-    public static class Builder extends Tournament {
+    public static class Builder{
         private int numberOfRounds;
         private boolean hasPlayOffs;
 

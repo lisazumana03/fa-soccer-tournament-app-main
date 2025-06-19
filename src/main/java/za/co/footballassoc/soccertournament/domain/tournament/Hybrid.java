@@ -37,6 +37,22 @@ public class Hybrid extends Tournament implements Serializable {
         return playOffType;
     }
 
+    @Override
+    public String toString() {
+        return "Hybrid{" +
+                "groupStageRounds=" + groupStageRounds +
+                ", knockoutRounds=" + knockoutRounds +
+                ", hasPlayOffs=" + hasPlayOffs +
+                ", playOffType='" + playOffType + '\'' +
+                ", tournamentName='" + tournamentName + '\'' +
+                ", tournamentLocation='" + tournamentLocation + '\'' +
+                ", tournamentSeason='" + tournamentSeason + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", teams=" + teams +
+                '}';
+    }
+
     public static class Builder{
         private int groupStageRounds;
         private int knockoutRounds;
