@@ -13,7 +13,7 @@ public class League extends Tournament implements Serializable {
     public League() {}
 
     private League(Builder builder) {
-        super(builder);
+        super();
         this.numberOfMatchDays = builder.numberOfMatchDays;
     }
 
@@ -38,7 +38,7 @@ public class League extends Tournament implements Serializable {
                 '}';
     }
 
-    public static class Builder extends Tournament.Builder<Builder> {
+    public static class Builder extends Tournament {
         private int numberOfMatchDays;
         private boolean hasPlayOffs;
         private String playOffType;

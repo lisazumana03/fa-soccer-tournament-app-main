@@ -12,7 +12,7 @@ public class Knockout extends Tournament implements Serializable {
     public Knockout(){}
 
     private Knockout(Builder builder) {
-        super(builder);
+        super();
         this.numberOfRounds = builder.numberOfRounds;
         this.hasPlayOffs = builder.hasPlayOffs;
     }
@@ -27,7 +27,7 @@ public class Knockout extends Tournament implements Serializable {
     }
 
 
-    public static class Builder extends Tournament.Builder<Builder> {
+    public static class Builder extends Tournament {
         private int numberOfRounds;
         private boolean hasPlayOffs;
 

@@ -6,5 +6,5 @@ import za.co.footballassoc.soccertournament.domain.team.Team;
 
 @Repository
 public interface TeamRepository extends JpaRepository<Team, String> {
-    Team findByID(String teamID);
+
 }

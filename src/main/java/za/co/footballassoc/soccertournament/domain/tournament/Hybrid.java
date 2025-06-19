@@ -12,7 +12,7 @@ public class Hybrid extends Tournament implements Serializable {
     public Hybrid(){}
 
     private Hybrid(Builder builder) {
-        super(builder);
+        super();
         this.hasPlayOffs = builder.hasPlayOffs;
         this.playOffType = builder.playOffType;
     }
@@ -25,7 +25,7 @@ public class Hybrid extends Tournament implements Serializable {
         return playOffType;
     }
 
-    public static class Builder extends Tournament.Builder<Builder>{
+    public static class Builder{
         private boolean hasPlayOffs;
         private String playOffType;
 
