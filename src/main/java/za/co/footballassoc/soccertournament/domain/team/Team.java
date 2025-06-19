@@ -19,6 +19,7 @@ public class Team implements Serializable {
     private String teamFormationYear;
     private byte[] teamLogo; ///1024 x 768 e.g.
     @ManyToOne
+    @JoinColumn(name = "tournament_id")
     private Tournament tournament;
     @OneToMany(mappedBy = "club")
     private List<Player> players;

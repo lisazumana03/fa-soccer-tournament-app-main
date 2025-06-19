@@ -1,29 +1,26 @@
 package za.co.footballassoc.soccertournament.domain.tournament;
 
 import jakarta.persistence.*;
-import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 
 import java.io.Serializable;
-import java.sql.Blob;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Tournament implements Serializable {
     @Id
-    private Long tournamentID; //1000PL, 2000LL, 3000BL
-    private String tournamentName;
-    @Embedded
-    private String tournamentLocation; //city/town, country, continent
-    @OneToMany(mappedBy = "tournament")
-    private List<Team> teams;
-    private String tournamentSeason; ///24/25
-
+    private String tournamentID; //1000PL, 2000LL, 3000BL
+    protected String tournamentName;
+    protected String tournamentLocation; //city/town, country, continent
+    protected String tournamentSeason; ///24/25
     //Tournament Begin and End
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    protected LocalDateTime startDate;
+    protected LocalDateTime endDate;
+    @OneToMany(mappedBy = "tournament")
+    protected List<Team> teams;
 
     private int homeAndAwayGames; //how many times the team will meet in the league/ knockout
 
@@ -31,26 +28,103 @@ public abstract class Tournament implements Serializable {
 
     public Tournament() {}// for JPA
 
-    protected Tournament(Builder<?> builder) {
-        this.tournamentID = builder.tournamentID;
-        this.tournamentName = builder.tournamentName;
-        this.tournamentLocation = builder.tournamentLocation;
-        this.tournamentSeason = builder.tournamentSeason;
-        this.startDate = builder.startDate;
-        this.endDate = builder.endDate;
-        this.teams = builder.teams;
-        this.tournamentLogo = builder.tournamentLogo;
+    public Tournament(String tournamentID, String tournamentName, String tournamentLocation, String tournamentSeason, LocalDateTime startDate, LocalDateTime endDate, List<Team> teams, int homeAndAwayGames, byte[] tournamentLogo) {
+        this.tournamentID = tournamentID;
+        this.tournamentName = tournamentName;
+        this.tournamentLocation = tournamentLocation;
+        this.tournamentSeason = tournamentSeason;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.teams = teams;
+        this.homeAndAwayGames = homeAndAwayGames;
+        this.tournamentLogo = tournamentLogo;
     }
 
-    public static class Builder<T extends Builder<T>> {
-        private Long tournamentID;
-        private String tournamentName;
-        private String tournamentLocation; //tournament country
-        private String tournamentSeason;
-        private LocalDateTime startDate;
-        private LocalDateTime endDate;
-        private List<Team> teams;
-        private byte[] tournamentLogo; ////2000x1450 eg.
-
+    public String getTournamentID() {
+        return tournamentID;
     }
+
+    public String getTournamentName() {
+        return tournamentName;
+    }
+
+    public String getTournamentLocation() {
+        return tournamentLocation;
+    }
+
+    public String getTournamentSeason() {
+        return tournamentSeason;
+    }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public int getHomeAndAwayGames() {
+        return homeAndAwayGames;
+    }
+
+    public byte[] getTournamentLogo() {
+        return tournamentLogo;
+    }
+
+    public void setTournamentID(String tournamentID) {
+        this.tournamentID = tournamentID;
+    }
+
+    public void setTournamentName(String tournamentName) {
+        this.tournamentName = tournamentName;
+    }
+
+    public void setTournamentLocation(String tournamentLocation) {
+        this.tournamentLocation = tournamentLocation;
+    }
+
+    public void setTournamentSeason(String tournamentSeason) {
+        this.tournamentSeason = tournamentSeason;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
+    }
+
+    public void setHomeAndAwayGames(int homeAndAwayGames) {
+        this.homeAndAwayGames = homeAndAwayGames;
+    }
+
+    public void setTournamentLogo(byte[] tournamentLogo) {
+        this.tournamentLogo = tournamentLogo;
+    }
+
+    @Override
+    public String toString() {
+        return "Tournament{" +
+                "tournamentID=" + tournamentID +
+                ", tournamentName='" + tournamentName + '\'' +
+                ", tournamentLocation='" + tournamentLocation + '\'' +
+                ", tournamentSeason='" + tournamentSeason + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", teams=" + teams +
+                ", homeAndAwayGames=" + homeAndAwayGames +
+                ", tournamentLogo=" + Arrays.toString(tournamentLogo) +
+                '}';
+    }
+
 }

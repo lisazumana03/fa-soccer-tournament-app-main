@@ -10,7 +10,7 @@ public class League extends Tournament implements Serializable {
     private boolean hasPlayOffs;
     private String playOffType;
 
-    public League(){}
+    public League() {}
 
     private League(Builder builder) {
         super(builder);

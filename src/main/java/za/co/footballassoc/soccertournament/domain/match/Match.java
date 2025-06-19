@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import za.co.footballassoc.soccertournament.domain.official.Official;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.domain.tournament.Tournament;
 
@@ -27,6 +28,8 @@ public class Match {
     private int duration;
     @OneToMany(mappedBy = "match")
     private List<MatchEvent> matchEvents;
+    @OneToMany(mappedBy = "match")
+    private List<Official> officials;
 
     @ManyToOne
     private Venue venue;
@@ -45,6 +48,7 @@ public class Match {
         this.matchStatus = builder.matchStatus;
         this.duration = builder.duration;
         this.matchEvents = builder.matchEvents;
+        this.officials = builder.officials;
         this.venue = builder.venue;
     }
 
@@ -87,6 +91,9 @@ public class Match {
     public List<MatchEvent> getMatchEvents() {
         return matchEvents;
     }
+    public List<Official> getOfficials() {
+        return officials;
+    }
     public Venue getVenue() {
         return venue;
     }
@@ -102,6 +109,7 @@ public class Match {
         private String matchStatus;
         private int duration;
         private List<MatchEvent> matchEvents;
+        private List<Official> officials;
         private Venue venue;
 
         public Builder setMatchID(String matchID) {
@@ -146,6 +154,11 @@ public class Match {
             return this;
         }
 
+        public Builder setOfficials(List<Official> officials) {
+            this.officials = officials;
+            return this;
+        }
+
         public Builder setVenue(Venue venue) {
             this.venue = venue;
             return this;
@@ -162,6 +175,7 @@ public class Match {
             this.matchStatus = match.matchStatus;
             this.duration = match.duration;
             this.matchEvents = match.matchEvents;
+            this.officials = match.officials;
             this.venue = match.venue;
             return this;
         }
