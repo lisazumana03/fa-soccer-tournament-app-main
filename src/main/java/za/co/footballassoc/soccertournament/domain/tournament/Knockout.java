@@ -1,18 +1,24 @@
 package za.co.footballassoc.soccertournament.domain.tournament;
 
 import jakarta.persistence.Entity;
+import za.co.footballassoc.soccertournament.domain.team.Team;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Knockout extends Tournament implements Serializable {
     private int numberOfRounds;
     private boolean hasPlayOffs;
 
-    public Knockout(){}
+    public Knockout(){
+        super();
+    }
 
     private Knockout(Builder builder) {
         super();
+        this.tournamentID = builder.tournamentID;
         this.numberOfRounds = builder.numberOfRounds;
         this.hasPlayOffs = builder.hasPlayOffs;
     }
@@ -41,6 +47,15 @@ public class Knockout extends Tournament implements Serializable {
     }
 
     public static class Builder{
+        private String tournamentID;
+        private String tournamentName;
+        private String tournamentLocation;
+        private String tournamentSeason;
+        private String tournamentGenderGroup;
+        private String tournamentType;
+        private LocalDateTime startDate;
+        private LocalDateTime endDate;
+        private List<Team> teams;
         private int numberOfRounds;
         private boolean hasPlayOffs;
 

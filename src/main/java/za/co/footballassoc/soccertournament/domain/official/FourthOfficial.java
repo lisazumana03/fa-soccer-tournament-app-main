@@ -36,7 +36,7 @@ public class FourthOfficial extends Official implements Serializable {
     }
 
     public static class Builder {
-        private int officialId;
+        private String officialId;
         private Name officialName;
         private String officialNationality;
         private LocalDate officialDateOfBirth;
@@ -44,5 +44,54 @@ public class FourthOfficial extends Official implements Serializable {
         private String officialOrganisation;
         private Match match;
         private String role;
+
+        public Builder setOfficialId(String officialId){
+            this.officialId = officialId;
+            return this;
+        }
+
+        public Builder setOfficialName(Name officialName){
+            this.officialName = officialName;
+            return this;
+        }
+
+        public Builder setOfficialNationality(String officialNationality){
+            this.officialNationality = officialNationality;
+            return this;
+        }
+
+        public Builder setOfficialDateOfBirth(LocalDate officialDateOfBirth){
+            this.officialDateOfBirth = officialDateOfBirth;
+            return this;
+        }
+
+        public Builder setOfficialLocationOfBirth(Location officialLocationOfBirth){
+            this.officialLocationOfBirth = officialLocationOfBirth;
+            return this;
+        }
+
+        public Builder setOfficialOrganisation(String officialOrganisation){
+            this.officialOrganisation = officialOrganisation;
+            return this;
+        }
+
+        public Builder setMatch(Match match){
+            this.match = match;
+            return this;
+        }
+
+        public Builder setRole(String role){
+            this.role = role;
+            return this;
+        }
+
+        protected Builder self(){
+            return this;
+        }
+
+        public FourthOfficial build(){
+            return new FourthOfficial(this);
+        }
+
     }
 }

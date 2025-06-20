@@ -36,7 +36,7 @@ public class AssistantVAR extends Official implements Serializable {
     }
 
     public static class Builder{
-        private int officialId;
+        private String officialId;
         private Name officialName;
         private String officialNationality;
         private LocalDate officialDateOfBirth;
