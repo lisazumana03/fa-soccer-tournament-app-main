@@ -1,19 +1,27 @@
 package za.co.footballassoc.soccertournament.factory.team;
 
+import za.co.footballassoc.soccertournament.domain.Location;
+import za.co.footballassoc.soccertournament.domain.Name;
 import za.co.footballassoc.soccertournament.domain.team.Player;
+import za.co.footballassoc.soccertournament.domain.team.PlayerPosition;
+import za.co.footballassoc.soccertournament.domain.team.Team;
+
+import java.time.LocalDate;
 
 public class PlayerFactory {
-    public static Player createPlayer() {
+    public static Player createPlayer(String playerID, Name playerName, String playerNationality, LocalDate playerDateOfBirth, Location playerLocationOfBirth, PlayerPosition playerPosition, double playerHeight, double playerWeight, Team club, int kitNumber, Team nationalTeam) {
         return new Player.Builder()
-                .setPlayerID(createPlayer().getPlayerID())
-                .setPlayerName(createPlayer().getPlayerName())
-                .setPlayerNationality(createPlayer().getPlayerNationality())
-                .setPlayerDateOfBirth(createPlayer().getPlayerDateOfBirth())
-                .setPlayerLocationOfBirth(createPlayer().getPlayerLocationOfBirth())
-                .setPlayerPosition(createPlayer().getPlayerPosition())
-                .setPlayerHeight(createPlayer().getPlayerHeight())
-                .setPlayerWeight(createPlayer().getPlayerWeight())
-                .setClub(createPlayer().getClub())
-                .setNationalTeam(createPlayer().getNationalTeam()).build();
+                .setPlayerID(playerID)
+                .setPlayerName(playerName)
+                .setPlayerNationality(playerNationality)
+                .setPlayerDateOfBirth(playerDateOfBirth)
+                .setPlayerLocationOfBirth(playerLocationOfBirth)
+                .setPlayerPosition(playerPosition)
+                .setPlayerHeight(playerHeight)
+                .setPlayerWeight(playerWeight)
+                .setClub(club)
+                .setKitNumber(kitNumber)
+                .setNationalTeam(nationalTeam)
+                .build();
     }
 }
