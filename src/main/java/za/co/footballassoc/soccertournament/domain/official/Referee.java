@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 public class Referee extends Official implements Serializable {
-    private String certificationLevel;
+    private int certificationLevel;
 
     public Referee() {
         super();
@@ -18,7 +18,17 @@ public class Referee extends Official implements Serializable {
 
     private Referee(Builder builder) {
         this.officialId = builder.officialId;
+        this.officialName = builder.officialName;
+        this.officialNationality = builder.officialNationality;
+        this.officialDateOfBirth = builder.officialDateOfBirth;
+        this.officialLocationOfBirth = builder.officialLocationOfBirth;
+        this.officialOrganisation = builder.officialOrganisation;
+        this.match = builder.match;
         this.certificationLevel = builder.certificationLevel;
+    }
+
+    public int getCertificationLevel() {
+        return certificationLevel;
     }
 
     @Override
@@ -42,7 +52,7 @@ public class Referee extends Official implements Serializable {
         private Location officialLocationOfBirth;
         private String officialOrganisation;
         private Match match;
-        private String certificationLevel;
+        private int certificationLevel;
 
         public Builder setOfficialId(String officialId){
             this.officialId = officialId;
@@ -79,7 +89,7 @@ public class Referee extends Official implements Serializable {
             return this;
         }
 
-        public Builder setCertificationLevel(String certificationLevel) {
+        public Builder setCertificationLevel(int certificationLevel) {
             this.certificationLevel = certificationLevel;
             return this;
         }
