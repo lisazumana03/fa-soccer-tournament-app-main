@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 public abstract class Official implements Serializable {
     @Id
-    private String officialId;
+    protected String officialId;
     @Embedded
     protected Name officialName;
     protected String officialNationality;
