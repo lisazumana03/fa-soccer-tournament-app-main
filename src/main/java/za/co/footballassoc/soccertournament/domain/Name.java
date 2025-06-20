@@ -10,6 +10,8 @@ public class Name implements ValueObject{
     private String middleName;
     private String lastName;
 
+    public Name(){}
+
     private Name(Builder builder) {
         this.firstName = builder.firstName;
         this.middleName = builder.middleName;
@@ -45,6 +47,10 @@ public class Name implements ValueObject{
         public Builder setLastName(String lastName) {
             this.lastName = lastName;
             return this;
+        }
+
+        public Name build() {
+            return new Name(this);
         }
     }
 

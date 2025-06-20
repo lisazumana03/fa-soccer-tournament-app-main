@@ -13,6 +13,8 @@ public class Player implements Serializable {
     private String playerID;
     @Embedded
     private Name playerName;
+    @Enumerated(EnumType.STRING)
+    private Gender playerGender;
     private String playerNationality; //South Africa, England
     private LocalDate playerDateOfBirth;
     @Embedded
@@ -35,6 +37,7 @@ public class Player implements Serializable {
     private Player(Builder builder){
         this.playerID = builder.playerID;
         this.playerName = builder.playerName;
+        this.playerGender = builder.playerGender;
         this.playerNationality = builder.playerNationality;
         this.playerDateOfBirth = builder.playerDateOfBirth;
         this.playerLocationOfBirth = builder.playerLocationOfBirth;
@@ -52,6 +55,10 @@ public class Player implements Serializable {
 
     public Name getPlayerName() {
         return playerName;
+    }
+
+    public Gender getPlayerGender() {
+        return playerGender;
     }
 
     public String getPlayerNationality() {
@@ -93,6 +100,7 @@ public class Player implements Serializable {
     public static class Builder{
         private String playerID;
         private Name playerName;
+        private Gender playerGender;
         private String playerNationality;
         private LocalDate playerDateOfBirth;
         private Location playerLocationOfBirth;
@@ -112,6 +120,12 @@ public class Player implements Serializable {
             this.playerName = playerName;
             return this;
         }
+
+        public Builder setPlayerGender(Gender playerGender){
+            this.playerGender = playerGender;
+            return this;
+        }
+
         public Builder setPlayerNationality(String playerNationality){
             this.playerNationality = playerNationality;
             return this;
@@ -155,6 +169,7 @@ public class Player implements Serializable {
         public Builder copy(Player player){
             this.playerID = player.playerID;
             this.playerName = player.playerName;
+            this.playerGender = player.playerGender;
             this.playerNationality = player.playerNationality;
             this.playerDateOfBirth = player.playerDateOfBirth;
             this.playerLocationOfBirth = player.playerLocationOfBirth;

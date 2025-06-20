@@ -7,8 +7,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class LeagueFactory {
-    public static League createLeague() {
+    public static League createLeague(List<Team> teams,int numberOfMatchDays) {
         return new League.Builder()
+                .setNumberOfMatchDays(numberOfMatchDays)
                 .build();
     }
 }

@@ -1,6 +1,7 @@
 package za.co.footballassoc.soccertournament.domain.tournament;
 
 import jakarta.persistence.*;
+import za.co.footballassoc.soccertournament.domain.team.Gender;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 
 import java.io.Serializable;
@@ -12,10 +13,14 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Tournament implements Serializable {
     @Id
-    private String tournamentID; //1000PL, 2000LL, 3000BL
+    protected String tournamentID; //1000PL, 2000LL, 3000BL
     protected String tournamentName;
     protected String tournamentLocation; //city/town, country, continent
     protected String tournamentSeason; ///24/25
+
+    @Enumerated(EnumType.STRING)
+    protected Gender tournamentGenderGroup;
+
     //Tournament Begin and End
     protected LocalDateTime startDate;
     protected LocalDateTime endDate;

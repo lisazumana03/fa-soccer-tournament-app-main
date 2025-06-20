@@ -18,16 +18,20 @@ public class PlayerService implements IPlayerService {
 
     @Override
     public Player read(String playerID) {
-        return null;
+        return playerRepository.findById(playerID).orElse(null);
     }
 
     @Override
     public Player update(Player player) {
-        return null;
+        if(playerRepository.existsById(player.getPlayerID())){
+            return playerRepository.save(player);
+        }else{
+            return null;
+        }
     }
 
     @Override
     public void delete(String playerID) {
-
+        playerRepository.deleteById(playerID);
     }
 }
