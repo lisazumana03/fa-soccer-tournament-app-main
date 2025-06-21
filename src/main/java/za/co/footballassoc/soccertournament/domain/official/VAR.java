@@ -12,7 +12,9 @@ import java.time.LocalDate;
 public class VAR extends Official implements Serializable {
     private int techExperience;
 
-    public VAR() {}
+    public VAR() {
+        super();
+    }
 
     private VAR(Builder builder) {
         this.officialId = builder.officialId;
@@ -33,6 +35,7 @@ public class VAR extends Official implements Serializable {
     public String toString() {
         return "VAR{" +
                 "techExperience=" + techExperience +
+                ", officialId='" + officialId + '\'' +
                 ", officialName=" + officialName +
                 ", officialNationality='" + officialNationality + '\'' +
                 ", officialDateOfBirth=" + officialDateOfBirth +

@@ -12,6 +12,13 @@ public class VARFactory {
                                 LocalDate officialDateOfBirth, Location officialLocationOfBirth,
                                 String officialOrganisation, Match match, int techExperience) {
         return new VAR.Builder()
+                .setOfficialId(officialId)
+                .setOfficialName(officialName)
+                .setOfficialNationality(officialNationality)
+                .setOfficialDateOfBirth(officialDateOfBirth)
+                .setOfficialLocationOfBirth(officialLocationOfBirth)
+                .setOfficialOrganisation(officialOrganisation)
+                .setMatch(match)
                 .setTechExperience(techExperience)
                 .build();
     }

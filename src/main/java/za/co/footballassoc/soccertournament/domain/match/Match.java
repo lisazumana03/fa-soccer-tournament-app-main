@@ -98,6 +98,10 @@ public class Match {
         return venue;
     }
 
+    public void setMatchStatus(String matchStatus) {
+        this.matchStatus = matchStatus;
+    }
+
     public static class Builder {
         private String matchID;
         private LocalDateTime matchDate;
