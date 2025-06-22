@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 public interface MatchRepository extends JpaRepository <Match, Long>{
 
-    Optional<Match> findById(String matchID);
+    Optional<Match> findByMatchID(String matchID);
 }

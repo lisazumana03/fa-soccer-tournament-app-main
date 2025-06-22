@@ -16,7 +16,7 @@ public class MatchService implements IMatchService {
 
     @Override
     public void startMatch(String matchID){
-        Match match = matchRepository.findById(matchID)
+        Match match = matchRepository.findByMatchID(matchID)
                 .orElseThrow(() -> new RuntimeException("Match not found!"));
         if("Scheduled".equals(match.getMatchStatus())){
             match.setMatchStatus("Ongoing");
@@ -25,7 +25,7 @@ public class MatchService implements IMatchService {
     }
 
     public void recordMatchEvent(String matchID, MatchEvent event){
-        Match match = matchRepository.findById(matchID)
+        Match match = matchRepository.findByMatchID(matchID)
                 .orElseThrow(() -> new RuntimeException("Match not found!"));
     }
 

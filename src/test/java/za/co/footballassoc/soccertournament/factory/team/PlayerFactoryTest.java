@@ -1,7 +1,6 @@
 package za.co.footballassoc.soccertournament.factory.team;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.web.bind.annotation.GetMapping;
 import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.Name;
 import za.co.footballassoc.soccertournament.domain.team.*;

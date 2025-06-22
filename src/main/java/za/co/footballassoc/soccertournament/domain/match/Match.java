@@ -34,6 +34,9 @@ public class Match {
     @OneToOne
     private Team penaltyWinner;
 
+    private boolean isExtraTime;
+    private boolean isPenaltyShootout;
+
     public Match() {
     }
 
@@ -50,6 +53,8 @@ public class Match {
         this.matchEvents = builder.matchEvents;
         this.officials = builder.officials;
         this.venue = builder.venue;
+        this.isExtraTime = builder.isExtraTime;
+        this.isPenaltyShootout = builder.isPenaltyShootout;
     }
 
     public String getMatchID() {
@@ -98,6 +103,14 @@ public class Match {
         return venue;
     }
 
+    public boolean isExtraTime() {
+        return isExtraTime;
+    }
+
+    public boolean isPenaltyShootout() {
+        return isPenaltyShootout;
+    }
+
     public void setMatchStatus(String matchStatus) {
         this.matchStatus = matchStatus;
     }
@@ -115,6 +128,8 @@ public class Match {
         private List<MatchEvent> matchEvents;
         private List<Official> officials;
         private Venue venue;
+        private boolean isExtraTime;
+        private boolean isPenaltyShootout;
 
         public Builder setMatchID(String matchID) {
             this.matchID = matchID;
@@ -165,6 +180,15 @@ public class Match {
 
         public Builder setVenue(Venue venue) {
             this.venue = venue;
+            return this;
+        }
+
+        public Builder setExtraTime(boolean extraTime) {
+            isExtraTime = extraTime;
+            return this;
+        }
+        public Builder setPenaltyShootout(boolean penaltyShootout) {
+            isPenaltyShootout = penaltyShootout;
             return this;
         }
 

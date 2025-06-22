@@ -27,9 +27,12 @@ public abstract class Tournament implements Serializable {
     @OneToMany(mappedBy = "tournament")
     protected List<Team> teams;
 
-    private int homeAndAwayGames; //how many times the team will meet in the league/ knockout
+    protected int homeAndAwayGames; //how many times the team will meet in the league/ knockout
 
-    private byte[] tournamentLogo;
+    protected byte[] tournamentLogo;
+
+    @ManyToOne
+    protected Association association;
 
     public Tournament() {}// for JPA
 
@@ -43,6 +46,7 @@ public abstract class Tournament implements Serializable {
         this.teams = teams;
         this.homeAndAwayGames = homeAndAwayGames;
         this.tournamentLogo = tournamentLogo;
+        this.association = association;
     }
 
     public String getTournamentID() {
@@ -81,6 +85,10 @@ public abstract class Tournament implements Serializable {
         return tournamentLogo;
     }
 
+    public Association getAssociation() {
+        return association;
+    }
+
     public void setTournamentID(String tournamentID) {
         this.tournamentID = tournamentID;
     }
@@ -115,6 +123,10 @@ public abstract class Tournament implements Serializable {
 
     public void setTournamentLogo(byte[] tournamentLogo) {
         this.tournamentLogo = tournamentLogo;
+    }
+
+    public void setAssociation(Association association) {
+        this.association = association;
     }
 
     @Override
