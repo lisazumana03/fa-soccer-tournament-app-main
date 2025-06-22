@@ -2,11 +2,15 @@ package za.co.footballassoc.soccertournament.domain.tournament;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import za.co.footballassoc.soccertournament.domain.team.Team;
 
 @Entity
 public class Standing {
     @Id
     private int standingNumber;
+    @OneToOne(mappedBy = "team")
+    private Team team;
     private int gamesPlayed;
     private int gamesWon;
     private int gamesDrawn;
@@ -21,18 +25,22 @@ public class Standing {
 
     private Standing(Builder builder) {
         this.standingNumber = builder.standingNumber;
+        this.team = builder.team;
         this.gamesPlayed = builder.gamesPlayed;
         this.gamesWon = builder.gamesWon;
         this.gamesDrawn = builder.gamesDrawn;
         this.gamesLost = builder.gamesLost;
         this.goalsScored = builder.goalsScored;
         this.goalsConceded = builder.goalsConceded;
-        this.goalsDifference = builder.goalsDifference;
         this.points = builder.points;
     }
 
     public int getStandingNumber() {
         return standingNumber;
+    }
+
+    public Team getTeam() {
+        return team;
     }
 
     public int getGamesPlayed() {
@@ -60,7 +68,7 @@ public class Standing {
     }
 
     public int getGoalsDifference() {
-        return goalsDifference;
+        return goalsScored - goalsConceded;
     }
 
     public int getPoints() {
@@ -71,6 +79,7 @@ public class Standing {
     public String toString() {
         return "Standing{" +
                 "standingNumber=" + standingNumber +
+                ", team=" + team +
                 ", gamesPlayed=" + gamesPlayed +
                 ", gamesWon=" + gamesWon +
                 ", gamesDrawn=" + gamesDrawn +
@@ -84,19 +93,25 @@ public class Standing {
 
     public static class Builder {
         private int standingNumber;
-        private int gamesPlayed;
+        private Team team;
+        private int gamesPlayed = 0;
         private int gamesWon;
         private int gamesDrawn;
         private int gamesLost;
-        private int goalsScored;
-        private int goalsConceded;
-        private int goalsDifference;
-        private int points;
+        private int goalsScored = 0;
+        private int goalsConceded = 0;
+        private int points = 0;
 
         public Builder setStandingNumber(int standingNumber) {
             this.standingNumber = standingNumber;
             return this;
         }
+
+        public Builder setTeam(Team team) {
+            this.team = team;
+            return this;
+        }
+
         public Builder setGamesPlayed(int gamesPlayed) {
             this.gamesPlayed = gamesPlayed;
             return this;
@@ -121,10 +136,7 @@ public class Standing {
             this.goalsConceded = goalsConceded;
             return this;
         }
-        public Builder setGoalsDifference(int goalsDifference) {
-            this.goalsDifference = goalsDifference;
-            return this;
-        }
+
         public Builder setPoints(int points) {
             this.points = points;
             return this;
