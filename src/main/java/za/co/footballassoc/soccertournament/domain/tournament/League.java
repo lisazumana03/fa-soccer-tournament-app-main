@@ -13,9 +13,9 @@ public class League extends Tournament implements Serializable {
     private int numberOfMatchDays;
     private int promotionSpots;
     private int relegationSpots;
-    private int numberOfGroups;
-    private boolean hasPlayOffs;
-    private String playOffType;
+    private int numberOfGroups;///optional
+    private boolean hasPlayOffs;///optional
+    private String playOffType;///optional
 
     protected League() {
         super();

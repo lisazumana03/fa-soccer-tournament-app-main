@@ -12,32 +12,10 @@ import za.co.footballassoc.soccertournament.repository.tournament.StandingReposi
 import za.co.footballassoc.soccertournament.service.match.IMatchService;
 
 @Service
-public class MatchService implements IMatchService {
+public class MatchService {
     @Autowired
     private MatchRepository matchRepository;
     @Autowired
     private StandingRepository standingRepository;
-
-    @Transactional
-    public void startMatch(String matchID){
-        Match match = matchRepository.findByMatchID(matchID)
-                .orElseThrow(() -> new RuntimeException("Match not found!"));
-        if("Scheduled".equals(match.getMatchStatus())){
-            match.setMatchStatus("Ongoing");
-            matchRepository.save(match);
-
-            //Standings logic affecting the league table
-            if(match.getTournament() instanceof League){
-                updateStandings(match.getHomeTeam(), match.getTournament().getMatchID());
-                updateStandings(match.getAwayTeam(), match.getTournament().getMatchID());
-            }
-        }
-    }
-
-    @Transactional
-    public void recordMatchEvent(String matchID, MatchEvent event){
-        Match match = matchRepository.findByMatchID(matchID)
-                .orElseThrow(() -> new RuntimeException("Match not found!"));
-    }
 
 }

@@ -9,6 +9,7 @@ import za.co.footballassoc.soccertournament.service.impl.team.PlayerService;
 
 @RestController
 @RequestMapping("/api/player")
+@CrossOrigin(origins = "http://localhost:2932/player")
 public class PlayerController {
     @Autowired
     private PlayerService playerService;
@@ -18,11 +19,19 @@ public class PlayerController {
         return new ResponseEntity<>(playerService.create(player), HttpStatus.CREATED);
     }
 
+    @GetMapping("/read/{id}")
+    public ResponseEntity<Player> readPlayer(@PathVariable("id") String playerID) {
+        return new ResponseEntity<>(playerService.read(playerID), HttpStatus.OK);
+    }
+
     @GetMapping("/update")
     public ResponseEntity<Player> updatePlayer(Player player) {
         return new ResponseEntity<>(playerService.update(player), HttpStatus.OK);
     }
 
-
+    @GetMapping("/delete/{id}")
+    public void deletePlayer(@PathVariable("id") String playerID) {
+        playerService.delete(playerID);
+    }
 
 }

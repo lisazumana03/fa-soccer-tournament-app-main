@@ -9,7 +9,7 @@ import za.co.footballassoc.soccertournament.domain.team.Team;
 public class Standing {
     @Id
     private int standingNumber;
-    @OneToOne(mappedBy = "team")
+    @OneToOne
     private Team team;
     private int gamesPlayed;
     private int gamesWon;
@@ -17,7 +17,7 @@ public class Standing {
     private int gamesLost;
     private int goalsScored;
     private int goalsConceded;
-    private int goalsDifference;
+    private int goalDifference;
     private int points;
 
     public Standing() {
@@ -67,7 +67,7 @@ public class Standing {
         return goalsConceded;
     }
 
-    public int getGoalsDifference() {
+    public int getGoalDifference() {
         return goalsScored - goalsConceded;
     }
 
@@ -86,7 +86,7 @@ public class Standing {
                 ", gamesLost=" + gamesLost +
                 ", goalsScored=" + goalsScored +
                 ", goalsConceded=" + goalsConceded +
-                ", goalsDifference=" + goalsDifference +
+                ", goalDifference=" + goalDifference +
                 ", points=" + points +
                 '}';
     }
