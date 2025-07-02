@@ -64,7 +64,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <type>pom</type>
+            <version>6.4.10.Final</version>
         </dependency>
 
         <dependency>
