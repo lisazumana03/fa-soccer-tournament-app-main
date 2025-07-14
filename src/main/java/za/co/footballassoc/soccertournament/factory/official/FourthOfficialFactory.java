@@ -12,6 +12,10 @@ public class FourthOfficialFactory {
                                                       LocalDate officialDateOfBirth, Location officialLocationOfBirth,
                                                       String officialOrganisation, Match match, String role) {
         return new FourthOfficial.Builder()
+                .setOfficialId(officialId)
+                .setOfficialName(officialName)
+                .setOfficialNationality(officialNationality)
+                .setOfficialDateOfBirth(officialDateOfBirth)
                 .setRole(role)
                 .build();
     }

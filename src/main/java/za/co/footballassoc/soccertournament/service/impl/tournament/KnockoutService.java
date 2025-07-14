@@ -3,9 +3,10 @@ package za.co.footballassoc.soccertournament.service.impl.tournament;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.co.footballassoc.soccertournament.repository.tournament.KnockoutRepository;
+import za.co.footballassoc.soccertournament.service.tournament.IKnockoutService;
 
 @Service
-public class KnockoutService {
+public class KnockoutService implements IKnockoutService {
     @Autowired
     private KnockoutRepository knockoutRepository;
 

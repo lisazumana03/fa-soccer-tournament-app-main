@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.Name;
 import za.co.footballassoc.soccertournament.domain.match.Match;
+import za.co.footballassoc.soccertournament.domain.team.Gender;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -15,6 +16,8 @@ public abstract class Official implements Serializable {
     protected String officialId;
     @Embedded
     protected Name officialName;
+    @Enumerated(EnumType.STRING)
+    protected Gender officialGender;
     protected String officialNationality;
     protected LocalDate officialDateOfBirth;
     @Embedded
@@ -25,9 +28,10 @@ public abstract class Official implements Serializable {
 
     public Official() {}
 
-    public Official(String officialId, Name officialName, String officialNationality, LocalDate officialDateOfBirth, Location officialLocationOfBirth, String officialOrganisation, Match match) {
+    public Official(String officialId, Name officialName, Gender officialGender, String officialNationality, LocalDate officialDateOfBirth, Location officialLocationOfBirth, String officialOrganisation, Match match) {
         this.officialId = officialId;
         this.officialName = officialName;
+        this.officialGender = officialGender;
         this.officialNationality = officialNationality;
         this.officialDateOfBirth = officialDateOfBirth;
         this.officialLocationOfBirth = officialLocationOfBirth;

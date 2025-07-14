@@ -17,7 +17,9 @@ public abstract class Tournament implements Serializable {
     protected String tournamentName;
     protected String tournamentLocation; //city/town, country, continent
     protected String tournamentSeason; ///24/25
-
+    protected String ageGroup;
+    @Enumerated(EnumType.STRING)
+    protected TournamentType tournamentType;
     @Enumerated(EnumType.STRING)
     protected Gender tournamentGenderGroup;
 
@@ -36,11 +38,17 @@ public abstract class Tournament implements Serializable {
 
     public Tournament() {}// for JPA
 
-    public Tournament(String tournamentID, String tournamentName, String tournamentLocation, String tournamentSeason, LocalDateTime startDate, LocalDateTime endDate, List<Team> teams, int homeAndAwayGames, byte[] tournamentLogo) {
+    public Tournament(String tournamentID, String tournamentName, String tournamentLocation,
+                      String tournamentSeason, String ageGroup, TournamentType tournamentType,
+                      Gender tournamentGenderGroup, LocalDateTime startDate, LocalDateTime endDate,
+                      List<Team> teams, int homeAndAwayGames, byte[] tournamentLogo, Association association) {
         this.tournamentID = tournamentID;
         this.tournamentName = tournamentName;
         this.tournamentLocation = tournamentLocation;
         this.tournamentSeason = tournamentSeason;
+        this.ageGroup = ageGroup;
+        this.tournamentType = tournamentType;
+        this.tournamentGenderGroup = tournamentGenderGroup;
         this.startDate = startDate;
         this.endDate = endDate;
         this.teams = teams;
@@ -63,6 +71,18 @@ public abstract class Tournament implements Serializable {
 
     public String getTournamentSeason() {
         return tournamentSeason;
+    }
+
+    public String getAgeGroup() {
+        return ageGroup;
+    }
+
+    public TournamentType getTournamentType() {
+        return tournamentType;
+    }
+
+    public Gender getTournamentGenderGroup() {
+        return tournamentGenderGroup;
     }
 
     public LocalDateTime getStartDate() {
@@ -103,6 +123,18 @@ public abstract class Tournament implements Serializable {
 
     public void setTournamentSeason(String tournamentSeason) {
         this.tournamentSeason = tournamentSeason;
+    }
+
+    public void setAgeGroup(String ageGroup) {
+        this.ageGroup = ageGroup;
+    }
+
+    public void setTournamentType(TournamentType tournamentType) {
+        this.tournamentType = tournamentType;
+    }
+
+    public void setTournamentGenderGroup(Gender tournamentGenderGroup) {
+        this.tournamentGenderGroup = tournamentGenderGroup;
     }
 
     public void setStartDate(LocalDateTime startDate) {
