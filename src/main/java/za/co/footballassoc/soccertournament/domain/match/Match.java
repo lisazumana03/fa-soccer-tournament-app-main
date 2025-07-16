@@ -2,14 +2,17 @@ package za.co.footballassoc.soccertournament.domain.match;
 
 import jakarta.persistence.*;
 import za.co.footballassoc.soccertournament.domain.official.Official;
+import za.co.footballassoc.soccertournament.domain.team.Player;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.domain.tournament.Tournament;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Match {
+public class Match implements Serializable {
     @Id
     private String matchID;
     private LocalDateTime matchDate;
@@ -21,12 +24,12 @@ public class Match {
     private int awayTeamScore;
     @ManyToOne
     private Tournament tournament;
-    private String matchStatus; //Ongoing/ Complete/ Not started
-    private int duration; ///90 min full match (45min + 45min)
+    private MatchStatus matchStatus;
+    private int duration = 90; ///90 min full match (45min + 45min)
     @OneToMany(mappedBy = "match")
-    private List<MatchEvent> matchEvents;
+    private List<MatchEvent> matchEvents = new ArrayList<>();
     @OneToMany(mappedBy = "match")
-    private List<Official> officials;
+    private List<Official> officials = new ArrayList<>();
 
     @ManyToOne
     private Venue venue;
@@ -34,8 +37,15 @@ public class Match {
     @OneToOne
     private Team penaltyWinner;
 
+    private LocalDateTime kickoffTime;
+    private LocalDateTime fullTime;
+
     private boolean isExtraTime;
     private boolean isPenaltyShootout;
+
+    @OneToOne
+    private Player manOfTheMatch;
+
 
     public Match() {
     }
@@ -53,8 +63,11 @@ public class Match {
         this.matchEvents = builder.matchEvents;
         this.officials = builder.officials;
         this.venue = builder.venue;
+        this.kickoffTime = builder.kickoffTime;
+        this.fullTime = builder.fullTime;
         this.isExtraTime = builder.isExtraTime;
         this.isPenaltyShootout = builder.isPenaltyShootout;
+        this.manOfTheMatch = builder.manOfTheMatch;
     }
 
     public String getMatchID() {
@@ -85,7 +98,7 @@ public class Match {
         return tournament;
     }
 
-    public String getMatchStatus() {
+    public MatchStatus getMatchStatus() {
         return matchStatus;
     }
 
@@ -96,11 +109,25 @@ public class Match {
     public List<MatchEvent> getMatchEvents() {
         return matchEvents;
     }
+
     public List<Official> getOfficials() {
         return officials;
     }
+
     public Venue getVenue() {
         return venue;
+    }
+
+    public Team getPenaltyWinner() {
+        return penaltyWinner;
+    }
+
+    public LocalDateTime getKickoffTime() {
+        return kickoffTime;
+    }
+
+    public LocalDateTime getFullTime() {
+        return fullTime;
     }
 
     public boolean isExtraTime() {
@@ -111,7 +138,23 @@ public class Match {
         return isPenaltyShootout;
     }
 
-    public void setMatchStatus(String matchStatus) {
+    public Player getManOfTheMatch() {
+        return manOfTheMatch;
+    }
+
+    public void setHomeTeamScore(int homeTeamScore){
+        this.homeTeamScore = homeTeamScore;
+    }
+
+    public void setAwayTeamScore(int awayTeamScore){
+        this.awayTeamScore = awayTeamScore;
+    }
+
+    public void setFullTime(LocalDateTime fullTime){
+        this.fullTime = fullTime;
+    }
+
+    public void setMatchStatus(MatchStatus matchStatus) {
         this.matchStatus = matchStatus;
     }
 
@@ -123,13 +166,17 @@ public class Match {
         private int homeTeamScore;
         private int awayTeamScore;
         private Tournament tournament;
-        private String matchStatus;
+        private MatchStatus matchStatus;
         private int duration;
         private List<MatchEvent> matchEvents;
         private List<Official> officials;
         private Venue venue;
+        private LocalDateTime kickoffTime;
+        private LocalDateTime fullTime;
         private boolean isExtraTime;
         private boolean isPenaltyShootout;
+        private Player manOfTheMatch;
+
 
         public Builder setMatchID(String matchID) {
             this.matchID = matchID;
@@ -160,7 +207,7 @@ public class Match {
             this.tournament = tournament;
             return this;
         }
-        public Builder setMatchStatus(String matchStatus) {
+        public Builder setMatchStatus(MatchStatus matchStatus) {
             this.matchStatus = matchStatus;
             return this;
         }
@@ -183,12 +230,27 @@ public class Match {
             return this;
         }
 
+        public Builder setKickOffTime(LocalDateTime kickoffTime) {
+            this.kickoffTime = kickoffTime;
+            return this;
+        }
+
+        public Builder setFullTime(LocalDateTime fullTime) {
+            this.fullTime = fullTime;
+            return this;
+        }
+
         public Builder setExtraTime(boolean extraTime) {
             isExtraTime = extraTime;
             return this;
         }
         public Builder setPenaltyShootout(boolean penaltyShootout) {
             isPenaltyShootout = penaltyShootout;
+            return this;
+        }
+
+        public Builder setManOfTheMatch(Player manOfTheMatch) {
+            this.manOfTheMatch = manOfTheMatch;
             return this;
         }
 
@@ -205,6 +267,10 @@ public class Match {
             this.matchEvents = match.matchEvents;
             this.officials = match.officials;
             this.venue = match.venue;
+            this.kickoffTime = match.kickoffTime;
+            this.fullTime = match.fullTime;
+            this.isExtraTime = match.isExtraTime;
+            this.isPenaltyShootout = match.isPenaltyShootout;
             return this;
         }
 

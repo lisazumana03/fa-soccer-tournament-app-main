@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface MatchRepository extends JpaRepository <Match, Long>{
-
-    Optional<Match> findByMatchID(String matchID);
+public interface MatchRepository extends JpaRepository <Match, String>{
+    List<Match> findByTournament_TournamentID(String tournamentID);
+    List<Match> findByHomeTeam_TeamIDOrAwayTeam_TeamID(String homeTeamID, String awayTeamID);
 }

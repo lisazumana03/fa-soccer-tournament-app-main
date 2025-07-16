@@ -29,6 +29,18 @@ public class Team implements Serializable {
     @ManyToOne
     private Venue teamHomeGround;
 
+    @Column(nullable = true)
+    private String groupName; // e.g., "Group A", null for knockout-only
+
+    // Team stats
+    private int gamesPlayed;
+    private int wins;
+    private int draws;
+    private int losses;
+    private int goalsFor;
+    private int goalsAgainst;
+    private int points;
+
     public Team() {}
 
     private Team(Builder builder) {
@@ -41,6 +53,14 @@ public class Team implements Serializable {
         this.players = builder.players;
         this.teamType = builder.teamType;
         this.teamHomeGround = builder.teamHomeGround;
+        this.groupName = builder.groupName;
+        this.gamesPlayed = builder.gamesPlayed;
+        this.wins = builder.wins;
+        this.draws = builder.draws;
+        this.losses = builder.losses;
+        this.goalsFor = builder.goalsFor;
+        this.goalsAgainst = builder.goalsAgainst;
+        this.points = builder.points;
     }
 
     public String getTeamID() {
@@ -79,6 +99,34 @@ public class Team implements Serializable {
         return teamHomeGround;
     }
 
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public int getGamesPlayed() {
+        return gamesPlayed;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public int getDraws() {
+        return draws;
+    }
+
+    public int getLosses() {
+        return losses;
+    }
+
+    public int getGoalDifference() {
+        return goalsFor - goalsAgainst;
+    }
+
+    public int getPoints() {
+        return (wins * 3) + draws; // Standard 3-1-0 point system
+    }
+
     public static class Builder{
         private String teamID;
         private String teamName;
@@ -89,6 +137,16 @@ public class Team implements Serializable {
         private List<Player> players;
         private TeamType teamType;
         private Venue teamHomeGround;
+        private String groupName; // e.g., "Group A", null for knockout-only
+
+        // Team stats
+        private int gamesPlayed;
+        private int wins;
+        private int draws;
+        private int losses;
+        private int goalsFor;
+        private int goalsAgainst;
+        private int points;
 
         public Builder setTeamID(String teamID) {
             this.teamID = teamID;
@@ -128,6 +186,46 @@ public class Team implements Serializable {
             return this;
         }
 
+        public Builder setGroupName(String groupName) {
+            this.groupName = groupName;
+            return this;
+        }
+
+        public Builder setGamesPlayed(int gamesPlayed) {
+            this.gamesPlayed = gamesPlayed;
+            return this;
+        }
+
+        public Builder setWins(int wins) {
+            this.wins = wins;
+            return this;
+        }
+
+        public Builder setDraws(int draws) {
+            this.draws = draws;
+            return this;
+        }
+
+        public Builder setLosses(int losses) {
+            this.losses = losses;
+            return this;
+        }
+
+        public Builder setGoalsFor(int goalsFor) {
+            this.goalsFor = goalsFor;
+            return this;
+        }
+
+        public Builder setGoalsAgainst(int goalsAgainst) {
+            this.goalsAgainst = goalsAgainst;
+            return this;
+        }
+
+        public Builder setPoints(int points) {
+            this.points = points;
+            return this;
+        }
+
         public Builder copy(Team team){
             this.teamID = team.teamID;
             this.teamName = team.teamName;
@@ -138,6 +236,14 @@ public class Team implements Serializable {
             this.players = team.players;
             this.teamType = team.teamType;
             this.teamHomeGround = team.teamHomeGround;
+            this.groupName = team.groupName;
+            this.gamesPlayed = team.gamesPlayed;
+            this.wins = team.wins;
+            this.draws = team.draws;
+            this.losses = team.losses;
+            this.goalsFor = team.goalsFor;
+            this.goalsAgainst = team.goalsAgainst;
+            this.points = team.points;
             return this;
         }
 

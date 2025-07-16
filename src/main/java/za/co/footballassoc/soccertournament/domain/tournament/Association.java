@@ -5,6 +5,7 @@ import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.Name;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,6 +24,11 @@ public class Association implements Serializable {
     @Lob
     private byte[] associationLogo;
 
+    private LocalDate dateFounded;
+    private String contactEmail;
+    private String phoneNumber;
+    private String officialWebsite;
+
     public Association() {}
 
     private Association(Builder builder){
@@ -31,7 +37,11 @@ public class Association implements Serializable {
         this.associationCEO = builder.associationCEO;
         this.associationHeadquarters = builder.associationHeadquarters;
         this.tournaments = builder.tournaments;
-        this.associationLogo = null;
+        this.associationLogo = builder.associationLogo;
+        this.dateFounded = builder.dateFounded;
+        this.contactEmail = builder.contactEmail;
+        this.phoneNumber = builder.phoneNumber;
+        this.officialWebsite = builder.officialWebsite;
     }
 
     public String getAssociationCode() {
@@ -58,6 +68,22 @@ public class Association implements Serializable {
         return associationLogo;
     }
 
+    public LocalDate getDateFounded() {
+        return dateFounded;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public String getOfficialWebsite() {
+        return officialWebsite;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
     @Override
     public String toString() {
         return "Association{" +
@@ -67,6 +93,10 @@ public class Association implements Serializable {
                 ", associationHeadquarters=" + associationHeadquarters +
                 ", tournaments=" + tournaments +
                 ", associationLogo=" + Arrays.toString(associationLogo) +
+                ", dateFounded=" + dateFounded +
+                ", contactEmail='" + contactEmail + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", officialWebsite='" + officialWebsite + '\'' +
                 '}';
     }
 
@@ -77,6 +107,10 @@ public class Association implements Serializable {
         private Location associationHeadquarters;
         private List<Tournament> tournaments;
         private byte[] associationLogo;
+        private LocalDate dateFounded;
+        private String contactEmail;
+        private String phoneNumber;
+        private String officialWebsite;
 
         public Builder setAssociationCode(String associationCode){
             this.associationCode = associationCode;
@@ -101,6 +135,27 @@ public class Association implements Serializable {
 
         public Builder setAssociationLogo(byte[] associationLogo){
             this.associationLogo = associationLogo;
+            return this;
+        }
+
+
+        public Builder setDateFounded(LocalDate dateFounded) {
+            this.dateFounded = dateFounded;
+            return this;
+        }
+
+        public Builder setContactEmail(String contactEmail){
+            this.contactEmail = contactEmail;
+            return this;
+        }
+
+        public Builder setPhoneNumber(String phoneNumber){
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        public Builder setOfficialWebsite(String officialWebsite){
+            this.officialWebsite = officialWebsite;
             return this;
         }
 

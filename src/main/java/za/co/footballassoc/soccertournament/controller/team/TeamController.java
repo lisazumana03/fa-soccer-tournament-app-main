@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import za.co.footballassoc.soccertournament.domain.team.Team;
@@ -16,7 +17,7 @@ public class TeamController {
     private TeamService teamService;
 
     @PostMapping("/create")
-    public ResponseEntity<Team> createTeam(Team team) {
+    public ResponseEntity<Team> createTeam(@RequestBody Team team) {
         return new ResponseEntity<>(teamService.create(team), HttpStatus.CREATED);
     }
 }

@@ -12,7 +12,7 @@ public class Knockout extends Tournament implements Serializable {
     private int numberOfRounds;
     private boolean hasPlayOffs;
 
-    public Knockout(){
+    public Knockout(Team teamA, Team teamB){
         super();
     }
 

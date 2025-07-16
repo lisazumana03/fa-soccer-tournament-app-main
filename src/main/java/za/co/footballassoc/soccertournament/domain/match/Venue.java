@@ -5,6 +5,7 @@ import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,5 +17,5 @@ public class Venue implements Serializable {
     @Enumerated(EnumType.STRING)
     private VenueType venueType;
     @OneToMany(mappedBy = "teamHomeGround")
-    private List<Team> teams;
+    private List<Team> teams = new ArrayList<>();
 }

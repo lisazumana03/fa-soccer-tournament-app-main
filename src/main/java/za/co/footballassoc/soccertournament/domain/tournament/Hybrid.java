@@ -3,30 +3,57 @@ package za.co.footballassoc.soccertournament.domain.tournament;
 import jakarta.persistence.Entity;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 @Entity
 public class Hybrid extends Tournament implements Serializable {
-    private int groupStageRounds;
-    private int knockoutRounds;
-    private boolean hasPlayOffs;
-    private String playOffType;
+
+    // League-related
+    private int numberOfMatchDays;
+    private int promotionSpots;
+    private int relegationSpots;
+    private int numberOfGroups; // optional
+    private boolean hasPlayOffs; // optional
+    private String playOffType; // optional
+
+    // Knockout-related
+    private int numberOfKnockoutRounds;
+    private boolean hasFinalKnockout;
+
+    // Hybrid-specific
+    private boolean groupStageBeforeKnockout; // true = league then knockout
+    private int numberOfTeamsToQualify; // number of teams advancing to knockout
 
     public Hybrid(){}
 
     private Hybrid(Builder builder) {
         super();
-        this.groupStageRounds = builder.groupStageRounds;
-        this.knockoutRounds = builder.knockoutRounds;
+        this.numberOfMatchDays = builder.numberOfMatchDays;
+        this.promotionSpots = builder.promotionSpots;
+        this.relegationSpots = builder.relegationSpots;
+        this.numberOfGroups = builder.numberOfGroups;
         this.hasPlayOffs = builder.hasPlayOffs;
         this.playOffType = builder.playOffType;
+        this.numberOfKnockoutRounds = builder.numberOfKnockoutRounds;
+        this.hasFinalKnockout = builder.hasFinalKnockout;
+        this.groupStageBeforeKnockout = builder.groupStageBeforeKnockout;
+        this.numberOfTeamsToQualify = builder.numberOfTeamsToQualify;
     }
 
-    public int getGroupStageRounds() {
-        return groupStageRounds;
+    public int getNumberOfMatchDays() {
+        return numberOfMatchDays;
     }
 
-    public int getKnockoutRounds() {
-        return knockoutRounds;
+    public int getPromotionSpots() {
+        return promotionSpots;
+    }
+
+    public int getRelegationSpots() {
+        return relegationSpots;
+    }
+
+    public int getNumberOfGroups() {
+        return numberOfGroups;
     }
 
     public boolean isHasPlayOffs() {
@@ -37,34 +64,85 @@ public class Hybrid extends Tournament implements Serializable {
         return playOffType;
     }
 
+    public int getNumberOfKnockoutRounds() {
+        return numberOfKnockoutRounds;
+    }
+
+    public boolean isHasFinalKnockout() {
+        return hasFinalKnockout;
+    }
+
+    public boolean isGroupStageBeforeKnockout() {
+        return groupStageBeforeKnockout;
+    }
+
+    public int getNumberOfTeamsToQualify() {
+        return numberOfTeamsToQualify;
+    }
+
     @Override
     public String toString() {
         return "Hybrid{" +
-                "groupStageRounds=" + groupStageRounds +
-                ", knockoutRounds=" + knockoutRounds +
+                "numberOfMatchDays=" + numberOfMatchDays +
+                ", promotionSpots=" + promotionSpots +
+                ", relegationSpots=" + relegationSpots +
+                ", numberOfGroups=" + numberOfGroups +
                 ", hasPlayOffs=" + hasPlayOffs +
                 ", playOffType='" + playOffType + '\'' +
+                ", numberOfKnockoutRounds=" + numberOfKnockoutRounds +
+                ", hasFinalKnockout=" + hasFinalKnockout +
+                ", groupStageBeforeKnockout=" + groupStageBeforeKnockout +
+                ", numberOfTeamsToQualify=" + numberOfTeamsToQualify +
+                ", tournamentID='" + tournamentID + '\'' +
                 ", tournamentName='" + tournamentName + '\'' +
                 ", tournamentLocation='" + tournamentLocation + '\'' +
                 ", tournamentSeason='" + tournamentSeason + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
+                ", ageGroup='" + ageGroup + '\'' +
+                ", association=" + association +
+                ", tournamentLogo=" + Arrays.toString(tournamentLogo) +
+                ", homeAndAwayGames=" + homeAndAwayGames +
                 ", teams=" + teams +
+                ", endDate=" + endDate +
+                ", startDate=" + startDate +
+                ", tournamentGenderGroup=" + tournamentGenderGroup +
+                ", tournamentType=" + tournamentType +
                 '}';
     }
 
     public static class Builder{
-        private int groupStageRounds;
-        private int knockoutRounds;
-        private boolean hasPlayOffs;
-        private String playOffType;
+        // League-related
+        private int numberOfMatchDays;
+        private int promotionSpots;
+        private int relegationSpots;
+        private int numberOfGroups; // optional
+        private boolean hasPlayOffs; // optional
+        private String playOffType; // optional
 
-        public Builder setGroupStageRounds(int groupStageRounds) {
-            this.groupStageRounds = groupStageRounds;
+        // Knockout-related
+        private int numberOfKnockoutRounds;
+        private boolean hasFinalKnockout;
+
+        // Hybrid-specific
+        private boolean groupStageBeforeKnockout; // true = league then knockout
+        private int numberOfTeamsToQualify; // number of teams advancing to knockout
+
+        public Builder setNumberOfMatchDays(int numberOfMatchDays) {
+            this.numberOfMatchDays = numberOfMatchDays;
             return this;
         }
-        public Builder setKnockoutRounds(int knockoutRounds) {
-            this.knockoutRounds = knockoutRounds;
+
+        public Builder setPromotionSpots(int promotionSpots) {
+            this.promotionSpots = promotionSpots;
+            return this;
+        }
+
+        public Builder setRelegationSpots(int relegationSpots) {
+            this.relegationSpots = relegationSpots;
+            return this;
+        }
+
+        public Builder setNumberOfGroups(int numberOfGroups) {
+            this.numberOfGroups = numberOfGroups;
             return this;
         }
 
@@ -75,6 +153,21 @@ public class Hybrid extends Tournament implements Serializable {
 
         public Builder setPlayOffType(String playOffType) {
             this.playOffType = playOffType;
+            return this;
+        }
+
+        public Builder setNumberOfKnockoutRounds(int numberOfKnockoutRounds) {
+            this.numberOfKnockoutRounds = numberOfKnockoutRounds;
+            return this;
+        }
+
+        public Builder setHasFinalKnockout(boolean hasFinalKnockout) {
+            this.hasFinalKnockout = hasFinalKnockout;
+            return this;
+        }
+
+        public Builder setNumberOfTeamsToQualify(int numberOfTeamsToQualify) {
+            this.numberOfTeamsToQualify = numberOfTeamsToQualify;
             return this;
         }
 
