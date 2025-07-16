@@ -33,4 +33,9 @@ public class RefereeService implements IRefereeService {
     public Optional<Referee> getRefereeById(String officialId) {
         return Optional.empty();
     }
+
+    @Override
+    public void fireReferee(Referee referee) {
+        refereeRepository.delete(referee);
+    }
 }

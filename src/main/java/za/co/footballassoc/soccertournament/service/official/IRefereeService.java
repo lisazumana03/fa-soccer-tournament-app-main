@@ -10,4 +10,5 @@ public interface IRefereeService {
     List<Referee> getAllReferees();
     List<Referee> getRefereesByMatch(String matchId);
     Optional<Referee> getRefereeById(String officialId);
+    void fireReferee(Referee referee);
 }
