@@ -15,6 +15,7 @@ public class AssistantVAR extends Official implements Serializable {
     public AssistantVAR() {}
 
     private AssistantVAR(Builder builder) {
+        this.officialId = builder.officialId;
         this.supportRole = builder.supportRole;
     }
 
@@ -44,6 +45,51 @@ public class AssistantVAR extends Official implements Serializable {
         private String officialOrganisation;
         private Match match;
         private String supportRole;
+
+        public Builder setOfficialId(String officialId){
+            this.officialId = officialId;
+            return this;
+        }
+
+        public Builder setOfficialName(Name officialName){
+            this.officialName = officialName;
+            return this;
+        }
+
+        public Builder setOfficialNationality(String officialNationality){
+            this.officialNationality = officialNationality;
+            return this;
+        }
+
+        public Builder setOfficialDateOfBirth(LocalDate officialDateOfBirth){
+            this.officialDateOfBirth = officialDateOfBirth;
+            return this;
+        }
+
+        public Builder setOfficialLocationOfBirth(Location officialLocationOfBirth){
+            this.officialLocationOfBirth = officialLocationOfBirth;
+            return this;
+        }
+
+        public Builder setOfficialOrganisation(String officialOrganisation){
+            this.officialOrganisation = officialOrganisation;
+            return this;
+        }
+
+        public Builder setMatch(Match match){
+            this.match = match;
+            return this;
+        }
+
+        public Builder setSupportRole(String supportRole){
+            this.supportRole = supportRole;
+            return this;
+        }
+
+        public AssistantVAR build(){
+            return new AssistantVAR(this);
+        }
+
     }
 
 }
