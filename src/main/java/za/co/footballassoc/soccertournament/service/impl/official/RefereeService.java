@@ -26,7 +26,7 @@ public class RefereeService implements IRefereeService {
 
     @Override
     public List<Referee> getRefereesByMatch(String matchId) {
-        return List.of();
+        return refereeRepository.findByMatch_MatchID(matchId);
     }
 
     @Override

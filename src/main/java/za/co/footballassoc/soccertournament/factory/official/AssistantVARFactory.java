@@ -8,11 +8,12 @@ import za.co.footballassoc.soccertournament.domain.official.AssistantVAR;
 import java.time.LocalDate;
 
 public class AssistantVARFactory {
-    public static AssistantVAR createAssistantVAR(Name officialName,
+    public static AssistantVAR createAssistantVAR(String officialId, Name officialName,
                                                   String officialNationality, LocalDate officialDateOfBirth,
                                                   Location officialLocationOfBirth, String officialOrganisation,
                                                   Match match, String supportRole) {
         return new AssistantVAR.Builder()
+                .setOfficialId(officialId)
                 .setOfficialName(officialName)
                 .setOfficialNationality(officialNationality)
                 .setOfficialDateOfBirth(officialDateOfBirth)

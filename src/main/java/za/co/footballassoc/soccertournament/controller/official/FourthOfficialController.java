@@ -6,18 +6,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import za.co.footballassoc.soccertournament.domain.official.AssistantVAR;
-import za.co.footballassoc.soccertournament.service.impl.official.AssistantVARService;
+import za.co.footballassoc.soccertournament.domain.official.FourthOfficial;
+import za.co.footballassoc.soccertournament.service.impl.official.FourthOfficialService;
 
 @RestController
-@RequestMapping("/api/assistant-var")
-public class AssistantVARController {
-
+@RequestMapping("/api/fourth-official")
+public class FourthOfficialController {
     @Autowired
-    private AssistantVARService assistantVARService;
+    private FourthOfficialService fourthOfficialService;
 
     @PostMapping("/create")
-    public ResponseEntity<AssistantVAR> create(@RequestBody AssistantVAR assistantVAR) {
-        return ResponseEntity.ok(assistantVARService.create(assistantVAR));
+    public ResponseEntity<FourthOfficial> create(@RequestBody FourthOfficial fourthOfficial) {
+        return ResponseEntity.ok(fourthOfficialService.create(fourthOfficial));
     }
 }
