@@ -28,6 +28,8 @@ public class Association implements Serializable {
     private String contactEmail;
     private String phoneNumber;
     private String officialWebsite;
+    @Enumerated(EnumType.STRING)
+    private Region region;
 
     public Association() {}
 
@@ -84,6 +86,10 @@ public class Association implements Serializable {
         return phoneNumber;
     }
 
+    public Region getRegion() {
+        return region;
+    }
+
     @Override
     public String toString() {
         return "Association{" +
@@ -111,6 +117,7 @@ public class Association implements Serializable {
         private String contactEmail;
         private String phoneNumber;
         private String officialWebsite;
+        private Region region;
 
         public Builder setAssociationCode(String associationCode){
             this.associationCode = associationCode;
@@ -156,6 +163,11 @@ public class Association implements Serializable {
 
         public Builder setOfficialWebsite(String officialWebsite){
             this.officialWebsite = officialWebsite;
+            return this;
+        }
+
+        public Builder setRegion(Region region){
+            this.region = region;
             return this;
         }
 

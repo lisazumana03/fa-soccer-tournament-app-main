@@ -11,7 +11,7 @@ public class MatchOfficialsDTO {
     private List<Linesman> linesmen;
     private List<FourthOfficial> fourthOfficials;
 
-    protected MatchOfficialsDTO() {}
+    public MatchOfficialsDTO() {}
 
     private MatchOfficialsDTO(Builder builder) {
         this.referees = builder.referees;

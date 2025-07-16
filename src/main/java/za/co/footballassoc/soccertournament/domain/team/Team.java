@@ -119,6 +119,14 @@ public class Team implements Serializable {
         return losses;
     }
 
+    public int getGoalsFor(){
+        return goalsFor;
+    }
+
+    public int getGoalsAgainst(){
+        return goalsAgainst;
+    }
+
     public int getGoalDifference() {
         return goalsFor - goalsAgainst;
     }
@@ -126,6 +134,39 @@ public class Team implements Serializable {
     public int getPoints() {
         return (wins * 3) + draws; // Standard 3-1-0 point system
     }
+
+    public void setTeamID(String teamID) {
+        this.teamID = teamID;
+    }
+
+    public void setGamesPlayed(int gamesPlayed) {
+        this.gamesPlayed = gamesPlayed;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public void setDraws(int draws) {
+        this.draws = draws;
+    }
+
+    public void setGoalsFor(int goalsFor) {
+        this.goalsFor = goalsFor;
+    }
+
+    public void setLosses(int losses) {
+        this.losses = losses;
+    }
+
+    public void setGoalsAgainst(int goalsAgainst) {
+        this.goalsAgainst = goalsAgainst;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
 
     public static class Builder{
         private String teamID;

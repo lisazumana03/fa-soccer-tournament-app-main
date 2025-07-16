@@ -12,4 +12,11 @@ public interface ILeagueService {
     List<League> getAllLeagues();
     List<League> getLeaguesByAssociation(String associationCode);
     Optional<League> getLeagueById(String id);
+
+    // LEAGUE LOGIC
+    List<Team> getLeagueTable(String leagueId); // Sorted table
+    List<Team> getPromotedTeams(String leagueId);
+    List<Team> getRelegatedTeams(String leagueId);
+    List<Team> getContinentalQualifiedTeams(String leagueId);
+    Optional<Team> getChampion(String leagueId);
 }
