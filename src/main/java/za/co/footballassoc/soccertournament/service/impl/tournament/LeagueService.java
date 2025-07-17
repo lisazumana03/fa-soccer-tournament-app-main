@@ -3,11 +3,14 @@ package za.co.footballassoc.soccertournament.service.impl.tournament;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.co.footballassoc.soccertournament.domain.match.Match;
+import za.co.footballassoc.soccertournament.domain.match.MatchStatus;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.domain.tournament.League;
+import za.co.footballassoc.soccertournament.repository.match.MatchRepository;
 import za.co.footballassoc.soccertournament.repository.team.TeamRepository;
 import za.co.footballassoc.soccertournament.repository.tournament.LeagueRepository;
 import za.co.footballassoc.soccertournament.service.tournament.ILeagueService;
+import za.co.footballassoc.soccertournament.util.*;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -19,6 +22,8 @@ public class LeagueService implements ILeagueService {
     private LeagueRepository leagueRepository;
     @Autowired
     private TeamRepository teamRepository;
+    @Autowired
+    private MatchRepository matchRepository;
 
     @Override
     public League create(League league) {
@@ -106,5 +111,25 @@ public class LeagueService implements ILeagueService {
         return Optional.empty(); // Not ended yet
     }
 
+    public void processLeagueMatchResult(String matchId) {
+        Match match = matchRepository.findById(matchId)
+                .orElseThrow(() -> new RuntimeException("Match not found"));
+
+        if (match.getMatchStatus() != MatchStatus.COMPLETED) {
+            throw new IllegalStateException("Match is not completed");
+        }
+
+        Team home = match.getHomeTeam();
+        Team away = match.getAwayTeam();
+
+        int homeGoals = match.getHomeTeamScore();
+        int awayGoals = match.getAwayTeamScore();
+
+        // Update stats
+        Helper.updateTeamStats(home, away, homeGoals, awayGoals);
+
+        teamRepository.save(home);
+        teamRepository.save(away);
+    }
 
 }

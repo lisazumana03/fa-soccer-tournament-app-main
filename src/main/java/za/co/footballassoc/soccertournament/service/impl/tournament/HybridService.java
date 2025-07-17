@@ -25,6 +25,11 @@ public class HybridService implements IHybridService {
     }
 
     @Override
+    public void delete(Hybrid hybrid){
+        hybridRepository.delete(hybrid);
+    }
+
+    @Override
     public Optional<Hybrid> getHybridById(String id) {
         return hybridRepository.findById(id);
     }
