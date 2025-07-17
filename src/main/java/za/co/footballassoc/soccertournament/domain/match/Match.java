@@ -142,6 +142,26 @@ public class Match implements Serializable {
         return manOfTheMatch;
     }
 
+    public void setMatchID(String matchID) {
+        this.matchID = matchID;
+    }
+
+    public void setMatchDate(LocalDateTime matchDate) {
+        this.matchDate = matchDate;
+    }
+
+    public void setHomeTeam(Team homeTeam) {
+        this.homeTeam = homeTeam;
+    }
+
+    public void setAwayTeam(Team awayTeam) {
+        this.awayTeam = awayTeam;
+    }
+
+    public void setTournament(Tournament tournament) {
+        this.tournament = tournament;
+    }
+
     public void setHomeTeamScore(int homeTeamScore){
         this.homeTeamScore = homeTeamScore;
     }
@@ -156,6 +176,10 @@ public class Match implements Serializable {
 
     public void setMatchStatus(MatchStatus matchStatus) {
         this.matchStatus = matchStatus;
+    }
+
+    public void setPenaltyWinner(Team penaltyWinner) {
+        this.penaltyWinner = penaltyWinner;
     }
 
     public static class Builder {

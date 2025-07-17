@@ -22,7 +22,7 @@ public class AssistantVARService implements IAssistantVARService {
 
     @Override
     public List<AssistantVAR> getAllAssistantVARs() {
-        return List.of();
+        return assistantVARRepository.findAll();
     }
 
     @Override
@@ -32,11 +32,11 @@ public class AssistantVARService implements IAssistantVARService {
 
     @Override
     public List<AssistantVAR> getRefereesByMatch(String matchId) {
-        return List.of();
+        return assistantVARRepository.findByMatch_MatchID(matchId);
     }
 
     @Override
     public Optional<AssistantVAR> getAssistantVARById(String officialId) {
-        return Optional.empty();
+        return assistantVARRepository.findById(officialId);
     }
 }

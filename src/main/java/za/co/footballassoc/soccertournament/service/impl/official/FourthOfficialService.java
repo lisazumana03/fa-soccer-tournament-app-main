@@ -21,7 +21,7 @@ public class FourthOfficialService implements IFourthOfficialService {
 
     @Override
     public List<FourthOfficial> getAllFourthOfficials() {
-        return List.of();
+        return fourthOfficialRepository.findAll();
     }
 
     @Override
