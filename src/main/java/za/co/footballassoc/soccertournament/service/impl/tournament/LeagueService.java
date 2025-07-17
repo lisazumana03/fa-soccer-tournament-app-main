@@ -111,6 +111,27 @@ public class LeagueService implements ILeagueService {
         return Optional.empty(); // Not ended yet
     }
 
+    private void updateTeamStats(Team home, Team away, int homeGoals, int awayGoals) {
+        home.setGamesPlayed(home.getGamesPlayed() + 1);
+        away.setGamesPlayed(away.getGamesPlayed() + 1);
+
+        home.setGoalsFor(home.getGoalsFor() + homeGoals);
+        home.setGoalsAgainst(home.getGoalsAgainst() + awayGoals);
+        away.setGoalsFor(away.getGoalsFor() + awayGoals);
+        away.setGoalsAgainst(away.getGoalsAgainst() + homeGoals);
+
+        if (homeGoals > awayGoals) {
+            home.setWins(home.getWins() + 1);
+            away.setLosses(away.getLosses() + 1);
+        } else if (awayGoals > homeGoals) {
+            away.setWins(away.getWins() + 1);
+            home.setLosses(home.getLosses() + 1);
+        } else {
+            home.setDraws(home.getDraws() + 1);
+            away.setDraws(away.getDraws() + 1);
+        }
+    }
+
     public void processLeagueMatchResult(String matchId) {
         Match match = matchRepository.findById(matchId)
                 .orElseThrow(() -> new RuntimeException("Match not found"));
@@ -126,10 +147,21 @@ public class LeagueService implements ILeagueService {
         int awayGoals = match.getAwayTeamScore();
 
         // Update stats
-        Helper.updateTeamStats(home, away, homeGoals, awayGoals);
+        updateTeamStats(home, away, homeGoals, awayGoals);
 
         teamRepository.save(home);
         teamRepository.save(away);
     }
+
+    public void simulateFullSeason(String leagueId) {
+        List<Match> matches = matchRepository.findByTournament_TournamentID(leagueId);
+        matches.forEach(match -> {
+            if (match.getMatchStatus() == MatchStatus.COMPLETED) {
+                processLeagueMatchResult(match.getMatchID());
+            }
+        });
+    }
+
+
 
 }
