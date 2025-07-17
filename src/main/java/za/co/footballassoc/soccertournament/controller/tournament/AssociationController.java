@@ -18,4 +18,5 @@ public class AssociationController {
     public Association createAssociation(@RequestBody Association association) {
         return associationService.establishAssociation(association);
     }
+
 }
