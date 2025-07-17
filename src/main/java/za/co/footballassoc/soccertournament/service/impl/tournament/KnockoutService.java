@@ -25,6 +25,17 @@ public class KnockoutService implements IKnockoutService {
     }
 
     @Override
+    public Knockout update(String knockoutId, Knockout updateKnockout) {
+        Knockout updatedKnockout = knockoutRepository.findById(knockoutId).orElseThrow();
+        return knockoutRepository.save(updatedKnockout);
+    }
+
+    @Override
+    public void delete(String knockoutId) {
+        knockoutRepository.deleteById(knockoutId);
+    }
+
+    @Override
     public List<Knockout> getKnockoutsByAssociation(String associationCode) {
         return knockoutRepository.findByAssociation_AssociationCode(associationCode);
     }
