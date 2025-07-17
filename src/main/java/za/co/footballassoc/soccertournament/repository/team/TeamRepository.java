@@ -5,9 +5,10 @@ import org.springframework.stereotype.Repository;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 
 import java.util.Collection;
+import java.util.List;
 
 @Repository
 public interface TeamRepository extends JpaRepository<Team, String> {
 
-    Collection<Object> findByTournament_TournamentID(String leagueId);
+    List<Object> findByTournament_TournamentID(String tournamentID);
 }
