@@ -31,6 +31,13 @@ public class LeagueService implements ILeagueService {
     }
 
     @Override
+    public League update(String leagueID, League leagueUpdated) {
+        League league = leagueRepository.findById(leagueID).orElseThrow();
+        // update attributes
+        return leagueRepository.save(league);
+    }
+
+    @Override
     public List<League> getLeaguesByAssociation(String associationCode) {
         return leagueRepository.findByAssociation_AssociationCode(associationCode);
     }
