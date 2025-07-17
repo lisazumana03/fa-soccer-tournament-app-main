@@ -71,11 +71,12 @@ public class AssociationService implements IAssociationService {
     public Map<TournamentType, List<Tournament>> groupTournamentsByType(String associationCode) {
         List<League> leagues = leagueRepository.findByAssociation_AssociationCode(associationCode);
         List<Knockout> knockouts = knockoutRepository.findByAssociation_AssociationCode(associationCode);
+        List<Hybrid> hybrids = hybridRepository.findByAssociation_AssociationCode(associationCode);
 
         Map<TournamentType, List<Tournament>> grouped = new HashMap<>();
         grouped.put(TournamentType.LEAGUE, new ArrayList<>(leagues));
         grouped.put(TournamentType.KNOCKOUT, new ArrayList<>(knockouts));
-        // Add HYBRID if needed
+        grouped.put(TournamentType.HYBRID, new ArrayList<>(hybrids));
 
         return grouped;
     }

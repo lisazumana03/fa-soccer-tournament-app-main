@@ -7,7 +7,8 @@ import java.util.Optional;
 
 public interface IAssistantVARService {
     AssistantVAR create(AssistantVAR assistantVAR);
-    List<AssistantVAR> getAllReferees();
+    List<AssistantVAR> getAllAssistantVARs();
+    void fireAssistantVARs(String officialId);
     List<AssistantVAR> getRefereesByMatch(String matchId);
     Optional<AssistantVAR> getAssistantVARById(String officialId);
 }
