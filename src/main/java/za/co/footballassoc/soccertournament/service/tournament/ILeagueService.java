@@ -12,6 +12,7 @@ public interface ILeagueService {
     List<League> getAllLeagues();
     List<League> getLeaguesByAssociation(String associationCode);
     Optional<League> getLeagueById(String id);
+    void delete(League league);
 
     // LEAGUE LOGIC
     List<Team> getLeagueTable(String leagueId); // Sorted table

@@ -32,12 +32,17 @@ public class LeagueService implements ILeagueService {
 
     @Override
     public List<League> getLeaguesByAssociation(String associationCode) {
-        return List.of();
+        return leagueRepository.findByAssociation_AssociationCode(associationCode);
     }
 
     @Override
     public Optional<League> getLeagueById(String id) {
         return leagueRepository.findById(id);
+    }
+
+    @Override
+    public void delete(League league) {
+        leagueRepository.delete(league);
     }
 
     @Override

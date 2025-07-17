@@ -22,8 +22,9 @@ public class TeamService implements ITeamService {
     }
 
     @Override
-    public Team update(Team team) {
-        return null;
+    public Team update(String teamID,Team updatedTeam) {
+        Team team = teamRepository.findById(teamID).orElseThrow();
+        return teamRepository.save(team);
     }
 
     @Override

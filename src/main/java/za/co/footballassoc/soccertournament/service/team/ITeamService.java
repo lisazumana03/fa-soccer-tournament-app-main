@@ -5,6 +5,6 @@ import za.co.footballassoc.soccertournament.domain.team.Team;
 public interface ITeamService {
     Team create(Team team);
     Team read(String teamID);
-    Team update(Team team);
+    Team update(String teamID, Team updatedTeam);
     void delete(String teamID);
 }
