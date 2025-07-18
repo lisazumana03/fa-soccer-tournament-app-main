@@ -15,7 +15,7 @@ public class OwnerController {
     private OwnerService ownerService;
 
     @PostMapping("/create")
-    public ResponseEntity<String> createOwner(@RequestBody Owner owner) {
+    public ResponseEntity<Owner> createOwner(@RequestBody Owner owner) {
         return new ResponseEntity<>(ownerService.create(owner), HttpStatus.CREATED);
     }
 }
