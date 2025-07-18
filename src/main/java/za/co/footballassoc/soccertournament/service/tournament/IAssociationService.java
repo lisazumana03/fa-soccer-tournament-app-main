@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface IAssociationService {
     Association establishAssociation(Association association);
-    Association getAssociation();
+    List<Association> getAssociations();
     Association updateAssociation(Association association);
     Association deformAssociation();
 

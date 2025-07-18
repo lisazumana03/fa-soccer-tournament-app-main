@@ -2,9 +2,11 @@ package za.co.footballassoc.soccertournament.service.team;
 
 import za.co.footballassoc.soccertournament.domain.team.Player;
 
+import java.util.List;
+
 public interface IPlayerService {
     Player create(Player player);
-    Player read(String playerID);
+    List<Player> getAllPlayers();
     Player update(Player player);
     void delete(String playerID);
 }

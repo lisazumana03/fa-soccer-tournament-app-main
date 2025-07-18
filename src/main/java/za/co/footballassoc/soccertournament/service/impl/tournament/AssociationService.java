@@ -32,8 +32,8 @@ public class AssociationService implements IAssociationService {
     }
 
     @Override
-    public Association getAssociation() {
-        return null;
+    public List<Association> getAssociations(){
+        return associationRepository.findAll();
     }
 
     @Override

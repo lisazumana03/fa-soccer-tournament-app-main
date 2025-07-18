@@ -2,6 +2,7 @@ package za.co.footballassoc.soccertournament.service.impl.team;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import za.co.footballassoc.soccertournament.domain.team.Player;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.repository.team.TeamRepository;
 import za.co.footballassoc.soccertournament.service.team.ITeamService;
@@ -29,9 +30,9 @@ public class TeamService implements ITeamService {
     }
 
     @Override
-    public Team update(String teamID,Team updatedTeam) {
-        Team team = teamRepository.findById(teamID).orElseThrow();
-        return teamRepository.save(team);
+    public Team update(String teamID, Team updatedTeam) {
+        Team team = teamRepository.findById(updatedTeam.getTeamID()).orElseThrow(()->new RuntimeException("Team not found"));
+        return teamRepository.save(updatedTeam);
     }
 
     @Override

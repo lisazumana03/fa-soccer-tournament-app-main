@@ -6,6 +6,8 @@ import za.co.footballassoc.soccertournament.domain.team.Player;
 import za.co.footballassoc.soccertournament.repository.team.PlayerRepository;
 import za.co.footballassoc.soccertournament.service.team.IPlayerService;
 
+import java.util.List;
+
 @Service
 public class PlayerService implements IPlayerService {
     @Autowired
@@ -17,8 +19,8 @@ public class PlayerService implements IPlayerService {
     }
 
     @Override
-    public Player read(String playerID) {
-        return playerRepository.findById(playerID).orElse(null);
+    public List<Player> getAllPlayers() {
+        return playerRepository.findAll();
     }
 
     @Override

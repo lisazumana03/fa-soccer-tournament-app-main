@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import za.co.footballassoc.soccertournament.domain.team.Player;
 import za.co.footballassoc.soccertournament.service.impl.team.PlayerService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/player")
-@CrossOrigin(origins = "http://localhost:2932/player")
+@CrossOrigin(origins = "*")
 public class PlayerController {
     @Autowired
     private PlayerService playerService;
@@ -19,9 +21,9 @@ public class PlayerController {
         return new ResponseEntity<>(playerService.create(player), HttpStatus.CREATED);
     }
 
-    @GetMapping("/read/{id}")
-    public ResponseEntity<Player> readPlayer(@PathVariable("id") String playerID) {
-        return new ResponseEntity<>(playerService.read(playerID), HttpStatus.OK);
+    @GetMapping("/get-all")
+    public ResponseEntity<List<Player>> getAllPlayers() {
+        return new ResponseEntity<>(playerService.getAllPlayers(), HttpStatus.OK);
     }
 
     @GetMapping("/update")
