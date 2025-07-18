@@ -1,4 +1,4 @@
-package za.co.footballassoc.soccertournament.service.impl.official;
+package za.co.footballassoc.soccertournament.service.official.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

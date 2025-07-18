@@ -1,11 +1,12 @@
 package za.co.footballassoc.soccertournament.controller.team;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.co.footballassoc.soccertournament.domain.team.Player;
-import za.co.footballassoc.soccertournament.service.impl.team.PlayerService;
+import za.co.footballassoc.soccertournament.service.team.impl.PlayerService;
 
 import java.util.List;
 
@@ -26,14 +27,20 @@ public class PlayerController {
         return new ResponseEntity<>(playerService.getAllPlayers(), HttpStatus.OK);
     }
 
-    @GetMapping("/update")
-    public ResponseEntity<Player> updatePlayer(Player player) {
-        return new ResponseEntity<>(playerService.update(player), HttpStatus.OK);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Player> updatePlayer(@PathVariable("id") String playerID,
+                                               @RequestBody Player updatedPlayer) {
+        Player updated = playerService.update(playerID, updatedPlayer);
+        return ResponseEntity.ok(updated);
     }
-
-    @GetMapping("/delete/{id}")
-    public void deletePlayer(@PathVariable("id") String playerID) {
-        playerService.delete(playerID);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deletePlayer(@PathVariable("id") String playerID) {
+        try {
+            playerService.delete(playerID);
+            return ResponseEntity.noContent().build(); // 204
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build(); // 404
+        }
     }
 
 }

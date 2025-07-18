@@ -1,9 +1,8 @@
-package za.co.footballassoc.soccertournament.service.impl.match;
+package za.co.footballassoc.soccertournament.service.match.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.co.footballassoc.soccertournament.domain.match.Match;
-import za.co.footballassoc.soccertournament.domain.match.MatchEvent;
 import za.co.footballassoc.soccertournament.domain.match.MatchStatus;
 import za.co.footballassoc.soccertournament.repository.match.MatchRepository;
 import za.co.footballassoc.soccertournament.service.match.IMatchService;

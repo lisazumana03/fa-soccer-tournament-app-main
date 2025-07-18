@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import za.co.footballassoc.soccertournament.domain.match.MatchEvent;
 
 @Repository
-public interface MatchEventRepository extends JpaRepository <MatchEvent, Long>{
+public interface MatchEventRepository extends JpaRepository <MatchEvent, String>{
 }

@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.co.footballassoc.soccertournament.domain.team.Team;
-import za.co.footballassoc.soccertournament.service.impl.team.PlayerService;
-import za.co.footballassoc.soccertournament.service.impl.team.TeamService;
+import za.co.footballassoc.soccertournament.service.team.impl.PlayerService;
+import za.co.footballassoc.soccertournament.service.team.impl.TeamService;
 
 import java.util.List;
 

@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.co.footballassoc.soccertournament.domain.tournament.Knockout;
-import za.co.footballassoc.soccertournament.domain.tournament.League;
-import za.co.footballassoc.soccertournament.service.impl.tournament.KnockoutService;
+import za.co.footballassoc.soccertournament.service.tournament.impl.KnockoutService;
 
 import java.util.List;
 

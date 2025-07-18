@@ -1,4 +1,4 @@
-package za.co.footballassoc.soccertournament.service.impl.tournament;
+package za.co.footballassoc.soccertournament.service.tournament.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,11 +10,9 @@ import za.co.footballassoc.soccertournament.repository.match.MatchRepository;
 import za.co.footballassoc.soccertournament.repository.team.TeamRepository;
 import za.co.footballassoc.soccertournament.repository.tournament.LeagueRepository;
 import za.co.footballassoc.soccertournament.service.tournament.ILeagueService;
-import za.co.footballassoc.soccertournament.util.*;
 
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.*;
 
 @Service
 public class LeagueService implements ILeagueService {

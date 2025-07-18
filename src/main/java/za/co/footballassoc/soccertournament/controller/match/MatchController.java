@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.co.footballassoc.soccertournament.domain.match.Match;
 import za.co.footballassoc.soccertournament.domain.match.MatchStatus;
-import za.co.footballassoc.soccertournament.service.impl.match.MatchService;
+import za.co.footballassoc.soccertournament.service.match.impl.MatchService;
 
 import java.time.LocalDateTime;
 import java.util.List;

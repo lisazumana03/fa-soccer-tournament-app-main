@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import za.co.footballassoc.soccertournament.domain.official.FourthOfficial;
-import za.co.footballassoc.soccertournament.service.impl.official.FourthOfficialService;
+import za.co.footballassoc.soccertournament.service.official.impl.FourthOfficialService;
 
 @RestController
 @RequestMapping("/api/fourth-official")

@@ -1,4 +1,4 @@
-package za.co.footballassoc.soccertournament.service;
+package za.co.footballassoc.soccertournament.util;
 
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.domain.tournament.Knockout;

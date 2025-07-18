@@ -7,6 +7,6 @@ import java.util.List;
 public interface IPlayerService {
     Player create(Player player);
     List<Player> getAllPlayers();
-    Player update(Player player);
+    Player update(String playerID, Player updatedPlayer);
     void delete(String playerID);
 }

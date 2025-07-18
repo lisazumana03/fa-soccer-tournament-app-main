@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import za.co.footballassoc.soccertournament.domain.official.Linesman;
-import za.co.footballassoc.soccertournament.service.impl.official.LinesmanService;
+import za.co.footballassoc.soccertournament.service.official.impl.LinesmanService;
 
 @RestController
 @RequestMapping("/api/linesman")

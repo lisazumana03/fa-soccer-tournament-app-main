@@ -1,8 +1,8 @@
-package za.co.footballassoc.soccertournament.service.impl.team;
+package za.co.footballassoc.soccertournament.service.team.impl;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.co.footballassoc.soccertournament.domain.team.Player;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.repository.team.TeamRepository;
 import za.co.footballassoc.soccertournament.service.team.ITeamService;
@@ -37,6 +37,9 @@ public class TeamService implements ITeamService {
 
     @Override
     public void delete(String teamID) {
+        if (!teamRepository.existsById(teamID)) {
+            throw new EntityNotFoundException("Team not found with ID: " + teamID);
+        }
         teamRepository.deleteById(teamID);
     }
 }

@@ -1,4 +1,4 @@
-package za.co.footballassoc.soccertournament.service.impl.team;
+package za.co.footballassoc.soccertournament.service.team.impl;
 
 import org.springframework.stereotype.Service;
 
