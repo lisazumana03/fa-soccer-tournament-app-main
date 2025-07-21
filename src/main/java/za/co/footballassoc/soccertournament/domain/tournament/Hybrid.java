@@ -1,11 +1,13 @@
 package za.co.footballassoc.soccertournament.domain.tournament;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 import java.io.Serializable;
 import java.util.Arrays;
 
 @Entity
+@DiscriminatorValue("hy")
 public class Hybrid extends Tournament implements Serializable {
 
     // League-related

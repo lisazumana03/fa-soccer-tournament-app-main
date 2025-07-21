@@ -7,6 +7,8 @@ import za.co.footballassoc.soccertournament.domain.team.Owner;
 import za.co.footballassoc.soccertournament.repository.team.OwnerRepository;
 import za.co.footballassoc.soccertournament.service.team.IOwnerService;
 
+import java.util.List;
+
 @Service
 public class OwnerService implements IOwnerService {
     @Autowired
@@ -14,6 +16,16 @@ public class OwnerService implements IOwnerService {
 
     @Override
     public Owner create(Owner owner) {
+        return ownerRepository.save(owner);
+    }
+
+    @Override
+    public List<Owner> getAllOwners() {
+        return ownerRepository.findAll();
+    }
+
+    @Override
+    public Owner updateOwner(Owner owner) {
         return ownerRepository.save(owner);
     }
 

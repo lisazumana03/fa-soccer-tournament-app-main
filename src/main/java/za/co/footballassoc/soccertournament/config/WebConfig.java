@@ -9,7 +9,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOrigins("http://localhost:2932") // Vue dev server
-                .allowedMethods("*");
+                .allowedOrigins("http://localhost:2932"); // Vue dev server
     }
 }
