@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
     @RequestMapping("/home")
     public String home() {
-        return "Welcome to the Soccer Tournament API";
+        return "Testing.html";
     }
 }
