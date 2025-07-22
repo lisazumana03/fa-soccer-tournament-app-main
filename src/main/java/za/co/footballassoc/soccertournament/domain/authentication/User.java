@@ -1,9 +1,10 @@
-package za.co.footballassoc.soccertournament.domain;
+package za.co.footballassoc.soccertournament.domain.authentication;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import za.co.footballassoc.soccertournament.domain.Name;
 
 import java.io.Serializable;
 import java.util.Collection;

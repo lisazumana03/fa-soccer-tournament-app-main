@@ -3,8 +3,8 @@ package za.co.footballassoc.soccertournament.service.authentication.impl;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import za.co.footballassoc.soccertournament.domain.Name;
-import za.co.footballassoc.soccertournament.domain.Role;
-import za.co.footballassoc.soccertournament.domain.User;
+import za.co.footballassoc.soccertournament.domain.authentication.Role;
+import za.co.footballassoc.soccertournament.domain.authentication.User;
 import za.co.footballassoc.soccertournament.repository.authentication.UserRepository;
 import za.co.footballassoc.soccertournament.service.authentication.IAuthService;
 
