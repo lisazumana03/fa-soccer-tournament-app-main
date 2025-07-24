@@ -12,7 +12,7 @@ public class Name implements ValueObject{
 
     public Name(){}
 
-    private Name(Builder builder) {
+    public Name(Builder builder) {
         this.firstName = builder.firstName;
         this.middleName = builder.middleName;
         this.lastName = builder.lastName;

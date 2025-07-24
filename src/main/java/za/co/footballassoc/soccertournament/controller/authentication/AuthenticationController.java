@@ -1,18 +1,19 @@
 package za.co.footballassoc.soccertournament.controller.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import za.co.footballassoc.soccertournament.domain.Name;
+import za.co.footballassoc.soccertournament.domain.authentication.Role;
 import za.co.footballassoc.soccertournament.domain.authentication.User;
 import za.co.footballassoc.soccertournament.service.authentication.impl.AuthService;
 
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/auth")
 public class AuthenticationController {
     @Autowired
@@ -20,10 +21,25 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody Map<String, String> body) {
-        Name name = new Name(body.get("name"));
+        Name name = new Name();
 
-        User user = authService.registerUser(body.get("userName"), body.get("email"),
-                body.get("password"));
+        Role role = Role.valueOf(body.get("role").toUpperCase());
+
+        User user = authService.registerUser(
+                name,
+                body.get("userName"),
+                body.get("email"),
+                body.get("password"),
+                role);
         return ResponseEntity.ok("Registered user: " + user.getUserName());
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> body) {
+        if(authService.authenticateUser(body.get("userName"), body.get("password"))) {
+            return ResponseEntity.ok("Login successful!");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials!");
+        }
     }
 }

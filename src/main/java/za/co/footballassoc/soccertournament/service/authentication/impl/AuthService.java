@@ -1,5 +1,6 @@
 package za.co.footballassoc.soccertournament.service.authentication.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import za.co.footballassoc.soccertournament.domain.Name;
@@ -10,13 +11,11 @@ import za.co.footballassoc.soccertournament.service.authentication.IAuthService;
 
 @Service
 public class AuthService implements IAuthService {
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    @Autowired
+    private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
+
 
     @Override
     public User registerUser(Name name, String username, String email, String password, Role role) {
@@ -27,7 +26,7 @@ public class AuthService implements IAuthService {
                 .setName(name)
                 .setUserName(username)
                 .setEmail(email)
-                .setPassword(password)
+                .setPassword(passwordEncoder.encode(password))
                 .build();
         return userRepository.save(user);
     }
