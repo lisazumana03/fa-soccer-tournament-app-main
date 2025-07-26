@@ -21,7 +21,11 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody Map<String, String> body) {
-        Name name = new Name();
+        Name name = new Name.Builder()
+                .setFirstName(body.get("firstName"))
+                .setMiddleName(body.get("middleName"))
+                .setLastName(body.get("lastName"))
+                .build();
 
         Role role = Role.valueOf(body.get("role").toUpperCase());
 
