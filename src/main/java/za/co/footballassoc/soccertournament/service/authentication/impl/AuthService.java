@@ -28,6 +28,7 @@ public class AuthService implements IAuthService {
                 .setUserName(username)
                 .setEmail(email)
                 .setPassword(passwordEncoder.encode(password))
+                .setRole(role)
                 .build();
         return userRepository.save(user);
     }
@@ -40,7 +41,8 @@ public class AuthService implements IAuthService {
         return passwordEncoder.matches(password, user.getPassword());
     }
 
-    public UserDetails loadUserByUsername(String username) {
-        return null;
+    public User loadUser(String username) {
+        return userRepository.findByUserName(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 }

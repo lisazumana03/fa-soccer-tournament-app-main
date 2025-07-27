@@ -40,5 +40,39 @@ public class Owner implements Serializable {
         private List<Team> teams;
         private LocalDate dateOfBirth;
         private Location birthLocation;
+
+        public Builder setOwnerId(String ownerId) {
+            this.ownerId = ownerId;
+            return this;
+        }
+
+        public Builder setOwnerName(Name ownerName) {
+            this.ownerName = ownerName;
+            return this;
+        }
+
+        public Builder setGender(Gender gender) {
+            this.gender = gender;
+            return this;
+        }
+
+        public Builder setTeams(List<Team> teams) {
+            this.teams = teams;
+            return this;
+        }
+
+        public Builder setDateOfBirth(LocalDate dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+            return this;
+        }
+
+        public Builder setBirthLocation(Location birthLocation) {
+            this.birthLocation = birthLocation;
+            return this;
+        }
+
+        public Owner build() {
+            return new Owner(this);
+        }
     }
 }

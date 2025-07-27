@@ -48,12 +48,14 @@ public class AuthenticationController {
         String password = body.get("password");
 
         if (authService.authenticateUser(username, password)) {
-            UserDetails userDetails = authService.loadUserByUsername(username);
-            String token = jwtUtils.generateJwtToken(userDetails);
+            User user = authService.loadUser(username);
+            String token = jwtUtils.generateToken(user.getUsername(), user.getRole().name());
 
             Map<String, String> response = new HashMap<>();
             response.put("token", token);
-            response.put("username", username);
+            response.put("role", user.getRole().name());
+            response.put("username", user.getUsername());
+
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials!");
