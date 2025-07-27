@@ -1,6 +1,7 @@
 package za.co.footballassoc.soccertournament.service.authentication.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import za.co.footballassoc.soccertournament.domain.Name;
@@ -37,5 +38,9 @@ public class AuthService implements IAuthService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return passwordEncoder.matches(password, user.getPassword());
+    }
+
+    public UserDetails loadUserByUsername(String username) {
+        return null;
     }
 }
