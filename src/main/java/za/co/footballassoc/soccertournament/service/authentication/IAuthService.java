@@ -6,5 +6,5 @@ import za.co.footballassoc.soccertournament.domain.authentication.User;
 
 public interface IAuthService {
     User registerUser(Name name, String username, String email, String password, Role role);
-    boolean authenticateUser(String username, String password);
+    String authenticateUser(String username, String password);
 }

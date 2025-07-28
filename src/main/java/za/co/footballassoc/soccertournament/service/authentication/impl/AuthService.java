@@ -1,13 +1,13 @@
 package za.co.footballassoc.soccertournament.service.authentication.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import za.co.footballassoc.soccertournament.domain.Name;
 import za.co.footballassoc.soccertournament.domain.authentication.Role;
 import za.co.footballassoc.soccertournament.domain.authentication.User;
 import za.co.footballassoc.soccertournament.repository.authentication.UserRepository;
+import za.co.footballassoc.soccertournament.security.JwtUtils;
 import za.co.footballassoc.soccertournament.service.authentication.IAuthService;
 
 @Service
@@ -15,7 +15,10 @@ public class AuthService implements IAuthService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private JwtUtils jwtUtils;
 
 
     @Override
@@ -23,6 +26,7 @@ public class AuthService implements IAuthService {
         if(userRepository.findByUserName(username).isPresent()) {
             throw new RuntimeException("Username is already in use");
         }
+
         User user = new User.Builder()
                 .setName(name)
                 .setUserName(username)
@@ -30,15 +34,19 @@ public class AuthService implements IAuthService {
                 .setPassword(passwordEncoder.encode(password))
                 .setRole(role)
                 .build();
+
         return userRepository.save(user);
     }
 
     @Override
-    public boolean authenticateUser(String username, String password) {
+    public String authenticateUser(String username, String password) {
         User user = userRepository.findByUserName(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        return passwordEncoder.matches(password, user.getPassword());
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new RuntimeException("Invalid credentials");
+        }
+        return jwtUtils.generateToken(user.getUsername(), user.getRole().name());
     }
 
     public User loadUser(String username) {

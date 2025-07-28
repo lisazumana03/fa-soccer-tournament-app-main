@@ -44,21 +44,11 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> body) {
-        String username = body.get("userName");
-        String password = body.get("password");
-
-        if (authService.authenticateUser(username, password)) {
-            User user = authService.loadUser(username);
-            String token = jwtUtils.generateToken(user.getUsername(), user.getRole().name());
-
-            Map<String, String> response = new HashMap<>();
-            response.put("token", token);
-            response.put("role", user.getRole().name());
-            response.put("username", user.getUsername());
-
-            return ResponseEntity.ok(response);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials!");
+        try {
+            String token = authService.authenticateUser(body.get("userName"), body.get("password"));
+            return ResponseEntity.ok(Map.of("token", token));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", e.getMessage()));
         }
     }
 }
