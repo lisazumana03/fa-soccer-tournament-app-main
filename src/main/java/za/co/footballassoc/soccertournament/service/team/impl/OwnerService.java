@@ -53,5 +53,6 @@ public class OwnerService implements IOwnerService {
         Owner newOwner = ownerRepository.findById(newOwnerID)
                 .orElseThrow(EntityNotFoundException::new);
         team.setOwner(newOwner);
+        return teamRepository.save(team);
     }
 }

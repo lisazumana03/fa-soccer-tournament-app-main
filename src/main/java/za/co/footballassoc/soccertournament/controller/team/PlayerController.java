@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/player")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class PlayerController {
     @Autowired
     private PlayerService playerService;

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import za.co.footballassoc.soccertournament.service.official.impl.VARService;
 
 @RestController
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @RequestMapping("/api/var")
 public class VARController {
     @Autowired

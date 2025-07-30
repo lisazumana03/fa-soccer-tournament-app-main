@@ -7,7 +7,7 @@ import za.co.footballassoc.soccertournament.domain.official.AssistantVAR;
 import za.co.footballassoc.soccertournament.service.official.impl.AssistantVARService;
 
 @RestController
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @RequestMapping("/api/assistant-var")
 public class AssistantVARController {
 

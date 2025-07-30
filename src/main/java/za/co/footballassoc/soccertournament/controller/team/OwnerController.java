@@ -6,10 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.co.footballassoc.soccertournament.domain.team.Owner;
+import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.service.team.impl.OwnerService;
 
+import java.util.List;
+
 @RestController
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @RequestMapping("/api/owner")
 public class OwnerController {
     @Autowired
@@ -28,5 +31,17 @@ public class OwnerController {
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build(); // 404
         }
+    }
+
+    @GetMapping("/{ownerId}/teams")
+    public ResponseEntity<List<Team>> getOwnerTeams(@PathVariable String ownerId) {
+        List<Team> teams = ownerService.getTeamsByOwner(ownerId);
+        return ResponseEntity.ok(teams);
+    }
+
+    @PostMapping("/transfer")
+    public ResponseEntity<Team> transferOwnership(@RequestParam String teamId, @RequestParam String newOwnerId) {
+        Team updatedTeam = ownerService.transferTeamOwnership(teamId, newOwnerId);
+        return ResponseEntity.ok(updatedTeam);
     }
 }
