@@ -24,6 +24,7 @@ public class Match implements Serializable {
     private int awayTeamScore;
     @ManyToOne
     private Tournament tournament;
+    @Enumerated(EnumType.STRING)
     private MatchStatus matchStatus;
     private int duration = 90; ///90 min full match (45min + 45min)
     @OneToMany(mappedBy = "match")
