@@ -9,4 +9,7 @@ public interface IOwnerService {
     List<Owner> getAllOwners();
     Owner updateOwner(Owner owner);
     void delete(String ownerID);
+
+    //Owner Logic
+
 }
