@@ -11,4 +11,5 @@ import java.util.List;
 public interface TeamRepository extends JpaRepository<Team, String> {
 
     List<Object> findByTournament_TournamentID(String tournamentID);
+    List<Team> findByOwner_OwnerId(String ownerId);
 }

@@ -4,7 +4,9 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.co.footballassoc.soccertournament.domain.team.Owner;
+import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.repository.team.OwnerRepository;
+import za.co.footballassoc.soccertournament.repository.team.TeamRepository;
 import za.co.footballassoc.soccertournament.service.team.IOwnerService;
 
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.List;
 public class OwnerService implements IOwnerService {
     @Autowired
     private OwnerRepository ownerRepository;
+    @Autowired
+    private TeamRepository teamRepository;
 
     @Override
     public Owner create(Owner owner) {
@@ -35,5 +39,19 @@ public class OwnerService implements IOwnerService {
             throw new EntityNotFoundException(ownerID);
         }
         ownerRepository.deleteById(ownerID);
+    }
+
+    @Override
+    public List<Team> getTeamsByOwner(String ownerID) {
+        return teamRepository.findByOwner_OwnerId(ownerID);
+    }
+
+    @Override
+    public Team transferTeamOwnership(String teamID, String newOwnerID) {
+        Team team = teamRepository.findById(teamID)
+                .orElseThrow(EntityNotFoundException::new);
+        Owner newOwner = ownerRepository.findById(newOwnerID)
+                .orElseThrow(EntityNotFoundException::new);
+        team.setOwner(newOwner);
     }
 }

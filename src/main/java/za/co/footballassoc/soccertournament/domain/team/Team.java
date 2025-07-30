@@ -174,6 +174,10 @@ public class Team implements Serializable {
         this.points = points;
     }
 
+    public void setOwner(Owner newOwner) {
+        this.owner = newOwner;
+    }
+
 
     public static class Builder{
         private String teamID;
@@ -275,6 +279,11 @@ public class Team implements Serializable {
             return this;
         }
 
+        public Builder setOwner(Owner owner){
+            this.owner = owner;
+            return this;
+        }
+
         public Builder copy(Team team){
             this.teamID = team.teamID;
             this.teamName = team.teamName;
@@ -293,6 +302,7 @@ public class Team implements Serializable {
             this.goalsFor = team.goalsFor;
             this.goalsAgainst = team.goalsAgainst;
             this.points = team.points;
+            this.owner = team.owner;
             return this;
         }
 

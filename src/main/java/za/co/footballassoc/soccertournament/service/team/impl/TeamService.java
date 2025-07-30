@@ -31,7 +31,8 @@ public class TeamService implements ITeamService {
 
     @Override
     public Team update(String teamID, Team updatedTeam) {
-        Team team = teamRepository.findById(updatedTeam.getTeamID()).orElseThrow(()->new RuntimeException("Team not found"));
+        Team team = teamRepository.findById(updatedTeam.getTeamID())
+                .orElseThrow(()->new RuntimeException("Team not found"));
         return teamRepository.save(updatedTeam);
     }
 
