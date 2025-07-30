@@ -31,6 +31,9 @@ public class Team implements Serializable {
 
     @Column(nullable = true)
     private String groupName; // e.g., "Group A", null for knockout-only
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
 
     // Team stats
     private int gamesPlayed;
@@ -135,6 +138,10 @@ public class Team implements Serializable {
         return (wins * 3) + draws; // Standard 3-1-0 point system
     }
 
+    public Owner getOwner() {
+        return owner;
+    }
+
     public void setTeamID(String teamID) {
         this.teamID = teamID;
     }
@@ -179,6 +186,7 @@ public class Team implements Serializable {
         private TeamType teamType;
         private Venue teamHomeGround;
         private String groupName; // e.g., "Group A", null for knockout-only
+        private Owner owner;
 
         // Team stats
         private int gamesPlayed;
