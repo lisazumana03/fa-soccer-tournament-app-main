@@ -28,7 +28,8 @@ public class AuthService implements IAuthService {
 
 
     @Override
-    public User registerUser(Name name, String username, String email, String password, Role role) {
+    public User registerUser(Name name, String username, String email,
+                             String password, String phoneNumber, Role role) {
         if(userRepository.findByUserName(username).isPresent()) {
             throw new RuntimeException("Username is already in use");
         }
@@ -38,6 +39,7 @@ public class AuthService implements IAuthService {
                 .setUserName(username)
                 .setEmail(email)
                 .setPassword(passwordEncoder.encode(password))
+                .setPhoneNumber(phoneNumber)
                 .setRole(role)
                 .build();
 

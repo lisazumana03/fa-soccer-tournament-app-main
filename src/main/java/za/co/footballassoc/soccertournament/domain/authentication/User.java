@@ -10,7 +10,6 @@ import za.co.footballassoc.soccertournament.domain.Name;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")
