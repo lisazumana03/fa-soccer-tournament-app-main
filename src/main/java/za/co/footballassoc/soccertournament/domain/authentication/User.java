@@ -1,6 +1,7 @@
 package za.co.footballassoc.soccertournament.domain.authentication;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,11 +10,15 @@ import za.co.footballassoc.soccertournament.domain.Name;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
 public class User implements UserDetails, Serializable {
     @Id
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "user_id", updatable = false, nullable = false, columnDefinition = "UUID")
     private String userID;
     @Embedded
     private Name name;
@@ -27,7 +32,6 @@ public class User implements UserDetails, Serializable {
     public User(){}
 
     private User(Builder builder) {
-        this.userID = builder.userID;
         this.name = builder.name;
         this.userName = builder.userName;
         this.email = builder.email;
@@ -109,18 +113,12 @@ public class User implements UserDetails, Serializable {
     }
 
     public static class Builder {
-        private String userID;
         private Name name;
         private String userName;
         private String email;
         private String password;
         private String phoneNumber;
         private Role role;
-
-        public Builder setUserID(String userID) {
-            this.userID = userID;
-            return this;
-        }
 
         public Builder setName(Name name) {
             this.name = name;
