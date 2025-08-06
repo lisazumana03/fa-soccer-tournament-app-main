@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.co.footballassoc.soccertournament.domain.team.Owner;
+import za.co.footballassoc.soccertournament.domain.team.Player;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.repository.team.OwnerRepository;
 import za.co.footballassoc.soccertournament.repository.team.TeamRepository;
@@ -34,8 +35,24 @@ public class OwnerService implements IOwnerService {
     }
 
     @Override
-    public Owner update(Owner owner) {
-        return ownerRepository.save(owner);
+    public Owner update(String ownerID, Owner updatedOwner) {
+        Owner owner = ownerRepository.findById(ownerID)
+                .orElseThrow(()->new RuntimeException("Team not found"));
+        Owner updated = new Owner.Builder()
+                .copy(owner)
+                .setOwnerName(updatedOwner.getOwnerName())
+                .setGender(updatedOwner.getGender())
+                .setTeams(updatedOwner.getTeams())
+                .setDateOfBirth(updatedOwner.getDateOfBirth())
+                .setLocationOfBirth(updatedOwner.getLocationOfBirth())
+                .setPlayerPosition(updatedPlayer.getPlayerPosition())
+                .setPlayerHeight(updatedPlayer.getPlayerHeight())
+                .setPlayerWeight(updatedPlayer.getPlayerWeight())
+                .setClub(updatedPlayer.getClub())
+                .setKitNumber(updatedPlayer.getKitNumber())
+                .setNationalTeam(updatedPlayer.getNationalTeam())
+                .build();
+        return playerRepository.save(updatedPlayer);
     }
 
     @Override

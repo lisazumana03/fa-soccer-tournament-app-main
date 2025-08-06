@@ -33,6 +33,30 @@ public class Owner implements Serializable {
         this.birthLocation = builder.birthLocation;
     }
 
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public Name getOwnerName() {
+        return ownerName;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public Location getBirthLocation() {
+        return birthLocation;
+    }
+
     public static class Builder {
         private String ownerId;
         private Name ownerName;
@@ -68,6 +92,16 @@ public class Owner implements Serializable {
 
         public Builder setBirthLocation(Location birthLocation) {
             this.birthLocation = birthLocation;
+            return this;
+        }
+
+        public Builder copy(Owner owner) {
+            this.ownerId = owner.ownerId;
+            this.ownerName = owner.ownerName;
+            this.gender = owner.gender;
+            this.teams = owner.teams;
+            this.dateOfBirth = owner.dateOfBirth;
+            this.birthLocation = owner.birthLocation;
             return this;
         }
 
