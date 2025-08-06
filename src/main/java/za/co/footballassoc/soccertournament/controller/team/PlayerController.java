@@ -24,7 +24,7 @@ public class PlayerController {
 
     @GetMapping("/get-all")
     public ResponseEntity<List<Player>> getAllPlayers() {
-        return new ResponseEntity<>(playerService.getAllPlayers(), HttpStatus.OK);
+        return new ResponseEntity<>(playerService.getAll(), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")

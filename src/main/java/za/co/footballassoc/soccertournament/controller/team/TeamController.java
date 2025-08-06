@@ -25,7 +25,7 @@ public class TeamController {
 
     @GetMapping("/{id}")
     public ResponseEntity<List<Team>> getTeam(@PathVariable String id) {
-        return new ResponseEntity<>(teamService.getAllTeams(), HttpStatus.OK);
+        return new ResponseEntity<>(teamService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping("/update/{id}")

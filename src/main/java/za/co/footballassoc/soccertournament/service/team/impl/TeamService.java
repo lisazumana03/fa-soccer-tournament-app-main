@@ -25,7 +25,7 @@ public class TeamService implements ITeamService {
     }
 
     @Override
-    public List<Team> getAllTeams() {
+    public List<Team> getAll() {
         return teamRepository.findAll();
     }
 

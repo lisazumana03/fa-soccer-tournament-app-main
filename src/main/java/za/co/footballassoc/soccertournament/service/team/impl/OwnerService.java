@@ -25,7 +25,7 @@ public class OwnerService implements IOwnerService {
     }
 
     @Override
-    public List<Owner> getAllOwners() {
+    public List<Owner> getAll() {
         return ownerRepository.findAll();
     }
 
@@ -37,22 +37,16 @@ public class OwnerService implements IOwnerService {
     @Override
     public Owner update(String ownerID, Owner updatedOwner) {
         Owner owner = ownerRepository.findById(ownerID)
-                .orElseThrow(()->new RuntimeException("Team not found"));
+                .orElseThrow(()->new RuntimeException("Owner not found"));
         Owner updated = new Owner.Builder()
                 .copy(owner)
                 .setOwnerName(updatedOwner.getOwnerName())
                 .setGender(updatedOwner.getGender())
                 .setTeams(updatedOwner.getTeams())
                 .setDateOfBirth(updatedOwner.getDateOfBirth())
-                .setLocationOfBirth(updatedOwner.getLocationOfBirth())
-                .setPlayerPosition(updatedPlayer.getPlayerPosition())
-                .setPlayerHeight(updatedPlayer.getPlayerHeight())
-                .setPlayerWeight(updatedPlayer.getPlayerWeight())
-                .setClub(updatedPlayer.getClub())
-                .setKitNumber(updatedPlayer.getKitNumber())
-                .setNationalTeam(updatedPlayer.getNationalTeam())
+                .setBirthLocation(updatedOwner.getBirthLocation())
                 .build();
-        return playerRepository.save(updatedPlayer);
+        return ownerRepository.save(updatedOwner);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class PlayerService implements IPlayerService {
     }
 
     @Override
-    public List<Player> getAllPlayers() {
+    public List<Player> getAll() {
         return playerRepository.findAll();
     }
 

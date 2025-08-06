@@ -7,6 +7,8 @@ import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.repository.team.ManagerRepository;
 import za.co.footballassoc.soccertournament.service.team.IManagerService;
 
+import java.util.List;
+
 @Service
 public class ManagerService implements IManagerService {
     @Autowired
@@ -23,9 +25,14 @@ public class ManagerService implements IManagerService {
     }
 
     @Override
-    public Manager update(Manager updateManager) {
+    public List<Manager> getAll() {
+        return managerRepository.findAll();
+    }
+
+    @Override
+    public Manager update(String managerId, Manager updateManager) {
         Manager manager = managerRepository.findById(updateManager.getManagerId())
-                .orElseThrow(()->new RuntimeException("Team not found"));
+                .orElseThrow(()->new RuntimeException("Manager not found"));
         return managerRepository.save(updateManager);
     }
 

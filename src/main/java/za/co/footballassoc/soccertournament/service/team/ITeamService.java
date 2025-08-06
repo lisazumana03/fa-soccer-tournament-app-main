@@ -6,6 +6,5 @@ import za.co.footballassoc.soccertournament.service.IService;
 import java.util.List;
 
 public interface ITeamService extends IService<Team, String> {
-    List<Team> getAllTeams();
     void delete(String teamID);
 }

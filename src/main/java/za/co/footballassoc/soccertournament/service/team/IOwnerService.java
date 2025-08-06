@@ -7,9 +7,6 @@ import za.co.footballassoc.soccertournament.service.IService;
 import java.util.List;
 
 public interface IOwnerService extends IService<Owner, String> {
-    Owner create(Owner owner);
-    List<Owner> getAllOwners();
-    Owner update(Owner owner);
     void delete(String ownerID);
 
     //Owner Logic
