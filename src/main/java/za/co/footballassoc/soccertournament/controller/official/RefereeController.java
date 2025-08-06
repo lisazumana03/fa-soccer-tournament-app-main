@@ -17,6 +17,6 @@ public class RefereeController {
 
     @PostMapping("/create")
     public ResponseEntity<Referee> createReferee(@RequestBody Referee referee) {
-        return ResponseEntity.ok(refereeService.createReferee(referee));
+        return ResponseEntity.ok(refereeService.create(referee));
     }
 }

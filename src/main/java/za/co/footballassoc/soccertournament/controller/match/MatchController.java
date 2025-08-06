@@ -18,7 +18,7 @@ public class MatchController {
 
     @PostMapping
     public ResponseEntity<Match> createMatch(@RequestBody Match match) {
-        return ResponseEntity.ok(matchService.createMatch(match));
+        return ResponseEntity.ok(matchService.create(match));
     }
 
     @GetMapping("/{id}")
@@ -30,7 +30,7 @@ public class MatchController {
 
     @GetMapping
     public List<Match> getAllMatches() {
-        return matchService.getAllMatches();
+        return matchService.getAll();
     }
 
     @GetMapping("/tournament/{tournamentId}")

@@ -20,8 +20,18 @@ public class FourthOfficialService implements IFourthOfficialService {
     }
 
     @Override
-    public List<FourthOfficial> getAllFourthOfficials() {
+    public FourthOfficial read(String officialId) {
+        return fourthOfficialRepository.findById(officialId).orElse(null);
+    }
+
+    @Override
+    public List<FourthOfficial> getAll() {
         return fourthOfficialRepository.findAll();
+    }
+
+    @Override
+    public FourthOfficial update(String officialId, FourthOfficial fourthOfficial) {
+        return null;
     }
 
     @Override

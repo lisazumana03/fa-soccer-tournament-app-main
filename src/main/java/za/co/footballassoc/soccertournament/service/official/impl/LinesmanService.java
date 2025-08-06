@@ -21,8 +21,18 @@ public class LinesmanService implements ILinesmanService {
     }
 
     @Override
-    public List<Linesman> getAllLinesmen() {
-        return List.of();
+    public List<Linesman> getAll() {
+        return linesmanRepository.findAll();
+    }
+
+    @Override
+    public Linesman read(String officialId) {
+        return linesmanRepository.findById(officialId).orElse(null);
+    }
+
+    @Override
+    public Linesman update(String officialId, Linesman linesman){
+        return linesmanRepository.save(linesman);
     }
 
     @Override
@@ -36,7 +46,7 @@ public class LinesmanService implements ILinesmanService {
     }
 
     @Override
-    public void fireLinesman(Linesman linesman) {
+    public void fireLinesman(String officialId) {
 
     }
 }

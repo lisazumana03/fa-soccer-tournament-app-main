@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface ILinesmanService extends IService<Linesman, String> {
     List<Linesman> getLinesmenByMatch(String matchId);
     Optional<Linesman> getLinesmenById(String officialId);
-    void fireLinesman(Linesman linesman);
+    void fireLinesman(String officialId);
 }

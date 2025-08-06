@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.Name;
 import za.co.footballassoc.soccertournament.domain.match.Match;
+import za.co.footballassoc.soccertournament.domain.team.Gender;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ public class Referee extends Official implements Serializable {
     private Referee(Builder builder) {
         this.officialId = builder.officialId;
         this.officialName = builder.officialName;
+        this.officialGender = builder.officialGender;
         this.officialNationality = builder.officialNationality;
         this.officialDateOfBirth = builder.officialDateOfBirth;
         this.officialLocationOfBirth = builder.officialLocationOfBirth;
@@ -47,6 +49,7 @@ public class Referee extends Official implements Serializable {
     public static class Builder{
         private String officialId;
         private Name officialName;
+        private Gender officialGender;
         private String officialNationality;
         private LocalDate officialDateOfBirth;
         private Location officialLocationOfBirth;
@@ -66,6 +69,11 @@ public class Referee extends Official implements Serializable {
 
         public Builder setOfficialNationality(String officialNationality){
             this.officialNationality = officialNationality;
+            return this;
+        }
+
+        public Builder setOfficialGender(Gender officialGender){
+            this.officialGender = officialGender;
             return this;
         }
 
@@ -97,6 +105,20 @@ public class Referee extends Official implements Serializable {
         protected Builder self(){
             return this;
         }
+
+        public Builder copy(Referee referee){
+            this.officialId = referee.officialId;
+            this.officialName = referee.officialName;
+            this.officialNationality = referee.officialNationality;
+            this.officialGender = referee.officialGender;
+            this.officialDateOfBirth = referee.officialDateOfBirth;
+            this.officialLocationOfBirth = referee.officialLocationOfBirth;
+            this.officialOrganisation = referee.officialOrganisation;
+            this.match = referee.match;
+            this.certificationLevel = referee.certificationLevel;
+            return this;
+        }
+
         public Referee build(){
             return new Referee(this);
         }

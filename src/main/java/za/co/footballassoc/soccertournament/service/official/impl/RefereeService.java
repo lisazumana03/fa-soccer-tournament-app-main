@@ -39,10 +39,10 @@ public class RefereeService implements IRefereeService {
                 .setOfficialName(updatedReferee.getOfficialName())
                 .setOfficialGender(updatedReferee.getOfficialGender())
                 .setOfficialNationality(updatedReferee.getOfficialNationality())
-                .setOfficialDateOfBirth(updatedAssistantVAR.getOfficialDateOfBirth())
-                .setOfficialLocationOfBirth(updatedAssistantVAR.getOfficialLocationOfBirth())
-                .setOfficialOrganisation(updatedAssistantVAR.getOfficialOrganisation())
-                .set
+                .setOfficialDateOfBirth(updatedReferee.getOfficialDateOfBirth())
+                .setOfficialLocationOfBirth(updatedReferee.getOfficialLocationOfBirth())
+                .setOfficialOrganisation(updatedReferee.getOfficialOrganisation())
+                .setCertificationLevel(updatedReferee.getCertificationLevel())
                 .build();
         return refereeRepository.save(updatedReferee);
     }
