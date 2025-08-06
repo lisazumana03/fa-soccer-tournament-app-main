@@ -15,17 +15,22 @@ public class MatchEventService implements IMatchEventService {
     private MatchEventRepository matchEventRepository;
 
     @Override
-    public MatchEvent createMatchEvent(MatchEvent matchEvent) {
-        return null;
+    public MatchEvent create(MatchEvent matchEvent) {
+        return matchEventRepository.save(matchEvent);
     }
 
     @Override
-    public List<MatchEvent> getMatchEvents() {
+    public MatchEvent read(String matchId) {
+        return matchEventRepository.findById(matchId).orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Override
+    public List<MatchEvent> getAll() {
         return matchEventRepository.findAll();
     }
 
     @Override
-    public MatchEvent updateMatchEvent(String eventID, MatchEvent matchEvent) {
+    public MatchEvent update(String eventID, MatchEvent matchEvent) {
         return null;
     }
 

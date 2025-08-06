@@ -17,18 +17,27 @@ public class MatchService implements IMatchService{
 
 
     @Override
-    public Match createMatch(Match match) {
+    public Match create(Match match) {
         return matchRepository.save(match);
+    }
+
+    public Match read(String matchId) {
+        return matchRepository.findById(matchId).orElse(null);
+    }
+
+    @Override
+    public List<Match> getAll() {
+        return matchRepository.findAll();
+    }
+
+    @Override
+    public Match update(String matchId, Match match) {
+        return null;
     }
 
     @Override
     public Optional<Match> getMatchById(String matchId) {
         return matchRepository.findById(matchId);
-    }
-
-    @Override
-    public List<Match> getAllMatches() {
-        return matchRepository.findAll();
     }
 
     @Override
@@ -51,5 +60,7 @@ public class MatchService implements IMatchService{
         match.setFullTime(fullTime);
         return matchRepository.save(match);
     }
+
+
 
 }

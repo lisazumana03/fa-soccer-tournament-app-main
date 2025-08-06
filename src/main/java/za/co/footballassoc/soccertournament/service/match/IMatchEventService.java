@@ -7,8 +7,5 @@ import za.co.footballassoc.soccertournament.service.IService;
 import java.util.List;
 
 public interface IMatchEventService extends IService<MatchEvent, String> {
-    MatchEvent createMatchEvent(MatchEvent matchEvent);
-    List<MatchEvent> getMatchEvents();
-    MatchEvent updateMatchEvent(String eventID, MatchEvent matchEvent);
     void deleteMatchEvent(String eventID);
 }
