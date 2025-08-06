@@ -30,7 +30,7 @@ public class PlayerController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Player> updatePlayer(@PathVariable("id") String playerID,
                                                @RequestBody Player updatedPlayer) {
-        Player updated = playerService.update(playerID, updatedPlayer);
+        Player updated = playerService.update(updatedPlayer);
         return ResponseEntity.ok(updated);
     }
     @DeleteMapping("/delete/{id}")

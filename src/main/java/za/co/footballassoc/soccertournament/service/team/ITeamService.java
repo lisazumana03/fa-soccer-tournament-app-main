@@ -1,13 +1,11 @@
 package za.co.footballassoc.soccertournament.service.team;
 
 import za.co.footballassoc.soccertournament.domain.team.Team;
+import za.co.footballassoc.soccertournament.service.IService;
 
 import java.util.List;
 
-public interface ITeamService {
-    Team create(Team team);
-    Team read(String teamID);
+public interface ITeamService extends IService<Team, String> {
     List<Team> getAllTeams();
-    Team update(String teamID, Team updatedTeam);
     void delete(String teamID);
 }

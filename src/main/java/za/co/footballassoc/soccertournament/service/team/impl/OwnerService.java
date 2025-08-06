@@ -29,7 +29,12 @@ public class OwnerService implements IOwnerService {
     }
 
     @Override
-    public Owner updateOwner(Owner owner) {
+    public Owner read(String ownerID) {
+        return ownerRepository.getReferenceById(ownerID);
+    }
+
+    @Override
+    public Owner update(Owner owner) {
         return ownerRepository.save(owner);
     }
 

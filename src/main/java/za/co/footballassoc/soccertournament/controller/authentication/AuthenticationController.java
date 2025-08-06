@@ -38,6 +38,7 @@ public class AuthenticationController {
                 body.get("userName"),
                 body.get("email"),
                 body.get("password"),
+                body.get("phoneNumber"),
                 role);
         return ResponseEntity.ok("Registered user: " + user.getUserName());
     }

@@ -25,6 +25,11 @@ public class PlayerService implements IPlayerService {
     }
 
     @Override
+    public Player read(String playerID) {
+        return playerRepository.getReferenceById(playerID);
+    }
+
+    @Override
     public Player update(String playerID, Player updatedPlayer) {
         Player player = playerRepository.findById(playerID)
                 .orElseThrow(()->new RuntimeException("Team not found"));

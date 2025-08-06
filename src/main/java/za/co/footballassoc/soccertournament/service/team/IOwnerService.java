@@ -2,13 +2,14 @@ package za.co.footballassoc.soccertournament.service.team;
 
 import za.co.footballassoc.soccertournament.domain.team.Owner;
 import za.co.footballassoc.soccertournament.domain.team.Team;
+import za.co.footballassoc.soccertournament.service.IService;
 
 import java.util.List;
 
-public interface IOwnerService {
+public interface IOwnerService extends IService<Owner, String> {
     Owner create(Owner owner);
     List<Owner> getAllOwners();
-    Owner updateOwner(Owner owner);
+    Owner update(Owner owner);
     void delete(String ownerID);
 
     //Owner Logic
