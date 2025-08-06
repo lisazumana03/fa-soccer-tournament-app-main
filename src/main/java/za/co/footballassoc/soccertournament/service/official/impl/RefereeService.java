@@ -2,6 +2,7 @@ package za.co.footballassoc.soccertournament.service.official.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import za.co.footballassoc.soccertournament.domain.official.AssistantVAR;
 import za.co.footballassoc.soccertournament.domain.official.Referee;
 import za.co.footballassoc.soccertournament.repository.official.RefereeRepository;
 import za.co.footballassoc.soccertournament.service.official.IRefereeService;
@@ -15,13 +16,35 @@ public class RefereeService implements IRefereeService {
     private RefereeRepository refereeRepository;
 
     @Override
-    public Referee createReferee(Referee referee) {
+    public Referee create(Referee referee) {
         return refereeRepository.save(referee);
     }
 
     @Override
-    public List<Referee> getAllReferees() {
-        return List.of();
+    public Referee read(String s) {
+        return null;
+    }
+
+    @Override
+    public List<Referee> getAll() {
+        return refereeRepository.findAll();
+    }
+
+    @Override
+    public Referee update(String officialId, Referee updatedReferee) {
+        Referee referee = refereeRepository.findById(officialId)
+                .orElseThrow(()->new RuntimeException("Referee not found"));
+        Referee updated = new Referee.Builder()
+                .copy(referee)
+                .setOfficialName(updatedReferee.getOfficialName())
+                .setOfficialGender(updatedReferee.getOfficialGender())
+                .setOfficialNationality(updatedReferee.getOfficialNationality())
+                .setOfficialDateOfBirth(updatedAssistantVAR.getOfficialDateOfBirth())
+                .setOfficialLocationOfBirth(updatedAssistantVAR.getOfficialLocationOfBirth())
+                .setOfficialOrganisation(updatedAssistantVAR.getOfficialOrganisation())
+                .set
+                .build();
+        return refereeRepository.save(updatedReferee);
     }
 
     @Override
@@ -35,7 +58,7 @@ public class RefereeService implements IRefereeService {
     }
 
     @Override
-    public void fireReferee(Referee referee) {
-        refereeRepository.delete(referee);
+    public void fireReferee(String officialId) {
+        refereeRepository.deleteById(officialId);
     }
 }

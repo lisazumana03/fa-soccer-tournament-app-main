@@ -56,6 +56,10 @@ public abstract class Official implements Serializable {
         this.officialName = officalName;
     }
 
+    public Gender getOfficialGender() {
+        return officialGender;
+    }
+
     public String getOfficialNationality() {
         return officialNationality;
     }

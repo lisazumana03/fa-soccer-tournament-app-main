@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.Name;
 import za.co.footballassoc.soccertournament.domain.match.Match;
+import za.co.footballassoc.soccertournament.domain.team.Gender;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -39,6 +40,7 @@ public class AssistantVAR extends Official implements Serializable {
     public static class Builder{
         private String officialId;
         private Name officialName;
+        private Gender officialGender;
         private String officialNationality;
         private LocalDate officialDateOfBirth;
         private Location officialLocationOfBirth;
@@ -53,6 +55,11 @@ public class AssistantVAR extends Official implements Serializable {
 
         public Builder setOfficialName(Name officialName){
             this.officialName = officialName;
+            return this;
+        }
+
+        public Builder setOfficialGender(Gender officialGender){
+            this.officialGender = officialGender;
             return this;
         }
 
@@ -83,6 +90,19 @@ public class AssistantVAR extends Official implements Serializable {
 
         public Builder setSupportRole(String supportRole){
             this.supportRole = supportRole;
+            return this;
+        }
+
+        public Builder copy(AssistantVAR assistantVAR){
+            this.officialId = assistantVAR.officialId;
+            this.officialName = assistantVAR.officialName;
+            this.officialGender = assistantVAR.officialGender;
+            this.officialNationality = assistantVAR.officialNationality;
+            this.officialDateOfBirth = assistantVAR.officialDateOfBirth;
+            this.officialLocationOfBirth = assistantVAR.officialLocationOfBirth;
+            this.officialOrganisation = assistantVAR.officialOrganisation;
+            this.match = assistantVAR.match;
+            this.supportRole = assistantVAR.supportRole;
             return this;
         }
 
