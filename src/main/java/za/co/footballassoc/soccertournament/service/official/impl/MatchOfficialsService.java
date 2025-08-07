@@ -22,12 +22,12 @@ public class MatchOfficialsService implements IMatchOfficialsService {
 
     @Override
     public MatchOfficialsDTO getAllOfficialsByMatch(String matchId) {
-        MatchOfficialsDTO dto = new MatchOfficialsDTO();
-        dto.setReferees(refereeRepository.findByMatch_MatchID(matchId));
-        dto.setVars(varRepository.findByMatch_MatchID(matchId));
-        dto.setAssistantVars(assistantVARRepository.findByMatch_MatchID(matchId));
-        dto.setLinesmen(linesmanRepository.findByMatch_MatchID(matchId));
-        dto.setFourthOfficials(fourthOfficialRepository.findByMatch_MatchID(matchId));
-        return dto;
+        return new MatchOfficialsDTO.Builder()
+                .setReferees(refereeRepository.findByMatch_MatchID(matchId))
+                .setLinesmen(linesmanRepository.findByMatch_MatchID(matchId))
+                .setVars(varRepository.findByMatch_MatchID(matchId))
+                .setAssistantVars(assistantVARRepository.findByMatch_MatchID(matchId))
+                .setFourthOfficials(fourthOfficialRepository.findByMatch_MatchID(matchId))
+                .build();
     }
 }

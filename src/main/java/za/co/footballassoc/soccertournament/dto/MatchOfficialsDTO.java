@@ -41,26 +41,6 @@ public class MatchOfficialsDTO {
         return fourthOfficials;
     }
 
-    public void setReferees(List<Referee> referees) {
-        this.referees = referees;
-    }
-
-    public void setVars(List<VAR> vars) {
-        this.vars = vars;
-    }
-
-    public void setAssistantVars(List<AssistantVAR> assistantVars) {
-        this.assistantVars = assistantVars;
-    }
-
-    public void setLinesmen(List<Linesman> linesmen) {
-        this.linesmen = linesmen;
-    }
-
-    public void setFourthOfficials(List<FourthOfficial> fourthOfficials) {
-        this.fourthOfficials = fourthOfficials;
-    }
-
     public static class Builder{
         private List<Referee> referees;
         private List<VAR> vars;

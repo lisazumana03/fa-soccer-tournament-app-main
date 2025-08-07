@@ -142,43 +142,6 @@ public class Team implements Serializable {
         return owner;
     }
 
-    public void setTeamID(String teamID) {
-        this.teamID = teamID;
-    }
-
-    public void setGamesPlayed(int gamesPlayed) {
-        this.gamesPlayed = gamesPlayed;
-    }
-
-    public void setWins(int wins) {
-        this.wins = wins;
-    }
-
-    public void setDraws(int draws) {
-        this.draws = draws;
-    }
-
-    public void setGoalsFor(int goalsFor) {
-        this.goalsFor = goalsFor;
-    }
-
-    public void setLosses(int losses) {
-        this.losses = losses;
-    }
-
-    public void setGoalsAgainst(int goalsAgainst) {
-        this.goalsAgainst = goalsAgainst;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
-    public void setOwner(Owner newOwner) {
-        this.owner = newOwner;
-    }
-
-
     public static class Builder{
         private String teamID;
         private String teamName;

@@ -36,7 +36,7 @@ public class FourthOfficialService implements IFourthOfficialService {
 
     @Override
     public List<FourthOfficial> getFourthOfficialsByMatch(String matchId) {
-        return List.of();
+        return fourthOfficialRepository.findByMatch_MatchID(matchId);
     }
 
     @Override

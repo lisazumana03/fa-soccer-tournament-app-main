@@ -143,46 +143,6 @@ public class Match implements Serializable {
         return manOfTheMatch;
     }
 
-    public void setMatchID(String matchID) {
-        this.matchID = matchID;
-    }
-
-    public void setMatchDate(LocalDateTime matchDate) {
-        this.matchDate = matchDate;
-    }
-
-    public void setHomeTeam(Team homeTeam) {
-        this.homeTeam = homeTeam;
-    }
-
-    public void setAwayTeam(Team awayTeam) {
-        this.awayTeam = awayTeam;
-    }
-
-    public void setTournament(Tournament tournament) {
-        this.tournament = tournament;
-    }
-
-    public void setHomeTeamScore(int homeTeamScore){
-        this.homeTeamScore = homeTeamScore;
-    }
-
-    public void setAwayTeamScore(int awayTeamScore){
-        this.awayTeamScore = awayTeamScore;
-    }
-
-    public void setFullTime(LocalDateTime fullTime){
-        this.fullTime = fullTime;
-    }
-
-    public void setMatchStatus(MatchStatus matchStatus) {
-        this.matchStatus = matchStatus;
-    }
-
-    public void setPenaltyWinner(Team penaltyWinner) {
-        this.penaltyWinner = penaltyWinner;
-    }
-
     public static class Builder {
         private String matchID;
         private LocalDateTime matchDate;
