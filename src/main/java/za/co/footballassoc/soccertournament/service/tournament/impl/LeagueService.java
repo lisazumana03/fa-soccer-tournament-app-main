@@ -29,7 +29,12 @@ public class LeagueService implements ILeagueService {
     }
 
     @Override
-    public List<League> getAllLeagues() {
+    public League read(String leagueId) {
+        return leagueRepository.findById(leagueId).orElse(null);
+    }
+
+    @Override
+    public List<League> getAll() {
         return leagueRepository.findAll();
     }
 
@@ -109,27 +114,6 @@ public class LeagueService implements ILeagueService {
         return Optional.empty(); // Not ended yet
     }
 
-    private void updateTeamStats(Team home, Team away, int homeGoals, int awayGoals) {
-        home.setGamesPlayed(home.getGamesPlayed() + 1);
-        away.setGamesPlayed(away.getGamesPlayed() + 1);
-
-        home.setGoalsFor(home.getGoalsFor() + homeGoals);
-        home.setGoalsAgainst(home.getGoalsAgainst() + awayGoals);
-        away.setGoalsFor(away.getGoalsFor() + awayGoals);
-        away.setGoalsAgainst(away.getGoalsAgainst() + homeGoals);
-
-        if (homeGoals > awayGoals) {
-            home.setWins(home.getWins() + 1);
-            away.setLosses(away.getLosses() + 1);
-        } else if (awayGoals > homeGoals) {
-            away.setWins(away.getWins() + 1);
-            home.setLosses(home.getLosses() + 1);
-        } else {
-            home.setDraws(home.getDraws() + 1);
-            away.setDraws(away.getDraws() + 1);
-        }
-    }
-
     public void processLeagueMatchResult(String matchId) {
         Match match = matchRepository.findById(matchId)
                 .orElseThrow(() -> new RuntimeException("Match not found"));
@@ -160,6 +144,18 @@ public class LeagueService implements ILeagueService {
         });
     }
 
+    @Override
+    public League addTeamToLeague(String leagueId, Team team) {
+        League league = leagueRepository.findById(leagueId).orElseThrow();
+        league.getTeams().add(team);
+        return leagueRepository.save(league);
+    }
 
+    @Override
+    public League removeTeamFromLeague(String leagueId, String teamId) {
+        League league = leagueRepository.findById(leagueId).orElseThrow();
+        league.getTeams().removeIf(t -> t.getTeamID().equals(teamId));
+        return leagueRepository.save(league);
+    }
 
 }

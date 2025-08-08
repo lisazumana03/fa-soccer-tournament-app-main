@@ -91,6 +91,4 @@ public class LeagueController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
-
 }
