@@ -2,9 +2,13 @@ package za.co.footballassoc.soccertournament.domain.tournament;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import za.co.footballassoc.soccertournament.domain.team.Gender;
+import za.co.footballassoc.soccertournament.domain.team.Team;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 
 @Entity
 public class Hybrid extends Tournament implements Serializable {
@@ -111,7 +115,20 @@ public class Hybrid extends Tournament implements Serializable {
     }
 
     public static class Builder{
-        // League-related
+        private String tournamentID;
+        private String tournamentName;
+        private String tournamentLocation;
+        private String tournamentSeason;
+        private String ageGroup;
+        private TournamentType tournamentType;
+        private Gender tournamentGenderGroup;
+        private LocalDateTime startDate;
+        private LocalDateTime endDate;
+        private List<Team> teams;
+        protected int homeAndAwayGames; //how many times the team will meet in the league/ knockout
+        protected byte[] tournamentLogo;
+        protected Association association;
+        // League or round robin-related
         private int numberOfMatchDays;
         private int promotionSpots;
         private int relegationSpots;

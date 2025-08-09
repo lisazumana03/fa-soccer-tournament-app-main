@@ -1,6 +1,7 @@
 package za.co.footballassoc.soccertournament.domain.tournament;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import za.co.footballassoc.soccertournament.domain.team.Gender;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 
@@ -26,6 +27,7 @@ public class League extends Tournament implements Serializable {
         this.tournamentName = builder.tournamentName;
         this.tournamentLocation = builder.tournamentLocation;
         this.tournamentSeason = builder.tournamentSeason;
+        this.ageGroup = builder.ageGroup;
         this.tournamentGenderGroup = builder.tournamentGenderGroup;
         this.startDate = builder.startDate;
         this.endDate = builder.endDate;
@@ -86,16 +88,71 @@ public class League extends Tournament implements Serializable {
         private String tournamentName;
         private String tournamentLocation;
         private String tournamentSeason;
+        private String ageGroup;
+        private TournamentType tournamentType;
         private Gender tournamentGenderGroup;
         private LocalDateTime startDate;
         private LocalDateTime endDate;
         private List<Team> teams;
+        protected int homeAndAwayGames; //how many times the team will meet in the league/ knockout
+        protected byte[] tournamentLogo;
+        protected Association association;
         private int numberOfMatchDays;
         private int promotionSpots;
         private int relegationSpots;
         private int numberOfGroups;
         private boolean hasPlayOffs;
         private String playOffType;
+
+        public Builder setTournamentID(String tournamentID) {
+            this.tournamentID = tournamentID;
+            return this;
+        }
+
+        public Builder setTournamentName(String tournamentName) {
+            this.tournamentName = tournamentName;
+            return this;
+        }
+
+        public Builder setTournamentLocation(String tournamentLocation) {
+            this.tournamentLocation = tournamentLocation;
+            return this;
+        }
+
+        public Builder setTournamentSeason(String tournamentSeason) {
+            this.tournamentSeason = tournamentSeason;
+            return this;
+        }
+
+        public Builder setAgeGroup(String ageGroup) {
+            this.ageGroup = ageGroup;
+            return this;
+        }
+
+        public Builder setTournamentType(TournamentType tournamentType) {
+            this.tournamentType = tournamentType;
+            return this;
+        }
+
+        public Builder setTournamentGenderGroup(Gender tournamentGenderGroup) {
+            this.tournamentGenderGroup = tournamentGenderGroup;
+            return this;
+        }
+
+        public Builder setStartDate(LocalDateTime startDate) {
+            this.startDate = startDate;
+            return this;
+        }
+
+        public Builder setEndDate(LocalDateTime endDate) {
+            this.endDate = endDate;
+            return this;
+        }
+
+        public Builder setTeams(List<Team> teams) {
+            this.teams = teams;
+            return this;
+        }
 
         public Builder setNumberOfMatchDays(int numberOfMatchDays) {
             this.numberOfMatchDays = numberOfMatchDays;
