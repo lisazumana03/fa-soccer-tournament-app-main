@@ -44,7 +44,17 @@ public class Team implements Serializable {
     private int goalsAgainst;
     private int points;
 
-    public Team() {}
+    protected Team() {
+        this.teamID = null;
+        this.teamName = null;
+        this.gamesPlayed = 0;
+        this.wins = 0;
+        this.draws = 0;
+        this.losses = 0;
+        this.goalsFor = 0;
+        this.goalsAgainst = 0;
+        this.points = 0;
+    }
 
     private Team(Builder builder) {
         this.teamID = builder.teamID;
@@ -273,6 +283,35 @@ public class Team implements Serializable {
             return new Team(this);
         }
 
+        public Team updateStats(int goalsFor, int goalsAgainst) {
+            int newPlayed = this.gamesPlayed + 1;
+            int newWon = this.wins;
+            int newDrawn = this.draws;
+            int newLost = this.losses;
+            int newPoints = this.points;
+
+            if (goalsFor > goalsAgainst) {
+                newWon++;
+                newPoints += 3;
+            } else if (goalsFor == goalsAgainst) {
+                newDrawn++;
+                newPoints += 1;
+            } else {
+                newLost++;
+            }
+
+            return new Team.Builder()
+                    .setTeamID(this.teamID)
+                    .setTeamName(this.teamName)
+                    .setGamesPlayed(newPlayed)
+                    .setWins(newWon)
+                    .setDraws(newDrawn)
+                    .setLosses(newLost)
+                    .setGoalsFor(this.goalsFor + goalsFor)
+                    .setGoalsAgainst(this.goalsAgainst + goalsAgainst)
+                    .setPoints(newPoints)
+                    .build();
+        }
     }
 
 }

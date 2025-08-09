@@ -10,6 +10,7 @@ import za.co.footballassoc.soccertournament.repository.match.MatchRepository;
 import za.co.footballassoc.soccertournament.repository.team.TeamRepository;
 import za.co.footballassoc.soccertournament.repository.tournament.KnockoutRepository;
 import za.co.footballassoc.soccertournament.service.tournament.IKnockoutService;
+import za.co.footballassoc.soccertournament.util.Helper;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -37,9 +38,13 @@ public class KnockoutService implements IKnockoutService {
     }
 
     @Override
-    public Knockout update(String knockoutId, Knockout updateKnockout) {
-        Knockout updatedKnockout = knockoutRepository.findById(knockoutId).orElseThrow();
-        return knockoutRepository.save(updatedKnockout);
+    public Knockout update(String knockoutId, Knockout updatedKnockout) {
+        Knockout existingKnockout = knockoutRepository.findById(knockoutId)
+                .orElseThrow(() -> new RuntimeException("Knockout not found"));
+
+        Knockout merged = Helper.mergeKnockout(existingKnockout, updatedKnockout);
+
+        return knockoutRepository.save(merged);
     }
 
     @Override

@@ -50,6 +50,10 @@ public class League extends Tournament implements Serializable {
         return relegationSpots;
     }
 
+    public int getNumberOfGroups() {
+        return numberOfGroups;
+    }
+
     public boolean isHasPlayOffs() {
         return hasPlayOffs;
     }

@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 @Entity
-@DiscriminatorValue("hy")
 public class Hybrid extends Tournament implements Serializable {
 
     // League-related

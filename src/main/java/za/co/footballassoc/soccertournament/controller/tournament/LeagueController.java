@@ -25,7 +25,7 @@ public class LeagueController {
 
     @GetMapping
     public List<League> getAllLeagues() {
-        return leagueService.getAllLeagues();
+        return leagueService.getAll();
     }
 
     @GetMapping("/association/{code}")
@@ -90,5 +90,15 @@ public class LeagueController {
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @PostMapping("/{leagueId}/add-team")
+    public League addTeamToLeague(@PathVariable String leagueId, @RequestBody Team team) {
+        return leagueService.addTeamToLeague(leagueId, team);
+    }
+
+    @DeleteMapping("/{leagueId}/remove-team/{teamId}")
+    public League removeTeamFromLeague(@PathVariable String leagueId, @PathVariable String teamId) {
+        return leagueService.removeTeamFromLeague(leagueId, teamId);
     }
 }

@@ -28,6 +28,16 @@ public class KnockoutController {
         return knockoutService.getAllKnockouts();
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateKnockout(@PathVariable String knockoutId, @RequestBody Knockout updatedKnockout) {
+        try {
+            Knockout knockout = knockoutService.update(knockoutId, updatedKnockout);
+            return ResponseEntity.ok(knockout);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        }
+    }
+
     @GetMapping("/association/{code}")
     public List<Knockout> getKnockoutsByAssociation(@PathVariable String code) {
         return knockoutService.getKnockoutsByAssociation(code);

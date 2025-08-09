@@ -10,6 +10,7 @@ import za.co.footballassoc.soccertournament.repository.match.MatchRepository;
 import za.co.footballassoc.soccertournament.repository.team.TeamRepository;
 import za.co.footballassoc.soccertournament.repository.tournament.LeagueRepository;
 import za.co.footballassoc.soccertournament.service.tournament.ILeagueService;
+import za.co.footballassoc.soccertournament.util.Helper;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -40,9 +41,19 @@ public class LeagueService implements ILeagueService {
 
     @Override
     public League update(String leagueID, League leagueUpdated) {
-        League league = leagueRepository.findById(leagueID).orElseThrow();
-        // update attributes
-        return leagueRepository.save(league);
+        League existing = leagueRepository.findById(leagueID)
+                .orElseThrow(() -> new RuntimeException("League not found"));
+
+        League updated = new League.Builder()
+                .setNumberOfMatchDays(leagueUpdated.getNumberOfMatchDays())
+                .setPromotionSpots(leagueUpdated.getPromotionSpots())
+                .setRelegationSpots(leagueUpdated.getRelegationSpots())
+                .setNumberOfGroups(leagueUpdated.getNumberOfGroups())
+                .hasPlayOffs(leagueUpdated.isHasPlayOffs())
+                .setPlayOffType(leagueUpdated.getPlayOffType())
+                .build();
+
+        return leagueRepository.save(updated);
     }
 
     @Override
@@ -64,16 +75,10 @@ public class LeagueService implements ILeagueService {
     public List<Team> getLeagueTable(String leagueId) {
         League league = leagueRepository.findById(leagueId)
                 .orElseThrow(() -> new RuntimeException("League not found"));
+
         List<Team> teams = league.getTeams();
-        if (league.getStartDate().isAfter(LocalDateTime.now())) {
-            // Sort alphabetically before league starts
-            teams.sort(Comparator.comparing(Team::getTeamName));
-        } else {
-            // Sort by points, goal difference, goals for
-            teams.sort(Comparator.comparingInt(Team::getPoints).reversed()
-                    .thenComparingInt(team -> (team.getGoalsFor() - team.getGoalsAgainst())).reversed()
-                    .thenComparingInt(Team::getGoalsFor).reversed());
-        }
+        boolean beforeStart = league.getStartDate().isAfter(LocalDateTime.now());
+        Helper.sortLeagueTable(teams, beforeStart);
         return teams;
     }
 
@@ -128,11 +133,31 @@ public class LeagueService implements ILeagueService {
         int homeGoals = match.getHomeTeamScore();
         int awayGoals = match.getAwayTeamScore();
 
-        // Update stats
-        updateTeamStats(home, away, homeGoals, awayGoals);
+        Team updatedHome = new Team.Builder().copy(home)
+                .setGamesPlayed(home.getGamesPlayed() + 1)
+                .setGoalsFor(home.getGoalsFor() + homeGoals)
+                .setGoalsAgainst(home.getGoalsAgainst() + awayGoals)
+                .build();
 
-        teamRepository.save(home);
-        teamRepository.save(away);
+        Team updatedAway = new Team.Builder().copy(away)
+                .setGamesPlayed(away.getGamesPlayed() + 1)
+                .setGoalsFor(away.getGoalsFor() + awayGoals)
+                .setGoalsAgainst(away.getGoalsAgainst() + homeGoals)
+                .build();
+
+        if (homeGoals > awayGoals) {
+            updatedHome = new Team.Builder().copy(updatedHome).setWins(updatedHome.getWins() + 1).build();
+            updatedAway = new Team.Builder().copy(updatedAway).setLosses(updatedAway.getLosses() + 1).build();
+        } else if (awayGoals > homeGoals) {
+            updatedAway = new Team.Builder().copy(updatedAway).setWins(updatedAway.getWins() + 1).build();
+            updatedHome = new Team.Builder().copy(updatedHome).setLosses(updatedHome.getLosses() + 1).build();
+        } else {
+            updatedHome = new Team.Builder().copy(updatedHome).setDraws(updatedHome.getDraws() + 1).build();
+            updatedAway = new Team.Builder().copy(updatedAway).setDraws(updatedAway.getDraws() + 1).build();
+        }
+
+        teamRepository.save(updatedHome);
+        teamRepository.save(updatedAway);
     }
 
     public void simulateFullSeason(String leagueId) {
@@ -146,14 +171,20 @@ public class LeagueService implements ILeagueService {
 
     @Override
     public League addTeamToLeague(String leagueId, Team team) {
-        League league = leagueRepository.findById(leagueId).orElseThrow();
+        League league = leagueRepository.findById(leagueId)
+                .orElseThrow(() -> new RuntimeException("League not found"));
+
+        teamRepository.save(team);
+
         league.getTeams().add(team);
         return leagueRepository.save(league);
     }
 
     @Override
     public League removeTeamFromLeague(String leagueId, String teamId) {
-        League league = leagueRepository.findById(leagueId).orElseThrow();
+        League league = leagueRepository.findById(leagueId)
+                .orElseThrow(() -> new RuntimeException("League not found"));
+
         league.getTeams().removeIf(t -> t.getTeamID().equals(teamId));
         return leagueRepository.save(league);
     }
