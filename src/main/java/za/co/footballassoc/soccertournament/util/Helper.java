@@ -1,13 +1,14 @@
 package za.co.footballassoc.soccertournament.util;
 
 import ch.qos.logback.core.joran.sanity.Pair;
+import za.co.footballassoc.soccertournament.domain.match.Match;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.domain.tournament.Knockout;
+import za.co.footballassoc.soccertournament.domain.tournament.Tournament;
+import za.co.footballassoc.soccertournament.factory.match.MatchFactory;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Helper {
 
@@ -79,6 +80,20 @@ public class Helper {
                 .setNumberOfRounds(updated.getNumberOfRounds() != 0 ? updated.getNumberOfRounds() : existing.getNumberOfRounds())
                 .setHasPlayOffs(updated.isHasPlayOffs())
                 .build();
+    }
+
+    public static List<Match> generateRound(List<Team> teams, Tournament tournament) {
+        if (teams.size() % 2 != 0) throw new IllegalArgumentException("Teams must be even");
+        List<Match> matches = new ArrayList<>();
+        for (int i = 0; i < teams.size(); i += 2) {
+            matches.add(MatchFactory.createFixture(
+                    UUID.randomUUID().toString(),
+                    teams.get(i), teams.get(i + 1),
+                    LocalDateTime.now().plusDays(7),
+                    tournament
+            ));
+        }
+        return matches;
     }
 
 }

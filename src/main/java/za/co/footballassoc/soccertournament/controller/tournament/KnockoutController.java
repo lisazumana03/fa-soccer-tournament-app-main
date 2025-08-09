@@ -25,10 +25,10 @@ public class KnockoutController {
 
     @GetMapping
     public List<Knockout> getAllKnockouts() {
-        return knockoutService.getAllKnockouts();
+        return knockoutService.getAll();
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update/{knockoutId}")
     public ResponseEntity<?> updateKnockout(@PathVariable String knockoutId, @RequestBody Knockout updatedKnockout) {
         try {
             Knockout knockout = knockoutService.update(knockoutId, updatedKnockout);

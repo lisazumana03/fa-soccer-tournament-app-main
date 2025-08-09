@@ -6,6 +6,7 @@ import za.co.footballassoc.soccertournament.domain.match.Match;
 import za.co.footballassoc.soccertournament.domain.match.MatchStatus;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.domain.tournament.Knockout;
+import za.co.footballassoc.soccertournament.factory.match.MatchFactory;
 import za.co.footballassoc.soccertournament.repository.match.MatchRepository;
 import za.co.footballassoc.soccertournament.repository.team.TeamRepository;
 import za.co.footballassoc.soccertournament.repository.tournament.KnockoutRepository;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,18 +35,27 @@ public class KnockoutService implements IKnockoutService {
     }
 
     @Override
-    public List<Knockout> getAllKnockouts() {
+    public Knockout read(String knockoutId) {
+        return knockoutRepository.findById(knockoutId).orElse(null);
+    }
+
+    @Override
+    public List<Knockout> getAll() {
         return knockoutRepository.findAll();
     }
 
     @Override
     public Knockout update(String knockoutId, Knockout updatedKnockout) {
-        Knockout existingKnockout = knockoutRepository.findById(knockoutId)
+        Knockout existing = knockoutRepository.findById(knockoutId)
                 .orElseThrow(() -> new RuntimeException("Knockout not found"));
 
-        Knockout merged = Helper.mergeKnockout(existingKnockout, updatedKnockout);
+        Knockout newKnockout = new Knockout.Builder()
+                .copy(existing)
+                .setNumberOfRounds(updatedKnockout.getNumberOfRounds())
+                .setHasPlayOffs(updatedKnockout.isHasPlayOffs())
+                .build();
 
-        return knockoutRepository.save(merged);
+        return knockoutRepository.save(newKnockout);
     }
 
     @Override
@@ -62,6 +73,7 @@ public class KnockoutService implements IKnockoutService {
         return knockoutRepository.findById(id);
     }
 
+    // Knockout match result logic using Builder
     public Team processKnockoutMatchResult(String matchId) {
         Match match = matchRepository.findById(matchId)
                 .orElseThrow(() -> new RuntimeException("Match not found"));
@@ -70,27 +82,29 @@ public class KnockoutService implements IKnockoutService {
             throw new IllegalStateException("Match is not completed");
         }
 
-        Team home = match.getHomeTeam();
-        Team away = match.getAwayTeam();
-        int homeGoals = match.getHomeTeamScore();
-        int awayGoals = match.getAwayTeamScore();
-
-        if (homeGoals > awayGoals) {
-            match.setPenaltyWinner(home);
-        } else if (awayGoals > homeGoals) {
-            match.setPenaltyWinner(away);
+        Team winner;
+        if (match.getHomeTeamScore() > match.getAwayTeamScore()) {
+            winner = match.getHomeTeam();
+        } else if (match.getAwayTeamScore() > match.getHomeTeamScore()) {
+            winner = match.getAwayTeam();
         } else {
-            // Extra time or penalty decision
             if (match.isPenaltyShootout()) {
                 if (match.getPenaltyWinner() == null) {
                     throw new IllegalStateException("Penalty winner must be set for shootout");
                 }
+                winner = match.getPenaltyWinner();
             } else {
                 throw new IllegalStateException("Match drawn without resolution");
             }
         }
-        matchRepository.save(match);
-        return match.getPenaltyWinner();
+
+        Match updatedMatch = new Match.Builder()
+                .copy(match)
+                .setPenaltyWinner(winner)
+                .build();
+
+        matchRepository.save(updatedMatch);
+        return winner;
     }
 
     private List<Team> getWinnersFromPreviousRound(Knockout knockout) {
@@ -113,20 +127,24 @@ public class KnockoutService implements IKnockoutService {
             Team home = winners.get(i);
             Team away = winners.get(i + 1);
 
-            Match newMatch = new Match();
-            newMatch.setMatchID(newMatch.getMatchID());
-            newMatch.setHomeTeam(home);
-            newMatch.setAwayTeam(away);
-            newMatch.setTournament(knockout);
-            newMatch.setMatchDate(LocalDateTime.now().plusDays(7)); // 1 week later
-            newMatch.setMatchStatus(MatchStatus.SCHEDULED);
+            Match newMatch = MatchFactory.createFixture(
+                    UUID.randomUUID().toString(),
+                    LocalDateTime.now().plusDays(7),
+                    home,
+                    away,
+                    MatchStatus.SCHEDULED,
+                    null,
+                    LocalDateTime.now().plusDays(7).withHour(18).withMinute(0),
+                    null,
+                    false,
+                    false,
+                    null
+            );
 
             matchRepository.save(newMatch);
             nextRound.add(newMatch);
         }
-
         return nextRound;
     }
-
-
 }
+

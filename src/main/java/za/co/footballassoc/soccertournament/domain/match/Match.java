@@ -64,6 +64,7 @@ public class Match implements Serializable {
         this.matchEvents = builder.matchEvents;
         this.officials = builder.officials;
         this.venue = builder.venue;
+        this.penaltyWinner = builder.penaltyWinner;
         this.kickoffTime = builder.kickoffTime;
         this.fullTime = builder.fullTime;
         this.isExtraTime = builder.isExtraTime;
@@ -156,6 +157,7 @@ public class Match implements Serializable {
         private List<MatchEvent> matchEvents;
         private List<Official> officials;
         private Venue venue;
+        private Team penaltyWinner;
         private LocalDateTime kickoffTime;
         private LocalDateTime fullTime;
         private boolean isExtraTime;
@@ -215,6 +217,11 @@ public class Match implements Serializable {
             return this;
         }
 
+        public Builder setPenaltyWinner(Team penaltyWinner){
+            this.penaltyWinner = penaltyWinner;
+            return this;
+        }
+
         public Builder setKickOffTime(LocalDateTime kickoffTime) {
             this.kickoffTime = kickoffTime;
             return this;
@@ -252,6 +259,7 @@ public class Match implements Serializable {
             this.matchEvents = match.matchEvents;
             this.officials = match.officials;
             this.venue = match.venue;
+            this.penaltyWinner = match.penaltyWinner;
             this.kickoffTime = match.kickoffTime;
             this.fullTime = match.fullTime;
             this.isExtraTime = match.isExtraTime;
@@ -262,5 +270,6 @@ public class Match implements Serializable {
         public Match build() {
             return new Match(this);
         }
+
     }
 }
