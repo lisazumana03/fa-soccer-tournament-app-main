@@ -154,6 +154,21 @@ public class League extends Tournament implements Serializable {
             return this;
         }
 
+        public Builder setHomeAndAwayGames(int homeAndAwayGames) {
+            this.homeAndAwayGames = homeAndAwayGames;
+            return this;
+        }
+
+        public Builder setTournamentLogo(byte[] tournamentLogo) {
+            this.tournamentLogo = tournamentLogo;
+            return this;
+        }
+
+        public Builder setAssociation(Association association){
+            this.association = association;
+            return this;
+        }
+
         public Builder setNumberOfMatchDays(int numberOfMatchDays) {
             this.numberOfMatchDays = numberOfMatchDays;
             return this;

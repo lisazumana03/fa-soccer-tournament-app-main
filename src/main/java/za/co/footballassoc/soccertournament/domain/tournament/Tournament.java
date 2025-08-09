@@ -1,6 +1,7 @@
 package za.co.footballassoc.soccertournament.domain.tournament;
 
 import jakarta.persistence.*;
+import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.team.Gender;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 
@@ -15,7 +16,7 @@ public abstract class Tournament implements Serializable {
     @Id
     protected String tournamentID; //1000PL, 2000LL, 3000BL
     protected String tournamentName;
-    protected String tournamentLocation; //city/town, country, continent
+    protected Location tournamentLocation; //city/town, country, continent
     protected String tournamentSeason; ///24/25
     protected String ageGroup;
     @Enumerated(EnumType.STRING)
@@ -37,7 +38,7 @@ public abstract class Tournament implements Serializable {
     protected Association association;
 
     public Tournament() {}// for JPA
-    public Tournament(String tournamentID, String tournamentName, String tournamentLocation,
+    public Tournament(String tournamentID, String tournamentName, Location tournamentLocation,
                       String tournamentSeason, String ageGroup, TournamentType tournamentType,
                       Gender tournamentGenderGroup, LocalDateTime startDate, LocalDateTime endDate,
                       List<Team> teams, int homeAndAwayGames, byte[] tournamentLogo, Association association) {
@@ -64,7 +65,7 @@ public abstract class Tournament implements Serializable {
         return tournamentName;
     }
 
-    public String getTournamentLocation() {
+    public Location getTournamentLocation() {
         return tournamentLocation;
     }
 
@@ -116,7 +117,7 @@ public abstract class Tournament implements Serializable {
         this.tournamentName = tournamentName;
     }
 
-    public void setTournamentLocation(String tournamentLocation) {
+    public void setTournamentLocation(Location tournamentLocation) {
         this.tournamentLocation = tournamentLocation;
     }
 
