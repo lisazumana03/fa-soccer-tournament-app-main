@@ -1,6 +1,7 @@
 package za.co.footballassoc.soccertournament.domain.tournament;
 
 import jakarta.persistence.Entity;
+import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.team.Gender;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 
@@ -64,7 +65,7 @@ public class Knockout extends Tournament implements Serializable {
     public static class Builder{
         private String tournamentID;
         private String tournamentName;
-        private String tournamentLocation;
+        private Location tournamentLocation;
         private String tournamentSeason;
         private String ageGroup;
         private Gender tournamentGenderGroup;
@@ -84,7 +85,7 @@ public class Knockout extends Tournament implements Serializable {
         }
 
         public Builder setTournamentName(String name) { this.tournamentName = name; return this; }
-        public Builder setTournamentLocation(String location) { this.tournamentLocation = location; return this; }
+        public Builder setTournamentLocation(Location tournamentLocation) { this.tournamentLocation = tournamentLocation; return this; }
         public Builder setTournamentSeason(String season) { this.tournamentSeason = season; return this; }
         public Builder setAgeGroup(String ageGroup) { this.ageGroup = ageGroup; return this; }
         public Builder setTournamentType(TournamentType type) { this.tournamentType = type; return this; }

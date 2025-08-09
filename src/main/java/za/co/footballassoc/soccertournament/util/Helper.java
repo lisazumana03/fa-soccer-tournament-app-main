@@ -4,6 +4,7 @@ import ch.qos.logback.core.joran.sanity.Pair;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.domain.tournament.Knockout;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
@@ -23,7 +24,42 @@ public class Helper {
     }
 
     //TOURNAMENT LOGICS
+    //LEAGUE LOGICS
+    // Sorts teams depending on whether tournament has started
+    public static List<Team> sortTable(List<Team> teams, LocalDateTime startDate) {
+        if (startDate.isAfter(LocalDateTime.now())) {
+            // Alphabetical order before start
+            teams.sort(Comparator.comparing(Team::getTeamName));
+        } else {
+            // By points, then GD, then goals for
+            teams.sort(Comparator.comparingInt(Team::getPoints).reversed()
+                    .thenComparingInt(team -> team.getGoalsFor() - team.getGoalsAgainst()).reversed()
+                    .thenComparingInt(Team::getGoalsFor).reversed());
+        }
+        return teams;
+    }
 
+    // Updates team stats after a match
+    public static void updateTeamStats(Team home, Team away, int homeGoals, int awayGoals) {
+        home.setGamesPlayed(home.getGamesPlayed() + 1);
+        away.setGamesPlayed(away.getGamesPlayed() + 1);
+
+        home.setGoalsFor(home.getGoalsFor() + homeGoals);
+        home.setGoalsAgainst(home.getGoalsAgainst() + awayGoals);
+        away.setGoalsFor(away.getGoalsFor() + awayGoals);
+        away.setGoalsAgainst(away.getGoalsAgainst() + homeGoals);
+
+        if (homeGoals > awayGoals) {
+            home.setWins(home.getWins() + 1);
+            away.setLosses(away.getLosses() + 1);
+        } else if (awayGoals > homeGoals) {
+            away.setWins(away.getWins() + 1);
+            home.setLosses(home.getLosses() + 1);
+        } else {
+            home.setDraws(home.getDraws() + 1);
+            away.setDraws(away.getDraws() + 1);
+        }
+    }
     //KNOCKOUT LOGICS
     public static Knockout mergeKnockout(Knockout existing, Knockout updated) {
         return new Knockout.Builder()

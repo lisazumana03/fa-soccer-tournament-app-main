@@ -101,4 +101,9 @@ public class LeagueController {
     public League removeTeamFromLeague(@PathVariable String leagueId, @PathVariable String teamId) {
         return leagueService.removeTeamFromLeague(leagueId, teamId);
     }
+
+    @PostMapping("/{id}/teams")
+    public ResponseEntity<League> addTeam(@PathVariable String id, @RequestBody Team team) {
+        return ResponseEntity.ok(leagueService.addTeamToLeague(id, team));
+    }
 }

@@ -152,6 +152,32 @@ public class Team implements Serializable {
         return owner;
     }
 
+    //Setters (some) for the helper class
+
+    public void setGamesPlayed(int gamesPlayed) {
+        this.gamesPlayed = gamesPlayed;
+    }
+
+    public void setGoalsFor(int goalsFor) {
+        this.goalsFor = goalsFor;
+    }
+
+    public void setGoalsAgainst(int goalsAgainst) {
+        this.goalsAgainst = goalsAgainst;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public void setLosses(int losses) {
+        this.losses = losses;
+    }
+
+    public void setDraws(int draws) {
+        this.draws = draws;
+    }
+
     public static class Builder{
         private String teamID;
         private String teamName;
