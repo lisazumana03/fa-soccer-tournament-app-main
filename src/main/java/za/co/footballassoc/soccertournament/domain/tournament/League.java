@@ -45,6 +45,8 @@ public class League extends Tournament implements Serializable {
         this.playOffType = builder.playOffType;
     }
 
+
+
     public int getNumberOfMatchDays() {
         return numberOfMatchDays;
     }
@@ -72,19 +74,12 @@ public class League extends Tournament implements Serializable {
     @Override
     public String toString() {
         return "League{" +
-                "numberOfMatchDays=" + numberOfMatchDays +
+                "playOffType='" + playOffType + '\'' +
+                ", numberOfMatchDays=" + numberOfMatchDays +
                 ", promotionSpots=" + promotionSpots +
                 ", relegationSpots=" + relegationSpots +
                 ", numberOfGroups=" + numberOfGroups +
                 ", hasPlayOffs=" + hasPlayOffs +
-                ", playOffType='" + playOffType + '\'' +
-                ", tournamentID='" + tournamentID + '\'' +
-                ", tournamentName='" + tournamentName + '\'' +
-                ", tournamentLocation='" + tournamentLocation + '\'' +
-                ", tournamentSeason='" + tournamentSeason + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", teams=" + teams +
                 '}';
     }
 
