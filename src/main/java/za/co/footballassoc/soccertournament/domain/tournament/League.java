@@ -2,6 +2,7 @@ package za.co.footballassoc.soccertournament.domain.tournament;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.team.Gender;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 
@@ -86,7 +87,7 @@ public class League extends Tournament implements Serializable {
     public static class Builder{
         private String tournamentID;
         private String tournamentName;
-        private String tournamentLocation;
+        private Location tournamentLocation;
         private String tournamentSeason;
         private String ageGroup;
         private TournamentType tournamentType;
@@ -114,7 +115,7 @@ public class League extends Tournament implements Serializable {
             return this;
         }
 
-        public Builder setTournamentLocation(String tournamentLocation) {
+        public Builder setTournamentLocation(Location tournamentLocation) {
             this.tournamentLocation = tournamentLocation;
             return this;
         }
