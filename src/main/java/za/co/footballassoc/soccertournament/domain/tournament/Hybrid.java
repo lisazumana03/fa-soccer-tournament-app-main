@@ -32,7 +32,19 @@ public class Hybrid extends Tournament implements Serializable {
     public Hybrid(){}
 
     private Hybrid(Builder builder) {
-        super();
+        super(builder.tournamentID,
+                builder.tournamentName,
+                builder.tournamentLocation,
+                builder.tournamentSeason,
+                builder.ageGroup,
+                builder.tournamentType,
+                builder.tournamentGenderGroup,
+                builder.startDate,
+                builder.endDate,
+                builder.teams,
+                builder.homeAndAwayGames,
+                builder.tournamentLogo,
+                builder.association);
         this.numberOfMatchDays = builder.numberOfMatchDays;
         this.promotionSpots = builder.promotionSpots;
         this.relegationSpots = builder.relegationSpots;

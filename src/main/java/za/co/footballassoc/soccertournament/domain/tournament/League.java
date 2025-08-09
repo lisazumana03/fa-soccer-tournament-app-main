@@ -23,14 +23,19 @@ public class League extends Tournament implements Serializable {
     }
 
     protected League(Builder builder) {
-        this.tournamentID = builder.tournamentID;
-        this.tournamentName = builder.tournamentName;
-        this.tournamentLocation = builder.tournamentLocation;
-        this.tournamentSeason = builder.tournamentSeason;
-        this.ageGroup = builder.ageGroup;
-        this.tournamentGenderGroup = builder.tournamentGenderGroup;
-        this.startDate = builder.startDate;
-        this.endDate = builder.endDate;
+        super(builder.tournamentID,
+                        builder.tournamentName,
+                        builder.tournamentLocation,
+                        builder.tournamentSeason,
+                        builder.ageGroup,
+                builder.tournamentType,
+                builder.tournamentGenderGroup,
+                        builder.startDate,
+                        builder.endDate,
+                        builder.teams,
+                        builder.homeAndAwayGames,
+                        builder.tournamentLogo,
+                        builder.association);
         this.teams = builder.teams;
         this.numberOfMatchDays = builder.numberOfMatchDays;
         this.promotionSpots = builder.promotionSpots;
@@ -185,6 +190,29 @@ public class League extends Tournament implements Serializable {
         }
 
         protected Builder self(){
+            return this;
+        }
+
+        public Builder copy(League league){
+            this.tournamentID = league.getTournamentID();
+            this.tournamentName = league.getTournamentName();
+            this.tournamentLocation = league.getTournamentLocation();
+            this.tournamentSeason = league.getTournamentSeason();
+            this.ageGroup = league.getAgeGroup();
+            this.tournamentType = league.getTournamentType();
+            this.tournamentGenderGroup = league.getTournamentGenderGroup();
+            this.startDate = league.getStartDate();
+            this.endDate = league.getEndDate();
+            this.teams = league.getTeams();
+            this.homeAndAwayGames = league.getHomeAndAwayGames();
+            this.tournamentLogo = league.getTournamentLogo();
+            this.association = league.getAssociation();
+            this.numberOfMatchDays = league.numberOfMatchDays;
+            this.promotionSpots = league.promotionSpots;
+            this.relegationSpots = league.relegationSpots;
+            this.numberOfGroups = league.numberOfGroups;
+            this.hasPlayOffs = league.hasPlayOffs;
+            this.playOffType = league.playOffType;
             return this;
         }
 

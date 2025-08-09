@@ -37,7 +37,6 @@ public abstract class Tournament implements Serializable {
     protected Association association;
 
     public Tournament() {}// for JPA
-
     public Tournament(String tournamentID, String tournamentName, String tournamentLocation,
                       String tournamentSeason, String ageGroup, TournamentType tournamentType,
                       Gender tournamentGenderGroup, LocalDateTime startDate, LocalDateTime endDate,

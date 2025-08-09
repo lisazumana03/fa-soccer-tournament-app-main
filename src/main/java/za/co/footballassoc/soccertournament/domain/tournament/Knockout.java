@@ -20,7 +20,19 @@ public class Knockout extends Tournament implements Serializable {
     }
 
     private Knockout(Builder builder) {
-        super();
+        super(builder.tournamentID,
+                builder.tournamentName,
+                builder.tournamentLocation,
+                builder.tournamentSeason,
+                builder.ageGroup,
+                builder.tournamentType,
+                builder.tournamentGenderGroup,
+                builder.startDate,
+                builder.endDate,
+                builder.teams,
+                builder.homeAndAwayGames,
+                builder.tournamentLogo,
+                builder.association);
         this.tournamentID = builder.tournamentID;
         this.numberOfRounds = builder.numberOfRounds;
         this.hasPlayOffs = builder.hasPlayOffs;
