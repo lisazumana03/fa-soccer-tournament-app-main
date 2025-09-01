@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import za.co.footballassoc.soccertournament.domain.Name;
 import za.co.footballassoc.soccertournament.domain.authentication.Role;
 import za.co.footballassoc.soccertournament.domain.authentication.User;
-import za.co.footballassoc.soccertournament.security.JwtUtils;
 import za.co.footballassoc.soccertournament.service.authentication.impl.AuthService;
 
 import java.util.HashMap;
@@ -21,7 +20,6 @@ import java.util.Map;
 public class AuthenticationController {
     @Autowired
     private AuthService authService;
-    private JwtUtils jwtUtils;
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody Map<String, String> body) {
