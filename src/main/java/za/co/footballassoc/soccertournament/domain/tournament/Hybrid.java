@@ -2,6 +2,7 @@ package za.co.footballassoc.soccertournament.domain.tournament;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.team.Gender;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 
@@ -129,7 +130,7 @@ public class Hybrid extends Tournament implements Serializable {
     public static class Builder{
         private String tournamentID;
         private String tournamentName;
-        private String tournamentLocation;
+        private Location tournamentLocation;
         private String tournamentSeason;
         private String ageGroup;
         private TournamentType tournamentType;
@@ -155,6 +156,8 @@ public class Hybrid extends Tournament implements Serializable {
         // Hybrid-specific
         private boolean groupStageBeforeKnockout; // true = league then knockout
         private int numberOfTeamsToQualify; // number of teams advancing to knockout
+
+
 
         public Builder setNumberOfMatchDays(int numberOfMatchDays) {
             this.numberOfMatchDays = numberOfMatchDays;

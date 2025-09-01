@@ -82,18 +82,18 @@ public class Helper {
                 .build();
     }
 
-    public static List<Match> generateRound(List<Team> teams, Tournament tournament) {
-        if (teams.size() % 2 != 0) throw new IllegalArgumentException("Teams must be even");
-        List<Match> matches = new ArrayList<>();
-        for (int i = 0; i < teams.size(); i += 2) {
-            matches.add(MatchFactory.createFixture(
-                    UUID.randomUUID().toString(),
-                    teams.get(i), teams.get(i + 1),
-                    LocalDateTime.now().plusDays(7),
-                    tournament
-            ));
-        }
-        return matches;
-    }
+//    public static List<Match> generateRound(List<Team> teams, Tournament tournament) {
+//        if (teams.size() % 2 != 0) throw new IllegalArgumentException("Teams must be even");
+//        List<Match> matches = new ArrayList<>();
+//        for (int i = 0; i < teams.size(); i += 2) {
+//            matches.add(MatchFactory.createFixture(
+//                    UUID.randomUUID().toString(),
+//                    teams.get(i), teams.get(i + 1),
+//                    LocalDateTime.now().plusDays(7),
+//                    tournament
+//            ));
+//        }
+//        return matches;
+//    }
 
 }
