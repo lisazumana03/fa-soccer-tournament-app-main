@@ -1,7 +1,6 @@
 package za.co.footballassoc.soccertournament.service.authentication.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import za.co.footballassoc.soccertournament.domain.Name;
 import za.co.footballassoc.soccertournament.domain.authentication.Role;
@@ -37,7 +36,15 @@ public class AuthService implements IAuthService {
 
     @Override
     public String authenticateUser(String username, String password) {
-        return "";
+        User user = userRepository.findByUserName(username)
+                .orElseThrow(() -> new RuntimeException("Invalid username or password"));
+
+        if (!user.getPassword().equals(password)) {
+            throw new RuntimeException("Invalid username or password");
+        }
+
+        // For demo: return a simple token or message
+        return "AUTH_SUCCESS_" + user.getUserID();
     }
 
     public User loadUser(String username) {

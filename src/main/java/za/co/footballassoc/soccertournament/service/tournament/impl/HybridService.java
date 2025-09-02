@@ -20,8 +20,18 @@ public class HybridService implements IHybridService {
     }
 
     @Override
-    public List<Hybrid> getAllHybrid() {
+    public Hybrid read(String s) {
+        return null;
+    }
+
+    @Override
+    public List<Hybrid> getAll() {
         return hybridRepository.findAll();
+    }
+
+    @Override
+    public Hybrid update(String s, Hybrid hybrid) {
+        return null;
     }
 
     @Override

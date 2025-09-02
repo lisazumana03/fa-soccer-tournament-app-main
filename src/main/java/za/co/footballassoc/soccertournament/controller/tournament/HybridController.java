@@ -20,7 +20,7 @@ public class HybridController {
 
     @GetMapping
     public List<Hybrid> getAllHybrids() {
-        return hybridService.getAllHybrid();
+        return hybridService.getAll();
     }
 
     @GetMapping("/{id}")

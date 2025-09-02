@@ -2,16 +2,14 @@ package za.co.footballassoc.soccertournament.controller.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import za.co.footballassoc.soccertournament.domain.Name;
 import za.co.footballassoc.soccertournament.domain.authentication.Role;
 import za.co.footballassoc.soccertournament.domain.authentication.User;
 import za.co.footballassoc.soccertournament.service.authentication.impl.AuthService;
 
-import java.util.HashMap;
+
 import java.util.Map;
 
 @RestController
