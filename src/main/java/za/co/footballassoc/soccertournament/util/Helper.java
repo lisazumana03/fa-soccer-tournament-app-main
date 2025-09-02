@@ -1,14 +1,11 @@
 package za.co.footballassoc.soccertournament.util;
 
-import ch.qos.logback.core.joran.sanity.Pair;
-import za.co.footballassoc.soccertournament.domain.match.Match;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
+
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.domain.tournament.Knockout;
-import za.co.footballassoc.soccertournament.domain.tournament.Tournament;
-import za.co.footballassoc.soccertournament.factory.match.MatchFactory;
-
-import java.time.LocalDateTime;
-import java.util.*;
 
 public class Helper {
 
@@ -27,12 +24,10 @@ public class Helper {
     //TOURNAMENT LOGICS
     //LEAGUE LOGICS
     // Sorts teams depending on whether tournament has started
-    public static List<Team> sortTable(List<Team> teams, LocalDateTime startDate) {
-        if (startDate.isAfter(LocalDateTime.now())) {
-            // Alphabetical order before start
+    public static List<Team> sortLeagueTable(List<Team> teams, boolean beforeStart) {
+        if (beforeStart) {
             teams.sort(Comparator.comparing(Team::getTeamName));
         } else {
-            // By points, then GD, then goals for
             teams.sort(Comparator.comparingInt(Team::getPoints).reversed()
                     .thenComparingInt(team -> team.getGoalsFor() - team.getGoalsAgainst()).reversed()
                     .thenComparingInt(Team::getGoalsFor).reversed());
