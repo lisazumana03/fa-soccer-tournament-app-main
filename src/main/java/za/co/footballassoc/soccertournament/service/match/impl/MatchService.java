@@ -1,14 +1,16 @@
 package za.co.footballassoc.soccertournament.service.match.impl;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import za.co.footballassoc.soccertournament.domain.match.Match;
 import za.co.footballassoc.soccertournament.domain.match.MatchStatus;
 import za.co.footballassoc.soccertournament.repository.match.MatchRepository;
 import za.co.footballassoc.soccertournament.service.match.IMatchService;
-
-import java.time.LocalDateTime;
-import java.util.*;
 
 @Service
 public class MatchService implements IMatchService{
@@ -54,11 +56,16 @@ public class MatchService implements IMatchService{
     public Match updateMatchScore(String matchId, int homeScore, int awayScore, MatchStatus status, LocalDateTime fullTime) {
         Match match = matchRepository.findById(matchId)
                 .orElseThrow(() -> new RuntimeException("Match not found"));
-        match.setHomeTeamScore(homeScore);
-        match.setAwayTeamScore(awayScore);
-        match.setMatchStatus(status);
-        match.setFullTime(fullTime);
-        return matchRepository.save(match);
+
+        Match updatedMatch = new Match.Builder()
+                .copy(match)
+                .setHomeTeamScore(homeScore)
+                .setAwayTeamScore(awayScore)
+                .setMatchStatus(status)
+                .setFullTime(fullTime)
+                .build();
+
+        return matchRepository.save(updatedMatch);
     }
 
 

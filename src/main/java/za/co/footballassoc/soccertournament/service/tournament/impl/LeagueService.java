@@ -1,7 +1,12 @@
 package za.co.footballassoc.soccertournament.service.tournament.impl;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import za.co.footballassoc.soccertournament.domain.match.Match;
 import za.co.footballassoc.soccertournament.domain.match.MatchStatus;
 import za.co.footballassoc.soccertournament.domain.team.Team;
@@ -11,9 +16,6 @@ import za.co.footballassoc.soccertournament.repository.team.TeamRepository;
 import za.co.footballassoc.soccertournament.repository.tournament.LeagueRepository;
 import za.co.footballassoc.soccertournament.service.tournament.ILeagueService;
 import za.co.footballassoc.soccertournament.util.Helper;
-
-import java.time.LocalDateTime;
-import java.util.*;
 
 @Service
 public class LeagueService implements ILeagueService {

@@ -1,16 +1,16 @@
 package za.co.footballassoc.soccertournament.service.team.impl;
 
-import jakarta.persistence.EntityNotFoundException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.persistence.EntityNotFoundException;
 import za.co.footballassoc.soccertournament.domain.team.Owner;
-import za.co.footballassoc.soccertournament.domain.team.Player;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.repository.team.OwnerRepository;
 import za.co.footballassoc.soccertournament.repository.team.TeamRepository;
 import za.co.footballassoc.soccertournament.service.team.IOwnerService;
-
-import java.util.List;
 
 @Service
 public class OwnerService implements IOwnerService {
@@ -68,7 +68,12 @@ public class OwnerService implements IOwnerService {
                 .orElseThrow(EntityNotFoundException::new);
         Owner newOwner = ownerRepository.findById(newOwnerID)
                 .orElseThrow(EntityNotFoundException::new);
-        team.setOwner(newOwner);
-        return teamRepository.save(team);
+
+        Team updatedTeam = new Team.Builder()
+                .copy(team)
+                .setOwner(newOwner)
+                .build();
+
+        return teamRepository.save(updatedTeam);
     }
 }
