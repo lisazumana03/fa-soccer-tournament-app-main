@@ -1,7 +1,7 @@
 package za.co.footballassoc.soccertournament.service.authentication.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import za.co.footballassoc.soccertournament.domain.Name;
 import za.co.footballassoc.soccertournament.domain.authentication.Role;
 import za.co.footballassoc.soccertournament.domain.authentication.User;

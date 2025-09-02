@@ -2,9 +2,6 @@ package za.co.footballassoc.soccertournament.domain.authentication;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import za.co.footballassoc.soccertournament.domain.Name;
 
 import java.io.Serializable;
@@ -13,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails, Serializable {
+public class User implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
@@ -39,10 +36,6 @@ public class User implements UserDetails, Serializable {
         this.role = builder.role;
     }
 
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_" + role));
-    }
-
     public String getUserID() {
         return userID;
     }
@@ -63,29 +56,8 @@ public class User implements UserDetails, Serializable {
         return password;
     }
 
-    @Override
     public String getUsername() {
         return userName;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return UserDetails.super.isCredentialsNonExpired();
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
     }
 
     public String getPhoneNumber() {
