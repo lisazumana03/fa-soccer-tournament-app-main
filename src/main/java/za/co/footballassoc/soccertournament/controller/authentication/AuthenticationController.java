@@ -41,11 +41,6 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> body) {
-        try {
-            String token = authService.authenticateUser(body.get("userName"), body.get("password"));
-            return ResponseEntity.ok(Map.of("token", token));
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", e.getMessage()));
-        }
+        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body("Login not implemented");
     }
 }

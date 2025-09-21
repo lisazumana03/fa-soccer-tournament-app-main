@@ -5,8 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 import za.co.footballassoc.soccertournament.domain.Name;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name = "users")

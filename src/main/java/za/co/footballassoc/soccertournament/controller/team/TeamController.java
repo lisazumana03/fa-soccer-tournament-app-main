@@ -28,6 +28,11 @@ public class TeamController {
         return new ResponseEntity<>(teamService.getAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/get-all")
+    public ResponseEntity<List<Team>> getAllTeams(){
+        return new ResponseEntity<>(teamService.getAll(), HttpStatus.OK);
+    }
+
     @PostMapping("/update/{id}")
     public ResponseEntity<Team> updateTeam(@PathVariable("id") String teamId, @RequestBody Team updatedTeam) {
         try {
