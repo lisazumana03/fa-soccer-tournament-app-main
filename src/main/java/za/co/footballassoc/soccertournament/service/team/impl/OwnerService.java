@@ -31,28 +31,30 @@ public class OwnerService implements IOwnerService {
 
     @Override
     public Owner read(String ownerID) {
-        return ownerRepository.getReferenceById(ownerID);
+        return ownerRepository.findById(ownerID)
+                .orElseThrow(() -> new EntityNotFoundException("Owner not found with ID: " + ownerID));
     }
 
     @Override
     public Owner update(String ownerID, Owner updatedOwner) {
         Owner owner = ownerRepository.findById(ownerID)
-                .orElseThrow(()->new RuntimeException("Owner not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Owner not found with ID: " + ownerID));
+        
         Owner updated = new Owner.Builder()
                 .copy(owner)
                 .setOwnerName(updatedOwner.getOwnerName())
                 .setGender(updatedOwner.getGender())
-                .setTeams(updatedOwner.getTeams())
                 .setDateOfBirth(updatedOwner.getDateOfBirth())
                 .setBirthLocation(updatedOwner.getBirthLocation())
+                .setNetWorth(updatedOwner.getNetWorth())
                 .build();
-        return ownerRepository.save(updatedOwner);
+        return ownerRepository.save(updated);
     }
 
     @Override
-    public void delete(String ownerID){
+    public void delete(String ownerID) {
         if (!ownerRepository.existsById(ownerID)) {
-            throw new EntityNotFoundException(ownerID);
+            throw new EntityNotFoundException("Owner not found with ID: " + ownerID);
         }
         ownerRepository.deleteById(ownerID);
     }
@@ -65,9 +67,18 @@ public class OwnerService implements IOwnerService {
     @Override
     public Team transferTeamOwnership(String teamID, String newOwnerID) {
         Team team = teamRepository.findById(teamID)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new EntityNotFoundException("Team not found with ID: " + teamID));
         Owner newOwner = ownerRepository.findById(newOwnerID)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new EntityNotFoundException("Owner not found with ID: " + newOwnerID));
+
+        // Validate that owner can afford the team
+        Double teamValue = team.getTeamValue();
+        Double ownerNetWorth = newOwner.getNetWorth();
+        
+        if (teamValue != null && ownerNetWorth != null && teamValue > ownerNetWorth) {
+            throw new IllegalArgumentException("Owner cannot afford this team. Team value: $" + 
+                teamValue + "B, Owner net worth: $" + ownerNetWorth + "B");
+        }
 
         Team updatedTeam = new Team.Builder()
                 .copy(team)
@@ -75,5 +86,17 @@ public class OwnerService implements IOwnerService {
                 .build();
 
         return teamRepository.save(updatedTeam);
+    }
+
+    public Team sellTeam(String teamID) {
+        Team team = teamRepository.findById(teamID)
+                .orElseThrow(() -> new EntityNotFoundException("Team not found with ID: " + teamID));
+
+        Team soldTeam = new Team.Builder()
+                .copy(team)
+                .setOwner(null)
+                .build();
+
+        return teamRepository.save(soldTeam);
     }
 }

@@ -21,6 +21,7 @@ public class Owner implements Serializable {
     private LocalDate dateOfBirth;
     @Embedded
     private Location birthLocation;
+    private Double netWorth; // Net worth in billions USD
 
     protected Owner() {}
 
@@ -31,6 +32,7 @@ public class Owner implements Serializable {
         this.teams = builder.teams;
         this.dateOfBirth = builder.dateOfBirth;
         this.birthLocation = builder.birthLocation;
+        this.netWorth = builder.netWorth;
     }
 
     public String getOwnerId() {
@@ -57,6 +59,10 @@ public class Owner implements Serializable {
         return birthLocation;
     }
 
+    public Double getNetWorth() {
+        return netWorth;
+    }
+
     public static class Builder {
         private String ownerId;
         private Name ownerName;
@@ -64,6 +70,7 @@ public class Owner implements Serializable {
         private List<Team> teams;
         private LocalDate dateOfBirth;
         private Location birthLocation;
+        private Double netWorth;
 
         public Builder setOwnerId(String ownerId) {
             this.ownerId = ownerId;
@@ -95,6 +102,11 @@ public class Owner implements Serializable {
             return this;
         }
 
+        public Builder setNetWorth(Double netWorth) {
+            this.netWorth = netWorth;
+            return this;
+        }
+
         public Builder copy(Owner owner) {
             this.ownerId = owner.ownerId;
             this.ownerName = owner.ownerName;
@@ -102,6 +114,7 @@ public class Owner implements Serializable {
             this.teams = owner.teams;
             this.dateOfBirth = owner.dateOfBirth;
             this.birthLocation = owner.birthLocation;
+            this.netWorth = owner.netWorth;
             return this;
         }
 
