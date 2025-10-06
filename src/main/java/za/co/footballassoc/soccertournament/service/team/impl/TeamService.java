@@ -1,13 +1,14 @@
 package za.co.footballassoc.soccertournament.service.team.impl;
 
-import jakarta.persistence.EntityNotFoundException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.persistence.EntityNotFoundException;
 import za.co.footballassoc.soccertournament.domain.team.Team;
 import za.co.footballassoc.soccertournament.repository.team.TeamRepository;
 import za.co.footballassoc.soccertournament.service.team.ITeamService;
-
-import java.util.List;
 
 @Service
 public class TeamService implements ITeamService {

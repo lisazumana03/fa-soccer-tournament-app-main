@@ -1,13 +1,20 @@
 package za.co.footballassoc.soccertournament.domain.team;
 
-import jakarta.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.match.Venue;
 import za.co.footballassoc.soccertournament.domain.tournament.Tournament;
-
-import java.io.Serializable;
-import java.sql.Blob;
-import java.util.List;
 
 @Entity
 public class Team implements Serializable {
@@ -67,13 +74,15 @@ public class Team implements Serializable {
         this.teamType = builder.teamType;
         this.teamHomeGround = builder.teamHomeGround;
         this.groupName = builder.groupName;
-        this.gamesPlayed = builder.gamesPlayed;
-        this.wins = builder.wins;
-        this.draws = builder.draws;
-        this.losses = builder.losses;
-        this.goalsFor = builder.goalsFor;
-        this.goalsAgainst = builder.goalsAgainst;
-        this.points = builder.points;
+        this.owner = builder.owner;
+        // Initialize stats to 0 - they will be updated through match results
+        this.gamesPlayed = 0;
+        this.wins = 0;
+        this.draws = 0;
+        this.losses = 0;
+        this.goalsFor = 0;
+        this.goalsAgainst = 0;
+        this.points = 0;
     }
 
     public String getTeamID() {

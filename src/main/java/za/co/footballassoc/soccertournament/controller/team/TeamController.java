@@ -24,8 +24,12 @@ public class TeamController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<Team>> getTeam(@PathVariable String id) {
-        return new ResponseEntity<>(teamService.getAll(), HttpStatus.OK);
+    public ResponseEntity<Team> getTeam(@PathVariable String id) {
+        Team team = teamService.read(id);
+        if (team != null) {
+            return new ResponseEntity<>(team, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/get-all")
@@ -33,7 +37,7 @@ public class TeamController {
         return new ResponseEntity<>(teamService.getAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Team> updateTeam(@PathVariable("id") String teamId, @RequestBody Team updatedTeam) {
         try {
             Team result = teamService.update(teamId, updatedTeam);
@@ -44,7 +48,7 @@ public class TeamController {
     }
 
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteTeam(@PathVariable String id) {
         teamService.delete(id);
     }
