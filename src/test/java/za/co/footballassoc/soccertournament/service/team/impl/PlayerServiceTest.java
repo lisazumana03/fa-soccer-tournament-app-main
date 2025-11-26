@@ -36,8 +36,8 @@ class PlayerServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        malePlayer = PlayerFactory.createMalePlayer("070312 0567 084", new Name(), Gender.MALE, "South Africa", LocalDate.of(2007, 3, 12), new Location(), PlayerPosition.RW, 170.5, 56.67, new Team(), 11, new Team());
-        femalePlayer = PlayerFactory.createFemalePlayer("020703 0457 084", new Name(), Gender.FEMALE, "South Africa", LocalDate.of(2004, 1, 14), new Location(), PlayerPosition.RW, 170.5, 56.67, new Team(), 11, new Team());
+        malePlayer = PlayerFactory.createMalePlayer("070312 0567 084", new Name(), Gender.MALE, "South Africa", LocalDate.of(2007, 3, 12), new Location(), PlayerPosition.RW, 170.5, 56.67, new Team.Builder().build(), 11, new Team.Builder().build());
+        femalePlayer = PlayerFactory.createFemalePlayer("020703 0457 084", new Name(), Gender.FEMALE, "South Africa", LocalDate.of(2004, 1, 14), new Location(), PlayerPosition.RW, 170.5, 56.67, new Team.Builder().build(), 11, new Team.Builder().build());
     }
 
     @Test

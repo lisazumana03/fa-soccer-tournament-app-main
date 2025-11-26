@@ -1,14 +1,13 @@
 package za.co.footballassoc.soccertournament.domain.tournament;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import za.co.footballassoc.soccertournament.domain.Location;
-import za.co.footballassoc.soccertournament.domain.team.Gender;
-import za.co.footballassoc.soccertournament.domain.team.Team;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import jakarta.persistence.Entity;
+import za.co.footballassoc.soccertournament.domain.Location;
+import za.co.footballassoc.soccertournament.domain.team.Gender;
+import za.co.footballassoc.soccertournament.domain.team.Team;
 
 @Entity
 public class League extends Tournament implements Serializable {
@@ -26,6 +25,7 @@ public class League extends Tournament implements Serializable {
     protected League(Builder builder) {
         super(builder.tournamentID,
                         builder.tournamentName,
+                        builder.tournamentCode,
                         builder.tournamentLocation,
                         builder.tournamentSeason,
                         builder.ageGroup,
@@ -87,6 +87,7 @@ public class League extends Tournament implements Serializable {
     public static class Builder{
         private String tournamentID;
         private String tournamentName;
+        private String tournamentCode;
         private Location tournamentLocation;
         private String tournamentSeason;
         private String ageGroup;
@@ -112,6 +113,11 @@ public class League extends Tournament implements Serializable {
 
         public Builder setTournamentName(String tournamentName) {
             this.tournamentName = tournamentName;
+            return this;
+        }
+
+        public Builder setTournamentCode(String tournamentCode) {
+            this.tournamentCode = tournamentCode;
             return this;
         }
 
@@ -207,6 +213,7 @@ public class League extends Tournament implements Serializable {
         public Builder copy(League league){
             this.tournamentID = league.getTournamentID();
             this.tournamentName = league.getTournamentName();
+            this.tournamentCode = league.getTournamentCode();
             this.tournamentLocation = league.getTournamentLocation();
             this.tournamentSeason = league.getTournamentSeason();
             this.ageGroup = league.getAgeGroup();

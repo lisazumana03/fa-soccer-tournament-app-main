@@ -16,6 +16,7 @@ public abstract class Tournament implements Serializable {
     @Id
     protected String tournamentID; //1000PL, 2000LL, 3000BL
     protected String tournamentName;
+    protected String tournamentCode;
     protected Location tournamentLocation; //city/town, country, continent
     protected String tournamentSeason; ///24/25
     protected String ageGroup;
@@ -38,12 +39,13 @@ public abstract class Tournament implements Serializable {
     protected Association association;
 
     public Tournament() {}// for JPA
-    public Tournament(String tournamentID, String tournamentName, Location tournamentLocation,
+    public Tournament(String tournamentID, String tournamentName, String tournamentCode, Location tournamentLocation,
                       String tournamentSeason, String ageGroup, TournamentType tournamentType,
                       Gender tournamentGenderGroup, LocalDateTime startDate, LocalDateTime endDate,
                       List<Team> teams, int homeAndAwayGames, byte[] tournamentLogo, Association association) {
         this.tournamentID = tournamentID;
         this.tournamentName = tournamentName;
+        this.tournamentCode = tournamentCode;
         this.tournamentLocation = tournamentLocation;
         this.tournamentSeason = tournamentSeason;
         this.ageGroup = ageGroup;
@@ -64,6 +66,8 @@ public abstract class Tournament implements Serializable {
     public String getTournamentName() {
         return tournamentName;
     }
+
+    public String getTournamentCode() {return tournamentCode;}
 
     public Location getTournamentLocation() {
         return tournamentLocation;
@@ -119,6 +123,10 @@ public abstract class Tournament implements Serializable {
 
     public void setTournamentLocation(Location tournamentLocation) {
         this.tournamentLocation = tournamentLocation;
+    }
+
+    public void setTournamentCode(String tournamentCode) {
+        this.tournamentCode = tournamentCode;
     }
 
     public void setTournamentSeason(String tournamentSeason) {

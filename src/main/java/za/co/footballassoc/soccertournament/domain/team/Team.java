@@ -32,6 +32,7 @@ public class Team implements Serializable {
     private List<Player> players;
     @Enumerated(EnumType.STRING)
     private TeamType teamType;
+    private double teamValue;
 
     @ManyToOne
     private Venue teamHomeGround;
@@ -72,6 +73,7 @@ public class Team implements Serializable {
         this.tournament = builder.tournament;
         this.players = builder.players;
         this.teamType = builder.teamType;
+        this.teamValue = builder.teamValue;
         this.teamHomeGround = builder.teamHomeGround;
         this.groupName = builder.groupName;
         this.gamesPlayed = builder.gamesPlayed;
@@ -101,6 +103,10 @@ public class Team implements Serializable {
 
     public byte[] getTeamLogo() {
         return teamLogo;
+    }
+
+    public double getTeamValue(){
+        return teamValue;
     }
 
     public Tournament getTournament() {
@@ -195,6 +201,7 @@ public class Team implements Serializable {
         private List<Player> players;
         private TeamType teamType;
         private Venue teamHomeGround;
+        private double teamValue;
         private String groupName; // e.g., "Group A", null for knockout-only
         private Owner owner;
 
@@ -242,6 +249,11 @@ public class Team implements Serializable {
         }
         public Builder setTeamHomeGround(Venue teamHomeGround) {
             this.teamHomeGround = teamHomeGround;
+            return this;
+        }
+
+        public Builder setTeamValue(double teamValue){
+            this.teamValue = teamValue;
             return this;
         }
 
@@ -299,6 +311,7 @@ public class Team implements Serializable {
             this.tournament = team.tournament;
             this.players = team.players;
             this.teamType = team.teamType;
+            this.teamValue = team.teamValue;
             this.teamHomeGround = team.teamHomeGround;
             this.groupName = team.groupName;
             this.gamesPlayed = team.gamesPlayed;

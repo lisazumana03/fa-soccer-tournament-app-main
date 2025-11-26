@@ -35,6 +35,7 @@ public class Hybrid extends Tournament implements Serializable {
     private Hybrid(Builder builder) {
         super(builder.tournamentID,
                 builder.tournamentName,
+                builder.tournamentCode,
                 builder.tournamentLocation,
                 builder.tournamentSeason,
                 builder.ageGroup,
@@ -130,6 +131,7 @@ public class Hybrid extends Tournament implements Serializable {
     public static class Builder{
         private String tournamentID;
         private String tournamentName;
+        private String tournamentCode;
         private Location tournamentLocation;
         private String tournamentSeason;
         private String ageGroup;

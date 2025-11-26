@@ -1,12 +1,17 @@
 package za.co.footballassoc.soccertournament.domain.team;
 
-import jakarta.persistence.*;
-import za.co.footballassoc.soccertournament.domain.Location;
-import za.co.footballassoc.soccertournament.domain.Name;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import za.co.footballassoc.soccertournament.domain.Location;
+import za.co.footballassoc.soccertournament.domain.Name;
 
 @Entity
 public class Owner implements Serializable {
@@ -21,7 +26,7 @@ public class Owner implements Serializable {
     private LocalDate dateOfBirth;
     @Embedded
     private Location birthLocation;
-    private Double netWorth; // Net worth in billions USD
+    private Double netWorth; // Net worth in billions depend on the currency
 
     protected Owner() {}
 

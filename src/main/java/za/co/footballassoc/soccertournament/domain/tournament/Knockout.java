@@ -1,13 +1,13 @@
 package za.co.footballassoc.soccertournament.domain.tournament;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import za.co.footballassoc.soccertournament.domain.Location;
 import za.co.footballassoc.soccertournament.domain.team.Gender;
 import za.co.footballassoc.soccertournament.domain.team.Team;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 public class Knockout extends Tournament implements Serializable {
@@ -23,6 +23,7 @@ public class Knockout extends Tournament implements Serializable {
     private Knockout(Builder builder) {
         super(builder.tournamentID,
                 builder.tournamentName,
+                builder.tournamentCode,
                 builder.tournamentLocation,
                 builder.tournamentSeason,
                 builder.ageGroup,
@@ -65,6 +66,7 @@ public class Knockout extends Tournament implements Serializable {
     public static class Builder{
         private String tournamentID;
         private String tournamentName;
+        private String tournamentCode;
         private Location tournamentLocation;
         private String tournamentSeason;
         private String ageGroup;
@@ -85,6 +87,7 @@ public class Knockout extends Tournament implements Serializable {
         }
 
         public Builder setTournamentName(String name) { this.tournamentName = name; return this; }
+        public Builder setTournamentCode(String tournamentCode) { this.tournamentCode = tournamentCode; return this; }
         public Builder setTournamentLocation(Location tournamentLocation) { this.tournamentLocation = tournamentLocation; return this; }
         public Builder setTournamentSeason(String season) { this.tournamentSeason = season; return this; }
         public Builder setAgeGroup(String ageGroup) { this.ageGroup = ageGroup; return this; }
@@ -114,6 +117,7 @@ public class Knockout extends Tournament implements Serializable {
         public Builder copy(Knockout knockout){
             this.tournamentID = knockout.tournamentID;
             this.tournamentName = knockout.tournamentName;
+            this.tournamentCode = knockout.tournamentCode;
             this.tournamentLocation = knockout.tournamentLocation;
             this.tournamentSeason = knockout.tournamentSeason;
             this.ageGroup = knockout.ageGroup;
