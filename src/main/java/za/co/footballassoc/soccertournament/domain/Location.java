@@ -4,6 +4,7 @@ import jakarta.persistence.Embeddable;
 
 import java.util.Objects;
 
+//This class could be used for the Leaflet plugin
 @Embeddable
 public class Location implements ValueObject {
     private String suburb;
