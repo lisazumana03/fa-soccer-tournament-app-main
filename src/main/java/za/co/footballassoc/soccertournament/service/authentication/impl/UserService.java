@@ -7,10 +7,10 @@ import za.co.footballassoc.soccertournament.domain.Name;
 import za.co.footballassoc.soccertournament.domain.authentication.Role;
 import za.co.footballassoc.soccertournament.domain.authentication.User;
 import za.co.footballassoc.soccertournament.repository.authentication.UserRepository;
-import za.co.footballassoc.soccertournament.service.authentication.IAuthService;
+import za.co.footballassoc.soccertournament.service.authentication.IUserService;
 
 @Service
-public class AuthService implements IAuthService {
+public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
