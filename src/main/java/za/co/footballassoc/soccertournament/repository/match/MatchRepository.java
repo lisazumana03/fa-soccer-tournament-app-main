@@ -2,6 +2,7 @@ package za.co.footballassoc.soccertournament.repository.match;
 
 import jdk.dynalink.linker.LinkerServices;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 import za.co.footballassoc.soccertournament.domain.match.Match;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface MatchRepository extends JpaRepository <Match, String>{
+public interface MatchRepository extends MongoRepository<Match, String> {
     List<Match> findByTournament_TournamentID(String tournamentID);
     List<Match> findByHomeTeam_TeamIDOrAwayTeam_TeamID(String homeTeamID, String awayTeamID);
 }
