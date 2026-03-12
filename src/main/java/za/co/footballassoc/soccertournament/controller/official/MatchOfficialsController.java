@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import za.co.footballassoc.soccertournament.dto.MatchOfficialsDTO;
+import za.co.footballassoc.soccertournament.dto.officials.MatchOfficialsDTO;
 import za.co.footballassoc.soccertournament.service.official.impl.MatchOfficialsService;
 
 @RestController

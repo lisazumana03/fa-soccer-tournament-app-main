@@ -1,4 +1,4 @@
-package za.co.footballassoc.soccertournament.dto;
+package za.co.footballassoc.soccertournament.dto.officials;
 
 import za.co.footballassoc.soccertournament.domain.official.*;
 
