@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class LeagueFactory {
-    public static League createLeague(String tournamentID, String tournamentName, Location tournamentLocation,
+    public static League createLeague(String tournamentID, String tournamentName, String tournamentCode, Location tournamentLocation,
                                       String tournamentSeason, String ageGroup, TournamentType tournamentType,
                                       Gender tournamentGenderGroup, LocalDateTime startDate, LocalDateTime endDate,
                                       List<Team> teams, int homeAndAwayGames, byte[] tournamentLogo, Association association,
@@ -22,6 +22,7 @@ public class LeagueFactory {
         return new League.Builder()
                 .setTournamentID(tournamentID)
                 .setTournamentName(tournamentName)
+                .setTournamentCode(tournamentCode)
                 .setTournamentLocation(tournamentLocation)
                 .setTournamentSeason(tournamentSeason)
                 .setAgeGroup(ageGroup)

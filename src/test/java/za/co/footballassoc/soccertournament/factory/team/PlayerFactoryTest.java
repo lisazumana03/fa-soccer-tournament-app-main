@@ -16,7 +16,7 @@ class PlayerFactoryTest {
         String playerID = "0409150385084";
         Name playerName = new Name.Builder()
                 .setFirstName("Rendani")
-                .setMiddleName("Morgan")
+                .setMiddleName("Elsa")
                 .setLastName("Mudau").build();
         Gender playerGender = Gender.FEMALE;
         String playerNationality = "South Africa";
